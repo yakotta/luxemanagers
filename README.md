@@ -1,1 +1,1 @@
-This is the luxe managers website at http://luxemanagers.com/
+This is the luxe managers website, located at at http://luxemanagers.com/
