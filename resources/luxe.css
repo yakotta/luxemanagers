@@ -1,0 +1,53 @@
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+p {
+    font-family: 'Lato', sans-serif;
+}
+
+.logo {
+    width: 120px;
+    height: 110px;
+}
+
+@media (min-width: 768px) {
+    .navbar {
+        border-radius: 0;
+    }
+}
+
+.navbar{
+    border: 0;
+    margin-bottom: 0;
+}
+
+footer {
+    background-color: #4e4e4e;
+    padding: 5px;
+    margin-top: 15px;
+    color: #eeeeee;
+}
+
+h2 {
+    font-family: 'Georgia', serif;
+}
+
+h3 {
+    font-family: 'Georgia', serif;
+}
+
+.btn {
+	border-radius: 0px;
+}
+
+.household-placements {
+    -webkit-column-count: 2; /* Chrome, Safari, Opera */
+    -moz-column-count: 2; /* Firefox */
+    column-count: 2;
+    list-style-type: none;
+}
+
+ul {
+    list-style-type: square;
+}
