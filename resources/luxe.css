@@ -6,6 +6,36 @@ p {
     font-family: 'Lato', sans-serif;
 }
 
+footer {
+    background-color: #4e4e4e;
+    padding: 5px;
+    margin-top: 15px;
+    color: #eeeeee;
+}
+
+h2 {
+    font-family: 'Georgia', serif;
+}
+
+h3 {
+    font-family: 'Georgia', serif;
+}
+
+ul {
+    list-style-type: square;
+}
+
+.btn {
+	border-radius: 0px;
+}
+
+.household-placements {
+    -webkit-column-count: 2; /* Chrome, Safari, Opera */
+    -moz-column-count: 2; /* Firefox */
+    column-count: 2;
+    list-style-type: none;
+}
+
 .logo {
     width: 120px;
     height: 110px;
@@ -22,32 +52,18 @@ p {
     margin-bottom: 0;
 }
 
-footer {
-    background-color: #4e4e4e;
-    padding: 5px;
-    margin-top: 15px;
-    color: #eeeeee;
+.navbar-brand {
+    height: 130px;
+    padding: 10px;
 }
 
-h2 {
+.navbar-default .navbar-nav>li>a {
+    line-height: 100px;
     font-family: 'Georgia', serif;
+    color: #000000;
+    font-size: 18px;
 }
 
-h3 {
-    font-family: 'Georgia', serif;
-}
-
-.btn {
-	border-radius: 0px;
-}
-
-.household-placements {
-    -webkit-column-count: 2; /* Chrome, Safari, Opera */
-    -moz-column-count: 2; /* Firefox */
-    column-count: 2;
-    list-style-type: none;
-}
-
-ul {
-    list-style-type: square;
+.navbar-default .navbar-nav>li {
+    float: left;
 }
