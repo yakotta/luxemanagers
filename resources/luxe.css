@@ -1,9 +1,11 @@
 body {
     font-family: 'Lato', sans-serif;
+    padding-bottom: 40px;
 }
 
-p {
-    font-family: 'Lato', sans-serif;
+html {
+    position: relative;
+    min-height: 100%;
 }
 
 footer {
@@ -11,6 +13,11 @@ footer {
     padding: 5px;
     margin-top: 15px;
     color: #eeeeee;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    overflow:hidden;
 }
 
 h2 {
@@ -19,6 +26,10 @@ h2 {
 
 h3 {
     font-family: 'Georgia', serif;
+}
+
+p {
+    font-family: 'Lato', sans-serif;
 }
 
 ul {
@@ -49,7 +60,7 @@ ul {
 
 .navbar{
     border: 0;
-    margin-bottom: 0;
+    margin-bottom: 20px;
 }
 
 .navbar-brand {
