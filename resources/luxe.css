@@ -18,6 +18,7 @@ footer {
     bottom: 0;
     width: 100%;
     overflow:hidden;
+    text-align: right;
 }
 
 h2 {
@@ -77,4 +78,17 @@ ul {
 
 .navbar-default .navbar-nav>li {
     float: left;
+}
+
+.slider {
+    margin-top: -20px;
+}
+
+.readmore-button {
+    color: #000000;
+    background-color: transparent;
+    background-image: none;
+    border: 0px;
+    box-shadow: none;
+    text-shadow: none;
 }
