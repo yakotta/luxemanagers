@@ -121,8 +121,8 @@
             </div>
         </section>
         
-        <section class="media">
-            <h2>Media</h2>
+        <section class="press">
+            <h2>Press</h2>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">LUXE As Seen in Luxury Home Magazine</h3>

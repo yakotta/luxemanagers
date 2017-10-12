@@ -8,6 +8,27 @@ function var_dump_pre ($input_variable)
     print("</pre>");
 }
 
+// Checks migrations in the database
+function check_migration($m)
+{
+    $db = connect();
+    $result = $db->query("select filename from migrations where filename = '$m'");
+
+    if($result === false) return false;
+    
+    if($result->num_rows == 0) return false;
+    
+    return true;
+}
+
+// Adds migrations to the database table 
+function add_migration($m)
+{
+    $db = connect();
+    
+    $db->query("insert into migrations set filename='$m'");
+}
+
 // Creates a database connections
 function connect()
 {
