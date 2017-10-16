@@ -48,7 +48,7 @@
 			Read more <small><span class="glyphicon glyphicon-chevron-down"></span></small>
 		</a>
 		<div class="collapse" id="collapse-staffing">
-			<p>Some of the standard household placements Luxe specializes in incude:</p>
+			<p>Some of the standard household placements Luxe specializes in include:</p>
 			<ul class="household-placements">
 				<li>Accountants</li>
 				<li>Administrators</li>

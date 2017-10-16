@@ -32,10 +32,10 @@ function add_migration($m)
 // Creates a database connections
 function connect()
 {
-    $hostname = getenv('IP');
-    $username = getenv('C9_USER');
-    $password = "";
-    $database = "c9";
+    $hostname = "localhost";
+    $username = "root";
+    $password = "root";
+    $database = "luxemanagers";
     $dbport = 3306;
     
     // Create connection
@@ -69,6 +69,7 @@ function render_template($template_name, $template_parameters=[])
 
 // Checks the paramters 
 function check_parameters ($source, $parameters=[]) {
+    var_dump_pre($source);
     var_dump_pre($parameters);
     foreach($parameters as $field) {
         if(!array_key_exists($field, $source) || empty($source[$field])){
@@ -82,4 +83,11 @@ function check_parameters ($source, $parameters=[]) {
 function redirect($url) {
     header("Location: $url");
     die("Waiting to redirect to '$url'");
+}
+
+// Gets resources
+function get_resource($resource) {
+    $base = str_replace($_SERVER["DOCUMENT_ROOT"], "", __DIR__);
+    $base = str_replace("/resources", "", $base);
+    return $base.$resource;
 }
