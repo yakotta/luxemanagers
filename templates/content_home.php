@@ -9,10 +9,6 @@
     </div>
 </div>
 
-<div class="calltoaction">
-    <p>Call 1-650-385-8989 now or send an email to contact@luxemanagers.com to learn more about how Luxe Lifestyle Managers can be of service to you today.</p>
-</div>
-
 <main>
     <section class="services container-fluid">
         <h2>Services</h2>
@@ -43,5 +39,9 @@
                 </div>
             </div>
         </section>
+    </section>
+
+    <section class="contact container-fluid">
+		<?=render_template("templates/form_contact.php")?>
     </section>
 </main>

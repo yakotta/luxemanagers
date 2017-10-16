@@ -1,7 +1,9 @@
 <?php
 error_reporting(-1);
 ini_set("display_errors", true);
+
 include(__DIR__."/resources/library.php");
+include(__DIR__."/api/site_config.php");
 
 session_start();
 // Just authenticate everybody for now until we create a proper login
@@ -28,7 +30,7 @@ switch(true) {
         break;
 
 // Service Details Pages
-    case preg_match("~services~", $url):
+    case preg_match("~^services$~", $url):
         include(__DIR__."/api/services.php");
         $serviceList = getServiceList();
         $template = render_template(__DIR__."/templates/services/intro_services.php", [
@@ -42,6 +44,8 @@ switch(true) {
         $template = render_template(__DIR__."/templates/services/display_service.php", [
             "service" => $service
         ]);
+
+        // TODO: this code will break and not display correct page if you do not put a service that exists
         break;
 
 // Service Management Pages
@@ -80,7 +84,12 @@ switch(true) {
         ]);
         break;
         
-// API Service Routes
+// API Routes
+    case preg_match("~api/send-message~", $url):
+        var_dump_pre($_POST);
+        die("x.x");
+        break;
+
     case preg_match("~api/services/add~", $url):
         include_once("api/services.php");
         $status = check_parameters($_POST, [
