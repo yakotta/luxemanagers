@@ -8,7 +8,7 @@
                 <li><a href="/about">About Luxe</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Contact Us: 1-650-385-8989</a></li>
+                <li><a href="#">Contact Us: <?=getSiteConfig("phone")?></a></li>
             </ul>
         </div>
     </nav>

@@ -85,9 +85,9 @@ function redirect($url) {
     die("Waiting to redirect to '$url'");
 }
 
-// Gets resources
-function get_resource($resource) {
+// Rewrites a requested url based on website location 
+function rewrite_url($url) {
     $base = str_replace($_SERVER["DOCUMENT_ROOT"], "", __DIR__);
     $base = str_replace("/resources", "", $base);
-    return $base.$resource;
+    return $base.$url;
 }
