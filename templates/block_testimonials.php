@@ -11,7 +11,7 @@ if(empty($testimonial["link"])){
         <h3 class="panel-title"><?=$testimonial["name"]?></h3>
     </div>
     <div class="panel-body">
-        <img class="img-circle" src="<?=$testimonial["image"]?>" />
+        <img class="img-circle" src="<?=get_resource($testimonial["image"])?>" />
         <p>
             "<?=$testimonial["quote"]?>" – <?=$name?>, <?=$testimonial["title"]?>
         </p>
