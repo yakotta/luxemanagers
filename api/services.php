@@ -52,6 +52,14 @@ function getServiceByID($datasource)
     return $service;
 }
 
+function getServiceByLink($link)
+{
+    $db = connect();
+    $result = $db->query("select * from services where link='$link'");
+    $service = $result->fetch_assoc();
+    return $service;
+}
+
 function getServiceList()
 {
     $db = connect();
