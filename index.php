@@ -11,7 +11,7 @@ $url = $_GET["url"];
 
 switch(true) {
 // Home Page 
-    case preg_match("~^$~", $url):
+    case preg_match("~^(|/)$~", $url):
         include(__DIR__."/api/services.php");
         include(__DIR__."/api/testimonials.php");
         $serviceList = getServiceList();
