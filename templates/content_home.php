@@ -14,76 +14,18 @@
     <section class="services container-fluid">
         <h2>Services</h2>
         <div class="row">
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <span class="glyphicon glyphicon-picture"></span> <!--<img src="..." alt="...">-->
-                    <div class="caption">
-                        <h3>Domestic Staffing & Placement</h3>
-                        <p>LUXE Domestic Staffing and Placement is like no other domestic staffing service...</p>
-                        <p><a href="services.html#staffing" class="btn btn-primary" role="button">Read More <small><span class="glyphicon glyphicon-chevron-right"></span></small></a></p>
+            <?php foreach($serviceList as $service): ?>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <span class="glyphicon glyphicon-picture"></span> <!--<img src="..." alt="...">-->
+                        <div class="caption">
+                            <h3><?=$service["name"]?></h3>
+                            <p><?=$service["short_description"]?></p>
+                            <p><a href="service/<?=$service["link"]?>" class="btn btn-primary" role="button">Read More <small><span class="glyphicon glyphicon-chevron-right"></span></small></a></p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <span class="glyphicon glyphicon-picture"></span> <!--<img src="..." alt="...">-->
-                    <div class="caption">
-                        <h3>Domestic, Estate, & Household Management</h3>
-                        <p>LUXE Lifestyle Managers understand the difference between ordinary and extraordinary is that little extra...</p>
-                        <p><a href="services.html#estate" class="btn btn-primary" role="button">Read More <small><span class="glyphicon glyphicon-chevron-right"></span></small></a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <span class="glyphicon glyphicon-picture"></span> <!--<img src="..." alt="...">-->
-                    <div class="caption">
-                        <h3>Travel, Private Air, & Vessel Management</h3>
-                        <p>LUXE Lifestyle Mangers understand in order to create something exceptional, your mindset must be relentlessly focused on the smallest detail. LUXE represent owners as eyes on site.</p>
-                        <p><a href="services.html#travel" class="btn btn-primary" role="button">Read More <small><span class="glyphicon glyphicon-chevron-right"></span></small></a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <span class="glyphicon glyphicon-picture"></span> <!--<img src="..." alt="...">-->
-                    <div class="caption">
-                        <h3>Domestic & International Relocations</h3>
-                        <p>LUXE Lifestyle Managers make moving hassle-free, managing every step of the journey, from packing, sorting, storage, staging, and delivery, to set-up and…</p>
-                        <p><a href="services.html#relocation" class="btn btn-primary" role="button">Read More <small><span class="glyphicon glyphicon-chevron-right"></span></small></a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <span class="glyphicon glyphicon-picture"></span> <!--<img src="..." alt="...">-->
-                    <div class="caption">
-                        <h3>Residential & Commercial Construction Project Management – Owner’s Representative</h3>
-                        <p>...</p>
-                        <p><a href="services.html#construction" class="btn btn-primary" role="button">Read More <small><span class="glyphicon glyphicon-chevron-right"></span></small></a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <span class="glyphicon glyphicon-picture"></span> <!--<img src="..." alt="...">-->
-                    <div class="caption">
-                        <h3>Private Concierge Services</h3>
-                        <p>...</p>
-                        <p><a href="services.html#concierge" class="btn btn-primary" role="button">Read More <small><span class="glyphicon glyphicon-chevron-right"></span></small></a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <span class="glyphicon glyphicon-picture"></span> <!--<img src="..." alt="...">-->
-                    <div class="caption">
-                        <h3>Corporate Support</h3>
-                        <p>...</p>
-                        <p><a href="services.html#corporate" class="btn btn-primary" role="button">Read More <small><span class="glyphicon glyphicon-chevron-right"></span></small></a></p>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach?>
         </div>
     </section>
     
