@@ -1,8 +1,11 @@
-<div class="slider jumbotron">
+<div class="clearfix slider jumbotron">
     <div class="container-fluid">
-      <h1>Sliders here</h1>
-      <p>...</p>
-      <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+        <img class="background" src="<?=get_resource("/resources/slider/luxe-white-glove.jpg")?>" />
+        <div class="content">
+            <h1>Sliders here</h1>
+            <p>...</p>
+            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+        </div>
     </div>
 </div>
 

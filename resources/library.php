@@ -32,7 +32,9 @@ function add_migration($m)
 // Creates a database connections
 function connect()
 {
-    $hostname = "localhost";
+    // On docker, we need to use the environment variable
+    // On MAMP, we need to use localhost, so this line of code decides between both options automatically
+    $hostname = getenv("MYSQL_HOST") ?: "localhost";
     $username = "root";
     $password = "root";
     $database = "luxemanagers";

@@ -1,0 +1,27 @@
+header .logo,
+header .logo img {
+    width: 120px;
+    height: 110px;
+}
+
+header .logo{
+    float: left;
+}
+
+header nav{
+    float: right;
+}
+
+header nav ul li{
+    float: left;
+}
+
+header nav ul li .menuitem {
+    line-height: 110px;
+    font-size: 28px;
+}
+
+header .contact_number{
+    float: right;
+    padding: 0 10px;
+}

@@ -13,7 +13,7 @@ $url = $_GET["url"];
 
 switch(true) {
 // Home Page 
-    case preg_match("~^$~", $url):
+    case preg_match("~^(|/)$~", $url):
         include(__DIR__."/api/services.php");
         include(__DIR__."/api/testimonials.php");
         $serviceList = getServiceList();
@@ -63,9 +63,9 @@ switch(true) {
             "serviceCount" => $serviceCount
         ]);
         break;
-    
+
     case preg_match("~admin/services/details~", $url):
-    die($url);
+        die($url);
         include_once("api/services.php");
         $id = $_GET["id"];
 

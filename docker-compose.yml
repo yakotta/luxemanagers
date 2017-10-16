@@ -1,0 +1,37 @@
+version: "2"
+
+volumes:
+  mysql_data:
+
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    depends_on:
+      - phpfpm
+    volumes:
+      - ./:/www
+      - ./docker-nginx.conf:/etc/nginx/conf.d/site.conf
+
+  phpfpm:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.phpfpm
+    depends_on:
+      - mysql
+    volumes:
+      - ./:/www
+    environment:
+      - MYSQL_HOST=mysql
+
+  mysql:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.mysql
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
