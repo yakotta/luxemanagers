@@ -1,4 +1,6 @@
 <?php
+error_reporting(-1);
+ini_set("display_errors", true);
 include(__DIR__."/resources/library.php");
 
 session_start();
@@ -7,31 +9,47 @@ $_SESSION["authenticated"] = true;
 
 $url = $_GET["url"];
 
-switch($url) {
+switch(true) {
 // Home Page 
-    case "":
+    case preg_match("~^$~", $url):
         include(__DIR__."/api/services.php");
+        include(__DIR__."/api/testimonials.php");
         $serviceList = getServiceList();
+        $testimonialList = getTestimonialList();
         $template = render_template(__DIR__."/templates/content_home.php", [
+            "testimonialList" => $testimonialList,
             "serviceList" => $serviceList
         ]);
         break;
 
 // Content Pages        
-    case "about":
+    case preg_match("~about~", $url):
         $template = render_template(__DIR__."/templates/content_about.php");
         break;
-    
-    case "services":
-        $template = render_template(__DIR__."/templates/services/content_services.php");
+
+// Service Details Pages
+    case preg_match("~services~", $url):
+        include(__DIR__."/api/services.php");
+        $serviceList = getServiceList();
+        $template = render_template(__DIR__."/templates/services/intro_services.php", [
+            "serviceList" => $serviceList
+        ]);
+        break;
+
+    case preg_match("~services/(.*)~", $url ,$matches):
+        include(__DIR__."/api/services.php");
+        $service = getServiceByLink($matches[1]);
+        $template = render_template(__DIR__."/templates/services/display_service.php", [
+            "service" => $service
+        ]);
         break;
 
 // Service Management Pages
-    case "admin/services/add":
+    case preg_match("~admin/services/add~", $url):
         $template = render_template(__DIR__."/templates/services/add_service.php");
         break;
     
-    case "admin/services/list":
+    case preg_match("~admin/services/list~", $url):
         // contains edit and delete
         include_once("api/services.php");
         $serviceList = getServiceList();
@@ -41,8 +59,9 @@ switch($url) {
             "serviceCount" => $serviceCount
         ]);
         break;
-    
-    case "admin/services/details":
+
+    case preg_match("~admin/services/details~", $url):
+        die($url);
         include_once("api/services.php");
         $id = $_GET["id"];
 
@@ -62,7 +81,7 @@ switch($url) {
         break;
         
 // API Service Routes
-    case "api/services/add":
+    case preg_match("~api/services/add~", $url):
         include_once("api/services.php");
         $status = check_parameters($_POST, [
             "name", "full_description"
@@ -76,7 +95,7 @@ switch($url) {
         }
         break;
 
-    case "api/services/edit":
+    case preg_match("~api/services/edit~", $url):
         include_once("api/services.php");
         $status = check_parameters($_POST, [
             "id", "name", "full_description", "image"
@@ -90,7 +109,7 @@ switch($url) {
         }
         break;
 
-    case "api/services/delete":
+    case preg_match("~api/services/delete~", $url):
         include_once("api/services.php");
         $status = check_parameters($_GET, [
             "id" => [
@@ -109,7 +128,7 @@ switch($url) {
         break;
 
 // Migrations
-    case "migrations":
+    case preg_match("~migrations~", $url):
         ob_start();
         $migrations = glob(__DIR__."/migrations/m*.php");
 

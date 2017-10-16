@@ -13,54 +13,19 @@
 <main>
     <section class="services container-fluid">
         <h2>Services</h2>
-        <div class="row">
-            <?php foreach($serviceList as $service): ?>
-                <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                        <span class="glyphicon glyphicon-picture"></span> <!--<img src="..." alt="...">-->
-                        <div class="caption">
-                            <h3><?=$service["name"]?></h3>
-                            <p><?=$service["short_description"]?></p>
-                            <p><a href="service/<?=$service["link"]?>" class="btn btn-primary" role="button">Read More <small><span class="glyphicon glyphicon-chevron-right"></span></small></a></p>
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach?>
-        </div>
+		<?=render_template("templates/services/block_services.php", [
+			"serviceList" => $serviceList
+		])?>
     </section>
     
     <section class="publicity container-fluid">
         <section class="testimonials">
             <h2>Testimonials</h2>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Stacey Friend</h3>
-                </div>
-                <div class="panel-body">
-                    <img class="img-circle" src="images/staceyfriend.jpg" />
-                    <p>“Tejai is a highly efficient, hard working, hands-on individual. Her ability to manage numerous complex operations, while simultaneously maintaining the highest standards and discretion for her clients is by far an attribution to her professionalism.” — Stacey Friend, Estate Manager at Greenwoods Trust LLC</p>
-                </div>
-            </div>
-
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Diane Halfman</h3>
-                </div>
-                <div class="panel-body">
-                    <img class="img-circle" src="images/dianehalfman.jpg" />
-                    <p>“I always knew I could rely on Tejai and trust her implicitly, she is level headed with endless reserve, initiative, follow-through and “take charge” energy which would be a valuable asset to any organization.” – <a href="http://dianehalfman.typepad.com/my-lifestyle-organizer/">Diane Halfman</a>, Coach, Consultant at The Ultimate Game of Life, an Edutainment Co.</p>
-                </div>
-            </div>
-            
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Michele Presley</h3>
-                </div>
-                <div class="panel-body">
-                    <img class="img-circle" src="images/michelepresley.jpg" />
-                    <p>“I value Tejai’s intelligence, integrity, loyalty and work ethic, not to mention her unfailing perseverence in the face of adversity.” – Michele Presley, Sales & Marketing Exec at JumpstartMD</p>
-                </div>
-            </div>
+            <?php foreach($testimonialList as $testimonial){
+                print(render_template("templates/block_testimonials.php", [
+                    "testimonial" => $testimonial
+                ]));
+            }?>
         </section>
         
         <section class="press">
