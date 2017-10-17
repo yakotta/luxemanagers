@@ -3,7 +3,7 @@
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
                 <img class="background"
-                     src="<?=get_resource($service["image"])?>"
+                     src="<?=rewrite_url($service["image"])?>"
                      alt="<?=$service["name"]?>" />
 
                 <div class="caption">

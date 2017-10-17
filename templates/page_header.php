@@ -1,6 +1,6 @@
 
 <header class="clearfix">
-    <a class="logo" href="/">
+    <a class="logo" href="<?=rewrite_url('/')?>">
         <img src="<?=rewrite_url("/resources/images/luxelogo-small.png")?>" />
     </a>
     <nav id="menu">
