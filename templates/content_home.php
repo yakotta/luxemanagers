@@ -20,11 +20,13 @@
     <section class="publicity container-fluid">
         <section class="testimonials">
             <h2>Testimonials</h2>
-            <?php foreach($testimonialList as $testimonial){
-                print(render_template("templates/block_testimonials.php", [
-                    "testimonial" => $testimonial
-                ]));
-            }?>
+            <div class="row">
+                <?php foreach($testimonialList as $testimonial){
+                    print(render_template("templates/block_testimonials.php", [
+                        "testimonial" => $testimonial
+                    ]));
+                }?>
+            </div>
         </section>
         
         <section class="press">

@@ -196,3 +196,21 @@ header .contact_number {
     right: 10px;
     bottom: 10px;
 }
+
+.testimonials .media{
+    margin-top: 0;
+}
+/*
+.testimonials .media:nth-child(even):before,
+.testimonials .media:nth-child(even):after {
+    content: "|";
+    font-family: FontAwesome;
+    display: table-cell; /* Display Table-Cell
+    width: 100px;
+    background: #34495e;
+    text-align: center;
+    color: #fff;
+    font-size: 2.5em;
+    vertical-align: middle;
+}
+*/
