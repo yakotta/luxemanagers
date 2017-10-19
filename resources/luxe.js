@@ -10,4 +10,13 @@ $(document).ready(function() {
         this.style.height = 'auto';
         this.style.height = (this.scrollHeight) + 'px';
     });
+
+    $(window).scroll(function(){
+        var scrollVar = $(window).scrollTop();
+        if (scrollVar > 75) {
+            $('header').addClass('fixedtop');
+        } else {
+            $('header').removeClass('fixedtop');
+        }
+    });
 });
