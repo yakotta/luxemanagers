@@ -1,6 +1,6 @@
 <div class="clearfix slider jumbotron">
     <div class="container-fluid">
-        <img class="background" src="<?=get_resource("/resources/slider/luxe-white-glove.jpg")?>" />
+        <img class="background" src="<?=rewrite_url("/resources/slider/luxe-white-glove.jpg")?>" />
         <div class="content">
             <h1>Sliders here</h1>
             <p>...</p>
