@@ -10,10 +10,12 @@ header .logo{
 
 header nav{
     float: right;
+    margin-right: 15px;
 }
 
 header nav ul li{
     float: left;
+    padding: 0 10px;
 }
 
 header nav ul li .menuitem {
