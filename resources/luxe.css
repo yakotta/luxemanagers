@@ -1,34 +1,13 @@
-@font-face {
-    font-family: 'leducation';
-    src: url('leducation.eot');
-    src: url('leducation.eot?#iefix') format('embedded-opentype'),
-    url('leducation.woff') format('woff'),
-    url('leducation.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+html {
+    position: relative;
+    min-height: 100%;
+    overflow-y: scroll;
 }
 
 body {
     font-family: 'Georgia', sans-serif;
     padding-bottom: 40px;
-}
-
-html {
-    position: relative;
-    min-height: 100%;
-}
-
-footer {
-    background-color: #4e4e4e;
-    padding: 5px;
-    margin-top: 15px;
-    color: #eeeeee;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    overflow:hidden;
-    text-align: right;
+    overflow-x: hidden;
 }
 
 h2,
@@ -105,6 +84,19 @@ header .contact_number {
     bottom: -20px;
 }
 
+footer {
+    background-color: #4e4e4e;
+    padding: 5px;
+    margin-top: 15px;
+    color: #eeeeee;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    overflow:hidden;
+    text-align: center;
+}
+
 .household-placements {
     -webkit-column-count: 2; /* Chrome, Safari, Opera */
     -moz-column-count: 2; /* Firefox */
@@ -128,6 +120,7 @@ header .contact_number {
     width: 100%;
     height: 0;
     padding-bottom: 38%;
+    margin: 0
 }
 
 .jumbotron.slider .background{
@@ -149,53 +142,29 @@ header .contact_number {
     border-radius: 0;
     padding: 0;
     width: 100%;
-    height: 0;
-    padding-bottom: 66%;
-    box-shadow: 2px 2px 10px #cccccc;
+    box-shadow: none;
+    border: 0;
 }
 
 .services .thumbnail .background{
-    position: absolute;
-    left: 0;
-    top: 0;
     width: 100%;
-    z-index: 1;
+    box-shadow: 5px 5px 10px #aaaaaa;
 }
 
-.services .thumbnail .caption{
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    z-index: 2;
+.services .thumbnail .caption {
+    padding: 10px 0;
+    text-align: center;
 }
+
 .services .thumbnail .caption h3 {
     margin-top: 0;
 }
 
-.services .thumbnail .caption * {
-    position: relative;
-    z-index: 2;
-}
-
-.services .thumbnail .caption:after{
-    position: absolute;
-    content: " ";
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #ffffff;
-    opacity: 0.75;
-    z-index: 1;
-}
-
-.services .thumbnail .caption .btn{
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
+.services .thumbnail .caption a {
+    color: inherit;
 }
 
 .testimonials .media{
     margin-top: 0;
+    margin-bottom: 30px;
 }
