@@ -192,3 +192,7 @@ header .contact_number {
     right: 10px;
     bottom: 10px;
 }
+
+.testimonials .media{
+    margin-top: 0;
+}

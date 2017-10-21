@@ -5,15 +5,12 @@ if(empty($testimonial["link"])){
     $name = "<a href='{$testimonial["link"]}'>{$testimonial["name"]}</a>";
 }
 ?>
-
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?=$testimonial["name"]?></h3>
+<div class="media col-sm-4">
+    <div class="media-left">
+        <img class="media-object" src="<?=rewrite_url($testimonial["image"])?>" alt="<?=$testimonial["name"]?>">
     </div>
-    <div class="panel-body">
-        <img class="img-circle" src="<?=rewrite_url($testimonial["image"])?>" />
-        <p>
-            "<?=$testimonial["quote"]?>" – <?=$name?>, <?=$testimonial["title"]?>
-        </p>
+    <div class="media-body">
+        <h4 class="media-heading"><?=$testimonial["name"]?></h4>
+        "<?=$testimonial["quote"]?>" – <?=$name?>, <?=$testimonial["title"]?>
     </div>
 </div>

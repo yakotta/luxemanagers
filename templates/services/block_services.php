@@ -7,12 +7,7 @@
                      alt="<?=$service["name"]?>" />
 
                 <div class="caption">
-                    <h3><?=$service["name"]?></h3>
-                    <p>
-                        <a href="service/<?=$service["link"]?>" class="btn btn-primary" role="button">
-                            Read More <small><span class="glyphicon glyphicon-chevron-right"></span></small>
-                        </a>
-                    </p>
+                    <h3><a href="<?=rewrite_url("/services/{$service["link"]}")?>"><?=$service["name"]?></a></h3>
                 </div>
             </div>
         </div>
