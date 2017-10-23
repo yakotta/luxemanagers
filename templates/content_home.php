@@ -11,12 +11,16 @@
 
 <main>
     <section class="services container-fluid">
-        <h2>Services</h2>
-		<?=render_template("templates/services/block_services.php", [
-			"serviceList" => $serviceList
-		])?>
+        <h2>Our Services</h2>
+        <div class="row">
+            <?php foreach($serviceList as $service): ?>
+                <?=render_template("templates/services/block_services.php", [
+                    "service" => $service
+                ])?>
+            <?php endforeach?>
+        </div>
     </section>
-    
+
     <section class="publicity container-fluid">
         <section class="testimonials">
             <h2>Testimonials</h2>
