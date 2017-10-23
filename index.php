@@ -30,7 +30,7 @@ switch(true) {
         break;
 
 // Service Details Pages
-    case preg_match("~^services$~", $url):
+    case preg_match("~^[/]?services$~", $url):
         include(__DIR__."/api/services.php");
         $serviceList = getServiceList();
         $template = render_template(__DIR__."/templates/services/content_services.php", [
