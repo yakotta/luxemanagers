@@ -28,3 +28,7 @@ header .contact_number{
     float: right;
     padding: 0 10px;
 }
+
+footer {
+    text-align: right;
+}
