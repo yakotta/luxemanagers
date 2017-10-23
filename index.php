@@ -14,10 +14,13 @@ $url = $_GET["url"];
 switch(true) {
 // Home Page 
     case preg_match("~^(|/)$~", $url):
+        error_log("Matched home route");
         include(__DIR__."/api/services.php");
         include(__DIR__."/api/testimonials.php");
+        include(__DIR__."/api/press.php");
         $serviceList = getServiceList();
         $testimonialList = getTestimonialList();
+        $pressList = getPressList();
         $template = render_template(__DIR__."/templates/content_home.php", [
             "testimonialList" => $testimonialList,
             "serviceList" => $serviceList
