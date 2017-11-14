@@ -129,3 +129,53 @@ function rewrite_url($url) {
 
     return $rewritten_url;
 }
+
+// I stole this code from: https://stackoverflow.com/a/30359808/279147
+function match_route($pattern, $callback)
+{
+    /*
+    // Jenna: this function is pretty dammed complicated, please don't attempt to read
+    // and understand it alone :) I don't want to confuse you even more with a bunch of
+    // stuff which is pretty advanced, I would rather you just use this like a black box
+    // until we have time to get through it together
+    */
+
+    if(!is_callable($callback)){
+        return false; // Invalid callback
+    }
+
+    if(preg_match('/[^-:\/_{}()a-zA-Z\d]/', $pattern)){
+        return false; // Invalid pattern
+    }
+
+    // Turn "(/)" into "/?"
+    $pattern = preg_replace('#\(/\)#', '/?', $pattern);
+
+    // Create capture group for ":parameter"
+    $allowedParamChars = '[a-zA-Z0-9\_\-]+';
+    $pattern = preg_replace(
+        '/:(' . $allowedParamChars . ')/',   # Replace ":parameter"
+        '(?<$1>' . $allowedParamChars . ')', # with "(?<parameter>[a-zA-Z0-9\_\-]+)"
+        $pattern
+    );
+
+    // Create capture group for '{parameter}'
+    $pattern = preg_replace(
+        '/{('. $allowedParamChars .')}/',    # Replace "{parameter}"
+        '(?<$1>' . $allowedParamChars . ')', # with "(?<parameter>[a-zA-Z0-9\_\-]+)"
+        $pattern
+    );
+
+    // Add start and end matching
+    $patternAsRegex = "@^" . $pattern . "$@D";
+
+    if(preg_match($patternAsRegex, $_GET["url"], $matches)) {
+        // Get elements with string keys from matches
+        $params = array_intersect_key(
+            $matches,
+            array_flip(array_filter(array_keys($matches), 'is_string'))
+        );
+
+        die($callback($params));
+    }
+}
