@@ -3,12 +3,12 @@
 function getSiteConfig($field)
 {
     $db = connect();
-    $result = $db->query("select * from site_config where field='$field'");
-    $row = $result->fetch_assoc();
-    
-    if($result === NULL || $row === NULL){
-        throw new Exception(__FUNCTION__.": $field not found in site_config database");
+    $result = $db->query("select value from site_config where field='$field'");
+
+    if($result && $result->num_rows){
+        $row = $result->fetch_assoc();
+        return $row["value"];
     }
 
-    return $row["value"];
+    throw new Exception(__FUNCTION__.": $field not found in site_config database");
 }
