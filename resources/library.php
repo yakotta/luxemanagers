@@ -29,19 +29,37 @@ function add_migration($m)
     $db->query("insert into migrations set filename='$m'");
 }
 
+function connectDocker()
+{
+    return [getenv("MYSQL_HOST"),"root","root","luxemanagers",3306];
+}
+
+function connectAntimatterServer()
+{
+    return ["localhost","luxemanagers","j4z132gs63c0y8hr","luxemanagers",3306];
+}
+
+function connectMAMP()
+{
+    return ["localhost","root","root","luxemanagers",3306];
+}
+
 // Creates a database connections
 function connect()
 {
-    // On docker, we need to use the environment variable
-    // On MAMP, we need to use localhost, so this line of code decides between both options automatically
-    $hostname = getenv("MYSQL_HOST") ?: "localhost";
-    $username = "root";
-    $password = "root";
-    $database = "luxemanagers";
-    $dbport = 3306;
-    
+    // We have to detect where our code is running, so we can use the right database details
+    // The database on your MAMP laptop setup is different from my docker setup and my antimatter server setup
+    if(getenv("MYSQL_HOST")){
+        // Jenna, ask me what this list does and I will explain, it looks far more complicated then it is in reality
+        list($hostname,$username,$password,$database,$port) = connectDocker();
+    }else if(strpos(__DIR__,"clients.antimatter-studios.com") !== false) {
+        list($hostname,$username,$password,$database,$port) = connectAntimatterServer();
+    }else {
+        list($hostname,$username,$password,$database,$port) = connectMAMP();
+    }
+
     // Create connection
-    $db = new mysqli($hostname, $username, $password, $database, $dbport);
+    $db = new mysqli($hostname, $username, $password, $database, $port);
     
     // Check connection
     if ($db->connect_error) {
