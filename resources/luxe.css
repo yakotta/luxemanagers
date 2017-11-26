@@ -1,34 +1,13 @@
-@font-face {
-    font-family: 'leducation';
-    src: url('leducation.eot');
-    src: url('leducation.eot?#iefix') format('embedded-opentype'),
-    url('leducation.woff') format('woff'),
-    url('leducation.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+html {
+    position: relative;
+    min-height: 100%;
+    overflow-y: scroll;
 }
 
 body {
     font-family: 'Georgia', sans-serif;
     padding-bottom: 40px;
-}
-
-html {
-    position: relative;
-    min-height: 100%;
-}
-
-footer {
-    background-color: #4e4e4e;
-    padding: 5px;
-    margin-top: 15px;
-    color: #eeeeee;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    overflow:hidden;
-    text-align: right;
+    overflow-x: hidden;
 }
 
 h2,
@@ -76,6 +55,7 @@ header nav ul{
     text-align: center;
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 header nav ul li{
@@ -105,6 +85,19 @@ header .contact_number {
     bottom: -20px;
 }
 
+footer {
+    background-color: #4e4e4e;
+    padding: 5px;
+    margin-top: 15px;
+    color: #eeeeee;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    overflow:hidden;
+    text-align: center;
+}
+
 .household-placements {
     -webkit-column-count: 2; /* Chrome, Safari, Opera */
     -moz-column-count: 2; /* Firefox */
@@ -128,6 +121,7 @@ header .contact_number {
     width: 100%;
     height: 0;
     padding-bottom: 38%;
+    margin: 0
 }
 
 .jumbotron.slider .background{
@@ -173,4 +167,5 @@ header .contact_number {
 
 .testimonials .media{
     margin-top: 0;
+    margin-bottom: 30px;
 }

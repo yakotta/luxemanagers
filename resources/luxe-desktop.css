@@ -33,3 +33,7 @@ header .contact_number{
     height: 0;
     padding-bottom: 90%;
 }
+
+footer {
+    text-align: right;
+}
