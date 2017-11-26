@@ -20,7 +20,7 @@
             <?php endforeach?>
         </div>
     </section>
-
+  
     <section class="testimonials container-fluid">
         <h2>Testimonials</h2>
         <div class="row">
@@ -44,6 +44,6 @@
     </section>
 
     <section class="contact container-fluid">
-		<?=render_template("templates/form_contact.php")?>
+		    <?=render_template("templates/form_contact.php")?>
     </section>
 </main>

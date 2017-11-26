@@ -29,6 +29,11 @@ header .contact_number{
     padding: 0 10px;
 }
 
+.services .thumbnail {
+    height: 0;
+    padding-bottom: 90%;
+}
+
 footer {
     text-align: right;
 }
