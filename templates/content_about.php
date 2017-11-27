@@ -1,5 +1,5 @@
 <main class="about">
-    <div align="center" class="container-fluid">
+    <div class="container-fluid" align="center" >
         <div class="video-embed-container">
             <div class="inner">
                 <iframe src='https://player.vimeo.com/video/108520722'
