@@ -70,7 +70,11 @@ header nav ul li .menuitem{
     font-size: 18px;
 }
 
-header.fixedtop {
+body.fixedtop {
+    padding-top: 110px;
+}
+
+body.fixedtop header{
     position: fixed;
     left: 0;
     top: 0;
@@ -85,10 +89,17 @@ header .contact_number {
     bottom: -20px;
 }
 
+main {
+    padding-bottom: 50px;
+}
+
+main.about {
+
+}
+
 footer {
     background-color: #4e4e4e;
     padding: 5px;
-    margin-top: 15px;
     color: #eeeeee;
     position: absolute;
     left: 0;
