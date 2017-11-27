@@ -7,23 +7,39 @@ include(__DIR__."/api/site_config.php");
 
 session_start();
 // Just authenticate everybody for now until we create a proper login
-$_SESSION["authenticated"] = true;    
+$_SESSION["authenticated"] = true;
+
+/* Examples of using the new match_route library function
+match_route("/",function($params){
+    var_dump_pre($params);
+    var_dump_pre($_GET);
+    print("Matched home route");
+});
+
+match_route("/:test/:hello/{world}",function($params){
+    var_dump_pre($params);
+    var_dump_pre($_GET);
+    print("Matched a test route route");
+});
+*/
 
 $url = $_GET["url"];
 
 switch(true) {
 // Home Page 
     case preg_match("~^(|/)$~", $url):
-        error_log("Matched home route");
         include(__DIR__."/api/services.php");
         include(__DIR__."/api/testimonials.php");
         include(__DIR__."/api/press.php");
+
         $serviceList = getServiceList();
         $testimonialList = getTestimonialList();
         $pressList = getPressList();
+
         $template = render_template(__DIR__."/templates/content_home.php", [
             "testimonialList" => $testimonialList,
-            "serviceList" => $serviceList
+            "serviceList" => $serviceList,
+            "pressList" => $pressList,
         ]);
         break;
 
