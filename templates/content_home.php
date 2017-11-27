@@ -4,23 +4,21 @@
     <section class="services container-fluid">
         <h2>Our Services</h2>
         <div class="row">
-            <?php foreach($serviceList as $service): ?>
-                <?=render_template("templates/block_services.php", [
+            <?php foreach($serviceList as $service){
+                print(render_template("templates/block_services.php", [
                     "service" => $service
-                ])?>
-            <?php endforeach?>
+                ]));
+            } ?>
         </div>
     </section>
-  
+
     <section class="testimonials container-fluid">
         <h2>Testimonials</h2>
-        <div class="row">
-            <?php foreach($testimonialList as $testimonial){
-                print(render_template("templates/block_testimonials.php", [
-                    "testimonial" => $testimonial
-                ]));
-            }?>
-        </div>
+        <?php foreach($testimonialList as $testimonial){
+            print(render_template("templates/block_testimonials.php", [
+                "testimonial" => $testimonial
+            ]));
+        }?>
     </section>
 
     <section class="press container-fluid">
@@ -35,6 +33,6 @@
     </section>
 
     <section class="contact container-fluid">
-		    <?=render_template("templates/form_contact.php")?>
+		<?=render_template("templates/form_contact.php")?>
     </section>
 </main>
