@@ -106,19 +106,24 @@ main {
     padding-bottom: 50px;
 }
 
-main.about {
-
+main.about div {
+    margin-bottom: 20px;
 }
 
 footer {
     background-color: #4e4e4e;
     padding: 5px;
+    margin-top: 15px;
     color: #eeeeee;
     position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
     overflow:hidden;
+    text-align: center;
+}
+
+.button-wrapper {
     text-align: center;
 }
 

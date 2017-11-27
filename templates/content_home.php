@@ -5,7 +5,7 @@
         <h2>Our Services</h2>
         <div class="row">
             <?php foreach($serviceList as $service){
-                print(render_template("templates/services/block_services.php", [
+                print(render_template("templates/block_services.php", [
                     "service" => $service
                 ]));
             } ?>
@@ -14,11 +14,13 @@
 
     <section class="testimonials container-fluid">
         <h2>Testimonials</h2>
-        <?php foreach($testimonialList as $testimonial){
-            print(render_template("templates/block_testimonials.php", [
-                "testimonial" => $testimonial
-            ]));
-        }?>
+        <div class="row">
+            <?php foreach($testimonialList as $testimonial){
+                print(render_template("templates/block_testimonials.php", [
+                    "testimonial" => $testimonial
+                ]));
+            }?>
+        </div>
     </section>
 
     <section class="press container-fluid">
