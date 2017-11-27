@@ -22,8 +22,10 @@
 	</section>
 
 	<section class="services container-fluid">
-		<?=render_template("templates/services/block_services.php", [
-			"serviceList" => $serviceList
-		])?>
+		<?php foreach($serviceList as $service): ?>
+			<?=render_template("templates/services/block_services.php", [
+				"service" => $service
+			])?>
+		<?php endforeach ?>
     </section>
 </main>

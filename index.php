@@ -160,13 +160,15 @@ switch(true) {
         ob_start();
         $migrations = glob(__DIR__."/migrations/m*.php");
 
+        print("<style type='text/css'>.green {color: green;}</style>");
+
         foreach($migrations as $m){
             if(check_migration($m) === false){
-                print("Running Migration: $m<br/>");
+                print("<b>Running Migration: $m</b><br/>");
                 
                 $output = include($m);
                 if($output === true) {
-                    print("Adding Migration: $m<br/>");
+                    print("<b class='green'>Adding Migration: $m</b><br/>");
                     add_migration($m);
                 }
             } else {
