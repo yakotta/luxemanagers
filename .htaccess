@@ -6,4 +6,4 @@ RewriteRule (^|/)\[Dd]ocker- - [F]
 # This is how we "route" the application
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !index.php$ [NC]
-RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
+RewriteRule ^(.*)$ index.php?url=/$1 [L,QSA]
