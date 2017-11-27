@@ -13,10 +13,10 @@ $(document).ready(function() {
 
     $(window).scroll(function(){
         var scrollVar = $(window).scrollTop();
-        if (scrollVar > 75) {
-            $('header').addClass('fixedtop');
+        if (scrollVar > 150) {
+            $("body").addClass("fixedtop");
         } else {
-            $('header').removeClass('fixedtop');
+            $('body').removeClass('fixedtop');
         }
     });
 });
