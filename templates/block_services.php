@@ -4,8 +4,8 @@
     <div class="thumbnail">
         <a href="<?=$service["link"]?>">
             <img class="background"
-             src="<?=rewrite_url($service["image"])?>"
-             alt="<?=$service["name"]?>" />
+                 src="<?=rewrite_url($service["image"])?>"
+                 alt="<?=$service["name"]?>" />
         </a>
 
         <div class="caption">
