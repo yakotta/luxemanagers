@@ -1,6 +1,13 @@
-<main>
+<main class="about">
     <div align="center" class="container-fluid">
-        <iframe src="https://player.vimeo.com/video/108520722" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        <div class="video-embed-container">
+            <div class="inner">
+                <iframe src='https://player.vimeo.com/video/108520722'
+                        frameborder='0' webkitAllowFullScreen
+                        mozallowfullscreen
+                        allowFullScreen></iframe>
+            </div>
+        </div>
     </div>
     <div class="container-fluid">
         <p>
