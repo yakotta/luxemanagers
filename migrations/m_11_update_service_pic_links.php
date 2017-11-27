@@ -11,7 +11,7 @@ $db = connect();
 
 $db->query("
     update services 
-    set link = replace(link, '/services/', '/') 
+    set link = replace(link, '/services/', '') 
     where link like '/services/%'
 ");
 
