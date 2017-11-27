@@ -141,11 +141,11 @@ function match_route($pattern, $callback)
     */
 
     if(!is_callable($callback)){
-        return false; // Invalid callback
+        throw new Exception("Callback passed to match route must be valid");
     }
 
     if(preg_match('/[^-:\/_{}()a-zA-Z\d]/', $pattern)){
-        return false; // Invalid pattern
+        throw new Exception("Route pattern was not valid according to the specification");
     }
 
     // Turn "(/)" into "/?"
@@ -169,13 +169,21 @@ function match_route($pattern, $callback)
     // Add start and end matching
     $patternAsRegex = "@^" . $pattern . "$@D";
 
-    if(preg_match($patternAsRegex, $_GET["url"], $matches)) {
+    $continue = true;
+
+    $url = $_GET["url"];
+
+    if(preg_match($patternAsRegex, $url, $matches)) {
         // Get elements with string keys from matches
         $params = array_intersect_key(
             $matches,
             array_flip(array_filter(array_keys($matches), 'is_string'))
         );
 
-        die($callback($params));
+        $continue = $callback($params,$url);
+
+        if(!$continue) die();
     }
+
+    return $continue;
 }
