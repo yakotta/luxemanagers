@@ -35,7 +35,7 @@
     <section class="press container-fluid">
         <h2>Press</h2>
         <div class="row">
-            <?php foreach($pressList as $item){
+            <?php foreach($pressList as $press){
                 print(render_template("templates/block_press.php", [
                     "press" => $press
                 ]));
