@@ -83,6 +83,19 @@ body.fixedtop header{
     box-shadow: 0 0 10px 0 #000000;
 }
 
+body.fixedtop header a,
+body.fixedtop header img{
+    height: 55px;
+}
+
+body.fixedtop header .menuitem {
+    line-height: 55px;
+}
+
+body.fixedtop header img {
+    width: 60px;
+}
+
 header .contact_number {
     position: absolute;
     right: 0;
