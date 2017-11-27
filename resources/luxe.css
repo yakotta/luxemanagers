@@ -102,10 +102,17 @@ header .contact_number {
     bottom: -20px;
 }
 
+main {
+    padding-bottom: 50px;
+}
+
+main.about div {
+    margin-bottom: 20px;
+}
+
 footer {
     background-color: #4e4e4e;
     padding: 5px;
-    margin-top: 15px;
     color: #eeeeee;
     position: absolute;
     left: 0;
