@@ -1,14 +1,5 @@
 <main>
-    <section class="clearfix slider jumbotron">
-        <div class="container-fluid">
-            <img class="background" src="<?=rewrite_url("/resources/slider/luxe-white-glove.jpg")?>" />
-            <div class="content">
-                <h1>Sliders here</h1>
-                <p>...</p>
-                <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
-            </div>
-        </div>
-    </section>
+    <?=render_template(__DIR__."/block_slider.php")?>
 
     <section class="services container-fluid">
         <h2>Our Services</h2>
