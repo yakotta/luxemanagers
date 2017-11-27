@@ -1,5 +1,5 @@
 <?php
-if( !is_array($_SESSION) || 
+if( !is_array($_SESSION) ||
     !array_key_exists("authenticated", $_SESSION) ||
     $_SESSION["authenticated"] == false)
 {
