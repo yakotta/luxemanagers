@@ -169,28 +169,10 @@ footer {
     text-shadow: none;
 }
 
-.jumbotron.slider {
-    position: relative;
-    color: #ffffff;
-    padding-top: 0;
-    width: 100%;
+.jumbotron.slide {
     height: 0;
-    padding-bottom: 38%;
-    margin: 0
-}
-
-.jumbotron.slider .background{
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    z-index: 1;
-}
-
-.jumbotron.slider .content{
-    position: relative;
-    z-index: 2;
-    margin-top: 130px;
+    padding: 0 0 38% 0;
+    overflow: hidden;
 }
 
 .services .thumbnail {
