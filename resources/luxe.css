@@ -113,6 +113,7 @@ main.about div {
 footer {
     background-color: #4e4e4e;
     padding: 5px;
+    margin-top: 15px;
     color: #eeeeee;
     position: absolute;
     left: 0;
