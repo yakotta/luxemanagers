@@ -12,6 +12,9 @@ function var_dump_pre ($input_variable)
 function check_migration($m)
 {
     $db = connect();
+
+    $m = str_replace($_SERVER["DOCUMENT_ROOT"], "", $m);
+
     $result = $db->query("select filename from migrations where filename = '$m'");
 
     if($result === false) return false;
@@ -25,6 +28,8 @@ function check_migration($m)
 function add_migration($m)
 {
     $db = connect();
+
+    $m = str_replace($_SERVER["DOCUMENT_ROOT"], "", $m);
     
     $db->query("insert into migrations set filename='$m'");
 }
