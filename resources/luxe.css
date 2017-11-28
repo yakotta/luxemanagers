@@ -122,6 +122,32 @@ footer {
     text-align: center;
 }
 
+.section-seperator {
+    padding: 10px 0;
+}
+
+.wingding {
+    font-family: 'Wingdings 2';
+    font-size: 1.5em;
+    border-bottom: 1px solid darkgrey;
+    padding-bottom: 15px;
+    margin-bottom: 10px;
+    height: 0px;
+    text-align: center;
+    color: darkgrey;
+}
+
+.wingding span {
+    display: inline-block;
+    padding: 0 10px;
+    background: white;
+    color: #C59B50;
+}
+
+.contact-form {
+    margin-top: 10px;
+}
+
 .button-wrapper {
     text-align: center;
 }
@@ -250,4 +276,24 @@ main ul.triple-column {
     -webkit-column-count: 3;
     -moz-column-count: 3;
     column-count: 3;
+}
+
+.press-img-wrapper {
+    width: 500px;
+}
+
+.press-img-wrapper img {
+    width: 50%;
+    float: left;
+    border: 1px gray solid;
+}
+
+.press h4.see-more {
+    float: right;
+}
+
+main h4 a,
+main h4 a:hover,
+main h4 .glyphicon  {
+    color: black;
 }

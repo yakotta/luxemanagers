@@ -43,6 +43,10 @@ match_route("/about",function(){
     render_page("content_about.php");
 });
 
+match_route("/press", function(){
+    render_page("content_press.php");
+});
+
 // Service Details Pages
 match_route("/services",function(){
     include(__DIR__."/api/services.php");

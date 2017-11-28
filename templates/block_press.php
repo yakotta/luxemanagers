@@ -1,13 +1,10 @@
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">LUXE As Seen in <?=$press["publication"]?></h3>
-    </div>
-    <div class="panel-body">
-        <img src="<?=rewrite_url($press["marketing_image"])?>" />
-        <?=$press["content"]?>
-        Click below to read online at <?=$press["publication"]?><br/>
-        <a href="<?=$press["link"]?>">
-            <img src="<?=rewrite_url($press["publication_image"])?>" alt="<?=$press["publication"]?>" />
-        </a>
+<div class="press-item">
+    <h4><?=$press["publication"]?></h4>
+    <div class="row">
+        <img class="col-md-3" src="<?=rewrite_url($press["publication_image"])?>" />
+        <img class="col-md-3" src="<?=rewrite_url($press["marketing_image"])?>" />
+        <div class="col-md-6">
+            <p><?=$press["content"]?></p>
+        </div>
     </div>
 </div>
