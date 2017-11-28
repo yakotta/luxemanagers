@@ -19,10 +19,10 @@
             individuals and families around the globe.
         </p>
         <p>
-            At Luxe, it is our greatest pleasure to work with the world’s 
+            At Luxe, it is our greatest pleasure to work with the world's 
             most exceptional people to make life extraordinary. Our extensive 
             array of luxury lifestyle services are crafted to handle all of 
-            life’s details for HNW and UHNW clients, and we operate entirely 
+            life's details for HNW and UHNW clients, and we operate entirely 
             behind the scenes with integrity and discretion. 
         </p>
         <p>Live the life. Live Luxe.</p>

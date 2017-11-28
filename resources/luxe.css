@@ -271,12 +271,17 @@ main ul.triple-column {
     border: 1px gray solid;
 }
 
-.press h4.see-more {
+.press h4.see-more,
+main p.go-back
+ {
     float: right;
 }
 
 main h4 a,
 main h4 a:hover,
-main h4 .glyphicon  {
+main h4 .glyphicon,
+main p.go-back a,
+main p.go-back a:hover,
+main p.go-back .glyphicon {
     color: black;
 }
