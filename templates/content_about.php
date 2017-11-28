@@ -1,4 +1,4 @@
-<main class="about">
+<main class="about col-md-10 col-md-offset-1">
     <div class="container-fluid" align="center" >
         <div class="video-embed-container">
             <div class="inner">

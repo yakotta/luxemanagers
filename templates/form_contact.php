@@ -19,7 +19,7 @@
         </div> 
     </div>
 
-    <div class="col-md-8">
+    <div class="col-md-8 contact-form">
         <form method="post" action="<?=rewrite_url('/api/send-message')?>" class="contact-form">
             <div class="row">
                 <div class="form-group col-md-6">

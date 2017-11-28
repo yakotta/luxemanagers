@@ -29,12 +29,12 @@ match_route("/",function(){
 
     $serviceList = getServiceList();
     $testimonialList = getTestimonialList();
-    $pressList = getPressList();
+    $featuredPressList = getFeaturedPressList();
 
     render_page("content_home.php",[
         "testimonialList" => $testimonialList,
         "serviceList" => $serviceList,
-        "pressList" => $pressList,
+        "featuredPressList" => $featuredPressList
     ]);
 });
 
@@ -43,12 +43,26 @@ match_route("/about",function(){
     render_page("content_about.php");
 });
 
+match_route("/contact",function(){
+    render_page("content_contact.php");
+});
+
+match_route("/press", function(){
+    include(__DIR__."/api/press.php");
+    
+    $pressList = getPressList();
+
+    render_page("content_press.php", [
+        "pressList" => $pressList,
+    ]);
+});
+
 // Service Details Pages
 match_route("/services",function(){
     include(__DIR__."/api/services.php");
     $serviceList = getServiceList();
 
-    render_page("services/content_services.php", [
+    render_page("content_service_list.php", [
         "serviceList" => $serviceList
     ]);
 });
@@ -57,7 +71,7 @@ match_route("/services/:service",function($params){
     include(__DIR__."/api/services.php");
     $service = getServiceByLink($params["service"]);
 
-    render_page("services/display_service.php", [
+    render_page("content_service_item.php", [
         "service" => $service
     ]);
 
@@ -66,7 +80,7 @@ match_route("/services/:service",function($params){
 
 // Service Management Pages
 match_route("/admin/services/add",function(){
-    render_page("services/add_service.php");
+    render_page("form_add_service.php");
 });
 
 match_route("/admin/services/list",function(){
@@ -75,7 +89,7 @@ match_route("/admin/services/list",function(){
     $serviceList = getServiceList();
     $serviceCount = $serviceList->num_rows;
 
-    render_page("services/list_service.php", [
+    render_page("content_service_list.php", [
         "serviceList" => $serviceList,
         "serviceCount" => $serviceCount
     ]);
@@ -96,7 +110,7 @@ match_route("/admin/services/details",function($params,$url){
         redirect("/404");
     }
 
-    render_page("services/service_detail.php", [
+    render_page("content_service_item.php", [
         "service" => $service
     ]);
 });
@@ -154,17 +168,19 @@ match_route("/api/services/delete",function(){
 });
 
 // Migrations
-match_route("/migrations",function(){
+match_route("/admin/migrations",function(){
     ob_start();
     $migrations = glob(__DIR__."/migrations/m*.php");
 
+    print("<style type='text/css'>.green {color: green}</style>");
+    
     foreach($migrations as $m){
         if(check_migration($m) === false){
-            print("Running Migration: $m<br/>");
+            print("<b>Running Migration: $m</b><br/>");
 
             $output = include($m);
             if($output === true) {
-                print("Adding Migration: $m<br/>");
+                print("<b class='green'>Adding Migration: $m</b><br/>");
                 add_migration($m);
             }
         } else {
