@@ -4,7 +4,7 @@
         <img class="col-md-3" src="<?=rewrite_url($press["publication_image"])?>" />
         <img class="col-md-3" src="<?=rewrite_url($press["marketing_image"])?>" />
         <div class="col-md-6">
-            <p><?=$press["content"]?></p>
+            <p class="align-justify"><?=$press["content"]?></p>
         </div>
     </div>
 </div>

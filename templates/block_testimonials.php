@@ -11,6 +11,7 @@ if(empty($testimonial["link"])){
     </div>
     <div class="media-body">
         <h4 class="media-heading"><?=$testimonial["name"]?></h4>
-        "<?=$testimonial["quote"]?>" – <?=$name?>, <?=$testimonial["title"]?>
+        <p class="align-justify">"<?=$testimonial["quote"]?>"</p> 
+        <p class="align-right">&mdash; <?=$name?>, <?=$testimonial["title"]?></p>
     </div>
 </div>

@@ -10,12 +10,11 @@ body {
     overflow-x: hidden;
 }
 
-h2,
-h3 {
+h2, h3 {
     font-family: 'Georgia', serif;
 }
 
-p {
+p, li {
     font-family: 'Lato', sans-serif;
 }
 
@@ -27,13 +26,13 @@ ul {
     border-radius: 0px;
 }
 
-header{
+header {
     position: relative;
     padding: 10px;
     background-color: #ffffff;
 }
 
-header .logo{
+header .logo {
     display: block;
     text-align: center;
 }
@@ -51,19 +50,19 @@ header nav {
     margin: 10px -15px 0 -15px;
 }
 
-header nav ul{
+header nav ul {
     text-align: center;
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-header nav ul li{
+header nav ul li {
     display: inline-block;
     padding: 0 5px;
 }
 
-header nav ul li .menuitem{
+header nav ul li .menuitem {
     font-family: 'Times New Roman', serif;
     text-transform: uppercase;
     color: #301f19;
@@ -74,7 +73,7 @@ body.fixedtop {
     padding-top: 110px;
 }
 
-body.fixedtop header{
+body.fixedtop header {
     position: fixed;
     left: 0;
     top: 0;
@@ -84,7 +83,7 @@ body.fixedtop header{
 }
 
 body.fixedtop header a,
-body.fixedtop header img{
+body.fixedtop header img {
     height: 55px;
 }
 
@@ -184,7 +183,7 @@ footer {
     border: 0;
 }
 
-.services .thumbnail .background{
+.services .thumbnail .background {
     width: 100%;
     box-shadow: 5px 5px 10px #aaaaaa;
 }
@@ -202,7 +201,7 @@ footer {
     color: inherit;
 }
 
-.testimonials .media{
+.testimonials .media {
     margin-top: 0;
     margin-bottom: 30px;
 }
@@ -211,14 +210,13 @@ footer {
     max-width: 850px;
 }
 
-.video-embed-container .inner{
+.video-embed-container .inner {
     position: relative;
     padding-bottom: 56.25%;
     height: 0;
     overflow: hidden;
     max-width: 100%;
 }
-
 
 .video-embed-container iframe,
 .video-embed-container object,
@@ -272,16 +270,21 @@ main ul.triple-column {
 }
 
 .press h4.see-more,
-main p.go-back
- {
+main p.go-back {
     float: right;
 }
 
-main h4 a,
-main h4 a:hover,
-main h4 .glyphicon,
-main p.go-back a,
-main p.go-back a:hover,
-main p.go-back .glyphicon {
+main a,
+main a:hover,
+main a .glyphicon {
     color: black;
+}
+
+div.align-justify p, 
+p.align-justify {
+    text-align: justify;
+}
+
+p.align-right {
+    text-align: right;
 }

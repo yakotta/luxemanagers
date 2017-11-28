@@ -2,7 +2,7 @@
     <div class="col-md-4">
         <h2>Contact Luxe</h2>
         <h4>How may we help you?</h4>
-        <p>
+        <p class="align-justify">
             Interested in getting started with Luxe? Want to learn more about our 
             services? Call, email, or use the contact form to the right to see how 
             Luxe Luxury Lifestyle Managers can be of service to you today. 
