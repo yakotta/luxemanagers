@@ -1,4 +1,4 @@
-<main class="container-fluid">
+<main class="container-fluid col-md-10 col-md-offset-1">
 	<section id="intro">
 		<h2>What We Do</h2>
 		<p>The difference between ordinary and extraordinary is that little 

@@ -29,12 +29,12 @@ match_route("/",function(){
 
     $serviceList = getServiceList();
     $testimonialList = getTestimonialList();
-    $pressList = getPressList();
+    $featuredPressList = getFeaturedPressList();
 
     render_page("content_home.php",[
         "testimonialList" => $testimonialList,
         "serviceList" => $serviceList,
-        "pressList" => $pressList,
+        "featuredPressList" => $featuredPressList
     ]);
 });
 
@@ -43,8 +43,18 @@ match_route("/about",function(){
     render_page("content_about.php");
 });
 
+match_route("/contact",function(){
+    render_page("content_contact.php");
+});
+
 match_route("/press", function(){
-    render_page("content_press.php");
+    include(__DIR__."/api/press.php");
+    
+    $pressList = getPressList();
+
+    render_page("content_press.php", [
+        "pressList" => $pressList,
+    ]);
 });
 
 // Service Details Pages
@@ -162,13 +172,15 @@ match_route("/admin/migrations",function(){
     ob_start();
     $migrations = glob(__DIR__."/migrations/m*.php");
 
+    print("<style type='text/css'>.green {color: green}</style>");
+    
     foreach($migrations as $m){
         if(check_migration($m) === false){
-            print("Running Migration: $m<br/>");
+            print("<b>Running Migration: $m</b><br/>");
 
             $output = include($m);
             if($output === true) {
-                print("Adding Migration: $m<br/>");
+                print("<b class='green'>Adding Migration: $m</b><br/>");
                 add_migration($m);
             }
         } else {
