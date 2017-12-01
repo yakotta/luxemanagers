@@ -276,7 +276,7 @@ main p.go-back {
 
 main a,
 main a:hover,
-main a .glyphicon {
+main .contact-icons .glyphicon {
     color: black;
 }
 
