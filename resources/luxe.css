@@ -288,3 +288,7 @@ p.align-justify {
 p.align-right {
     text-align: right;
 }
+
+p.italic-link a {
+    font-style: italic;
+}

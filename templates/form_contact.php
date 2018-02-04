@@ -2,10 +2,12 @@
     <div class="col-md-4">
         <h2>Contact Luxe</h2>
         <h4>How may we help you?</h4>
-        <p class="align-justify">
+        <p class="align-justify italic-link">
             Interested in getting started with Luxe? Want to learn more about our 
             services? Call, email, or use the contact form to the right to see how 
-            Luxe Luxury Lifestyle Managers can be of service to you today. 
+            Luxe Luxury Lifestyle Managers can be of service to you today. Interested
+            in working for Luxe? <a href="<?=rewrite_url('/employment')?>">Click here 
+            to send us your resume.</a>
         </p>
         <div class="contact-icons">
             <p>

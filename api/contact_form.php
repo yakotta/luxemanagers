@@ -4,11 +4,11 @@ function insertContact($message)
 {
 $query=<<<QUERY
     insert into contact_form set
-        name = "{$message["name"]},
-        email = "{$message["email"]},
-        phone = "{$message["phone"]},
-        preference = "{$message["preference"]},
-        message = "{$message["message"]}
+        name = "{$message["name"]}",
+        email = "{$message["email"]}",
+        phone = "{$message["phone"]}",
+        preference = "{$message["preference"]}",
+        message = "{$message["message"]}"
 QUERY;
 
     $db = connect();

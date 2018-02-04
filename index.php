@@ -57,6 +57,10 @@ match_route("/press", function(){
     ]);
 });
 
+match_route("/employment", function() {
+    render_page("content_employment.php");
+});
+
 // Service Details Pages
 match_route("/services",function(){
     include(__DIR__."/api/services.php");
@@ -117,8 +121,47 @@ match_route("/admin/services/details",function($params,$url){
 
 // API Routes
 match_route("/api/send-message",function(){
+    // Make sure the fields are filled out and file is uploaded
+    include_once("api/contact_form.php");
+    $status_fields = check_parameters($_POST, ["name", "email", "message"]);
+
+    
+    $hasPhone = check_parameters($_POST, ["phone"]) === true; // will contain boolean true or false, right?
+
+    
+    /**
+     */
+    
     var_dump_pre($_POST);
     die("x.x");
+});
+
+match_route("/api/send-resume",function(){
+    // Make sure the fields are filled out and file is uploaded
+    include_once("api/resumes.php");
+    $status_upload = "fail";
+    $status_fields = check_parameters($_POST, [
+        "name" => ["required" => true, "type" => "string"], 
+        "email" => ["required" => true, "type" => "email"], 
+        "phone" => ["required" => false, "type" => "phone"]
+    ]);
+    $status_files = check_parameters($_FILES, [
+        "resume" => ["required" => true, "type" => "doc, docx,pdf"]
+    ]);
+    
+    if($status_fields === true && $status_files === true) {
+        
+        $filename = unique_filename(slugify($_POST["name"]) . "_" . $_FILES["resume"]["name"]);
+
+        move_uploaded_file($_FILES['resume']['tmp_name'], __DIR__."/uploads/resumes/$filename");
+        
+        insertResume($_POST["name"], $_POST["email"], $_POST["phone"], $filename, $_POST["message"]);
+        
+        $status_upload = "success";
+    }
+
+    // redirect back to employment page
+    redirect("/employment?status=$status_upload");
 });
 
 match_route("/api/services/add",function(){

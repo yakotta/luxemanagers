@@ -3,11 +3,11 @@ function insertService($datasource)
 {
 $query=<<<QUERY
     insert into services set
-        name = "{$datasource["name"]},
-        short_description = "{$datasource["short_description"]},
-        full_description = "{$datasource["full_description"]},
-        image = "{$datasource["image"]},
-        link = "{$datasource["link"]}
+        name = "{$datasource["name"]}",
+        short_description = "{$datasource["short_description"]}",
+        full_description = "{$datasource["full_description"]}",
+        image = "{$datasource["image"]}",
+        link = "{$datasource["link"]}"
 QUERY;
 
     $db = connect();
@@ -25,11 +25,11 @@ function editService($datasource)
 {
 $query=<<<QUERY
     update services set
-        name = "{$datasource["name"]},
-        short_description = "{$datasource["short_description"]},
-        full_description = "{$datasource["full_description"]},
-        image = "{$datasource["image"]},
-        link = "{$datasource["link"]}
+        name = "{$datasource["name"]}",
+        short_description = "{$datasource["short_description"]}",
+        full_description = "{$datasource["full_description"]}",
+        image = "{$datasource["image"]}",
+        link = "{$datasource["link"]}"
         
     where id = "{$datasource["id"]}"
 QUERY;

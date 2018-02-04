@@ -49,16 +49,23 @@ function connectMAMP()
     return ["localhost","root","root","luxemanagers",3306];
 }
 
+function connectC9()
+{
+    return [getenv('IP'),getenv('C9_USER'),"","luxemanagers",3306];
+}
+
 // Creates a database connections
 function connect()
 {
     // We have to detect where our code is running, so we can use the right database details
     // The database on your MAMP laptop setup is different from my docker setup and my antimatter server setup
-    if(getenv("MYSQL_HOST")){
+    if(getenv("IS_DOCKER")){
         // Jenna, ask me what this list does and I will explain, it looks far more complicated then it is in reality
         list($hostname,$username,$password,$database,$port) = connectDocker();
     }else if(strpos(__DIR__,"clients.antimatter-studios.com") !== false) {
         list($hostname,$username,$password,$database,$port) = connectAntimatterServer();
+    }else if(getenv("C9_HOSTNAME")) {
+        list($hostname,$username,$password,$database,$port) = connectC9();
     }else {
         list($hostname,$username,$password,$database,$port) = connectMAMP();
     }
@@ -105,15 +112,83 @@ function render_template($template_name, $template_parameters=[])
     return $template;
 }
 
-// Checks the paramters 
-function check_parameters ($source, $parameters=[]) {
-    var_dump_pre($source);
-    var_dump_pre($parameters);
-    foreach($parameters as $field) {
+// Verifies if an input is a string
+function validate_string($input) {
+    if (!is_string($input) || empty($input)) return false;
+
+    return true;
+}
+
+// Verifies if an input is a valid email address
+function validate_email($input) {
+    if (!filter_var($input, FILTER_VALIDATE_EMAIL)) {
+        return false;
+    }
+    
+    return true;
+}
+
+// Verifies if an input is a valid phone number
+function validate_phone($input) {
+    // Possible formats: (408) 375-2798, 408-375-2798, 408 375 2798, 4083752798, 408.375.2798
+
+    // A QUICK PRIMER ON REGEX
+    // the / and / at the start and end signal that this is a "regex pattern"
+    // the ^ at the beginning of the pattern means "it must start here" (there is nothing before this point, this is the start of the string)
+    // the $ at the end of the pattern means "it must end here" (there is nothing after this point, this is the end of the string)
+    // the [] brackets mean "select a set of characters contained within", e.g. [(] means select a bracket, [0-9] means select any number
+    // the {x} where x=3 or 4, means, I want "x" of the previous requested match, in our case [0-9]{3} means, it wants three numbers 123, 345, 567, 001, etc
+    // the [)]? the [] and [)] are already explained, but the ? means, it can have 0 or more of them, in other words, its optional
+    // the [.\s-] therefore is obvious, including the ? after it, means it wants a literal character "." or a space " ", or a dash/hyphen "-"
+    if(preg_match("/^[(]?[0-9]{3}[)]?[.\s-]?[0-9]{3}[.\s-]?[0-9]{4}$/",$input)){
+        return true;
+    }
+    
+    return false;
+}
+
+// Checks to see if all input parameters exist and are not empty.
+function check_parameters (&$source, $parameters=[])
+{
+    foreach($parameters as $field => $rules)
+    {
         if(!array_key_exists($field, $source) || empty($source[$field])){
-            return $field;
+            if($rules["required"] === true) {
+                return $field;
+            }
+        }
+        
+        if($rules["type"] === "string") {
+            if (validate_string($source[$field]) === false) {
+                if($rules["required"] === true) {
+                    return $field;
+                }
+                
+                $source[$field] = "";
+            }
+        }
+        
+        if($rules["type"] === "email") {
+            if (validate_email($source[$field]) === false) {
+                if($rules["required"] === true) {
+                    return $field;
+                }
+                
+                $source[$field] = "";
+            };
+        }
+        
+        if($rules["type"] === "phone") {
+            if (validate_phone($source[$field]) === false) {
+                if($rules["required"] === true) {
+                    return $field;
+                }
+                
+                $source[$field] = "";
+            };
         }
     }
+
     return true;
 }
 
@@ -191,4 +266,43 @@ function match_route($pattern, $callback)
     }
 
     return $continue;
+}
+
+
+// Removes all spaces and funky characters from a string
+// https://github.com/christhomas/amslib/blob/master/Amslib_String.php#L61
+function slugify($string, $slug = '-', $extra = null)
+{
+	$string		=	slugify_translit($string,$extra);
+	$string		=	preg_replace('~[^0-9a-z'.preg_quote($extra, '~').']+~i',$slug, $string);
+	//	This part will clean up the end of the filename, before the extension
+	//	But only do it if you find more than one part because there was an extension
+	$parts		=	explode(".",$string);
+	if(count($parts) > 1){
+		$extension	=	array_pop($parts);
+		$string		=	rtrim(implode(".",$parts),$slug).".$extension";
+	}
+	return strtolower(trim($string, $slug));
+}
+
+// Creates a word slug that strips out all funky characters
+function slugify_translit($text,$extra=null)
+{
+	$text = htmlentities($text, ENT_QUOTES, 'UTF-8');
+	$text = preg_replace('~&([a-z]{1,2})(acute|cedil|circ|grave|lig|orn|ring|slash|th|tilde|uml);~i', '$1', $text);
+	$text = html_entity_decode($text, ENT_QUOTES, 'UTF-8');
+	$text = preg_replace(array('~[^0-9a-z'.preg_quote($extra,'~').']~i', '~[ -]+~'), ' ', $text);
+	return trim($text, ' -');
+}
+
+// Creates unique file names from input strings
+function unique_filename($filename) {
+    // Create the prefix to make each filename unique
+    $t = microtime(true);
+    $micro = sprintf("%06d",($t - floor($t)) * 1000000);
+    $d = new DateTime( date('Y-m-d H:i:s.'.$micro, $t) );
+    $prefix = $d->format("Y-m-d_H.i.s.u");
+    
+    // Create the final filename from all the parts of the uploaded data and the prefix
+    return $prefix . "_" . slugify($filename, '-',  '._');
 }
