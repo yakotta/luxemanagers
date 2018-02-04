@@ -2,7 +2,7 @@
     <?php if(isset($_GET["status"]) && $_GET["status"] == "success"): ?>
         <div class="alert alert-success" role="alert">
           Thank you for applying to Luxe Managers! We will review your resume and
-          get back to your shortly. 
+          get back to you shortly. 
         </div>
     <?php endif ?>
     

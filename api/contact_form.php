@@ -1,14 +1,13 @@
 <?php
 
-function insertContact($message) 
+function insertContact($name, $email, $phone, $preference, $message) 
 {
 $query=<<<QUERY
     insert into contact_form set
-        name = "{$message["name"]}",
-        email = "{$message["email"]}",
-        phone = "{$message["phone"]}",
-        preference = "{$message["preference"]}",
-        message = "{$message["message"]}"
+        name = "$name",
+        email = "$email",
+        phone = "$phone",
+        preference = "$preference",
 QUERY;
 
     $db = connect();

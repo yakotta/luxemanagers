@@ -306,3 +306,31 @@ function unique_filename($filename) {
     // Create the final filename from all the parts of the uploaded data and the prefix
     return $prefix . "_" . slugify($filename, '-',  '._');
 }
+
+// Sends emails from forms
+function send_email()
+{
+    // send an email to website owner AND a confirmation email to user
+    /**
+     * Here's how an email WOULD be sent if PHP worked
+     * 
+     * here is the function you use to send an email
+     * http://php.net/manual/en/function.mail.php
+     * 
+     * function sendEmail($to, $from, $subject, $message){
+     *      $headers = implode("\n",[
+     *          "From: <$from>",
+     *          "Reply-To: <$from>",
+     *      ]);
+     * 
+     *      return mail($to, $subject, $message, $headers);
+     * }
+     * 
+     * $to = $source['customerinfo']['email'];
+     * $from = 'pinkhamjenna@gmail.com';
+     * $subject = 'Your Cadaverous Cupcakes Order';
+     * $body = 'hello, mortal';
+     * 
+     * var_dump(sendEmail($to,$from,$subject,$body));
+     */
+}

@@ -1,4 +1,5 @@
 <?php
+// https://luxe-managers-yakotta.c9users.io/phpmyadmin
 error_reporting(-1);
 ini_set("display_errors", true);
 
@@ -123,17 +124,24 @@ match_route("/admin/services/details",function($params,$url){
 match_route("/api/send-message",function(){
     // Make sure the fields are filled out and file is uploaded
     include_once("api/contact_form.php");
-    $status_fields = check_parameters($_POST, ["name", "email", "message"]);
-
+    $status_sent = "fail";
+    $status_fields = check_parameters($_POST, [
+        "name" => ["required" => true, "type" => "string"],
+        "email" => ["required" => true, "type" => "email"],
+        "phone" => ["required" => false, "type" => "phone"],
+        "preference" => ["required" => true, "type" => "string"],
+        "message" =>["required" => true, "type" => "string"]
+    ]);
     
-    $hasPhone = check_parameters($_POST, ["phone"]) === true; // will contain boolean true or false, right?
-
+    if($status_fields === true) {
+        insertContact($_POST["name"], $_POST["email"], $_POST["phone"], $_POST["preference"], $_POST["message"]);
+        // function for sending the email goes here
+        send_email(); // TODO: finish the email function
+        $status_sent = "success";
+    }
     
-    /**
-     */
-    
-    var_dump_pre($_POST);
-    die("x.x");
+    // TODO: We need to redirect back to the home page or contact page accordingly
+    redirect("/contact?status=$status_sent");
 });
 
 match_route("/api/send-resume",function(){
@@ -150,13 +158,9 @@ match_route("/api/send-resume",function(){
     ]);
     
     if($status_fields === true && $status_files === true) {
-        
         $filename = unique_filename(slugify($_POST["name"]) . "_" . $_FILES["resume"]["name"]);
-
         move_uploaded_file($_FILES['resume']['tmp_name'], __DIR__."/uploads/resumes/$filename");
-        
         insertResume($_POST["name"], $_POST["email"], $_POST["phone"], $filename, $_POST["message"]);
-        
         $status_upload = "success";
     }
 
