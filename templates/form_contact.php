@@ -42,8 +42,8 @@
                 <div class="form-group col-md-6">
                     <label for="contact-preference">Contact Preference: </label>
                     <select class="form-control" name="preference" id="contact-preference" value="email">
-                        <option>Email</option>
-                        <option>Phone</option>
+                        <option value="email">Email</option>
+                        <option value="phone">Phone</option>
                     </select>
                 </div>
             </div>

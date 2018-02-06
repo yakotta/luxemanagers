@@ -90,7 +90,7 @@ match_route("/admin/services/add",function(){
 
 match_route("/admin/services/list",function(){
     // contains edit and delete
-    include_once("api/services.php");
+    include_once(__DIR__."/api/services.php");
     $serviceList = getServiceList();
     $serviceCount = $serviceList->num_rows;
 
@@ -102,7 +102,7 @@ match_route("/admin/services/list",function(){
 
 match_route("/admin/services/details",function($params,$url){
     die($url);
-    include_once("api/services.php");
+    include_once(__DIR__."/api/services.php");
     $id = $_GET["id"];
 
     if(empty($id)) {
@@ -122,8 +122,10 @@ match_route("/admin/services/details",function($params,$url){
 
 // API Routes
 match_route("/api/send-message",function(){
+    var_dump_pre($_POST);
+    
     // Make sure the fields are filled out and file is uploaded
-    include_once("api/contact_form.php");
+    include_once(__DIR__."/api/contact_form.php");
     $status_sent = "fail";
     $status_fields = check_parameters($_POST, [
         "name" => ["required" => true, "type" => "string"],
@@ -134,11 +136,32 @@ match_route("/api/send-message",function(){
     ]);
     
     if($status_fields === true) {
-        insertContact($_POST["name"], $_POST["email"], $_POST["phone"], $_POST["preference"], $_POST["message"]);
-        // function for sending the email goes here
-        send_email(); // TODO: finish the email function
+        $insertContacts = insertContact($_POST["name"], $_POST["email"], $_POST["phone"], $_POST["preference"], $_POST["message"]);
+        
+        if(empty($_POST["phone"])) $_POST["phone"] = "not provided";
+        
+        $luxe_email = "pinkhamjenna@gmail.com";
+
+        // email to luxe
+        $to = $luxe_email;
+        $from = $_POST["email"];
+        $subject = "New Client Lead from luxemanagers.com";
+        $template_luxe = render_template(__DIR__."/templates/email_contact_luxe.php", $_POST);
+        
+        var_dump(send_email($to, $from, $subject, $template_luxe));
+        
+        // email to client
+        $to = $_POST["email"];
+        $from = $luxe_email;
+        $subject = "Thank you for contacting LUXE Luxury Lifestyle Managers";
+        $template_user = render_template(__DIR__."/templates/email_contact_user.php", $_POST);
+        
+        var_dump(send_email($to, $from, $subject, $template_user));
+        
         $status_sent = "success";
     }
+    
+    die("HELLO: ".date("H:i:s"));
     
     // TODO: We need to redirect back to the home page or contact page accordingly
     redirect("/contact?status=$status_sent");
@@ -146,7 +169,7 @@ match_route("/api/send-message",function(){
 
 match_route("/api/send-resume",function(){
     // Make sure the fields are filled out and file is uploaded
-    include_once("api/resumes.php");
+    include_once(__DIR__."/api/resumes.php");
     $status_upload = "fail";
     $status_fields = check_parameters($_POST, [
         "name" => ["required" => true, "type" => "string"], 
@@ -169,13 +192,12 @@ match_route("/api/send-resume",function(){
 });
 
 match_route("/api/services/add",function(){
-    include_once("api/services.php");
-    $status = check_parameters($_POST, [
-        "name", "full_description"
-    ]);
+    include_once(__DIR__."/api/services.php");
+    
     if($status === true) {
         insertService($_POST);
         redirect("/services/list");
+        // WHY HALLO THAR!
     } else {
         error_log("Failed to create service.");
         redirect("/services/add?error=$status");
@@ -183,9 +205,14 @@ match_route("/api/services/add",function(){
 });
 
 match_route("/api/services/edit",function(){
-    include_once("api/services.php");
+    include_once(__DIR__."/api/services.php");
     $status = check_parameters($_POST, [
-        "id", "name", "full_description", "image"
+        "id" => ["required" => true, "type" => "integer"],
+        "name" => ["required" => true, "type" => "string"],
+        "short_description" => ["required" => false, "type" => "string"],
+        "full_description" => ["required" => true, "type" => "string"],
+        "image" => ["required" => false, "type" => "string"],
+        "link" => ["required" => false, "type" => "string"]
     ]);
     if($status === true) {
         editService($_POST);
@@ -197,12 +224,9 @@ match_route("/api/services/edit",function(){
 });
 
 match_route("/api/services/delete",function(){
-    include_once("api/services.php");
+    include_once(__DIR__."/api/services.php");
     $status = check_parameters($_GET, [
-        "id" => [
-            "required" => true,
-            "type" => "integer",
-        ]
+        "id" => ["required" => true, "type" => "integer"]
     ]);
 
     if($status === true) {

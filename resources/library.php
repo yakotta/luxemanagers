@@ -76,7 +76,7 @@ function connect()
     // Check connection
     if ($db->connect_error) {
         die("Connection failed: " . $db->connect_error);
-    }  
+    } 
     
     // return the connection to the calling script, so it can be used elsewhere
     return $db;
@@ -308,29 +308,12 @@ function unique_filename($filename) {
 }
 
 // Sends emails from forms
-function send_email()
+function send_email($to, $from, $subject, $message)
 {
-    // send an email to website owner AND a confirmation email to user
-    /**
-     * Here's how an email WOULD be sent if PHP worked
-     * 
-     * here is the function you use to send an email
-     * http://php.net/manual/en/function.mail.php
-     * 
-     * function sendEmail($to, $from, $subject, $message){
-     *      $headers = implode("\n",[
-     *          "From: <$from>",
-     *          "Reply-To: <$from>",
-     *      ]);
-     * 
-     *      return mail($to, $subject, $message, $headers);
-     * }
-     * 
-     * $to = $source['customerinfo']['email'];
-     * $from = 'pinkhamjenna@gmail.com';
-     * $subject = 'Your Cadaverous Cupcakes Order';
-     * $body = 'hello, mortal';
-     * 
-     * var_dump(sendEmail($to,$from,$subject,$body));
-     */
+    $headers = implode("\n", [
+        "From: <$from>",
+        "Reply-To: <$from>"
+    ]);
+        
+    return mail($to, $subject, $message, $headers);
 }
