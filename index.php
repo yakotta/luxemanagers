@@ -143,16 +143,16 @@ match_route("/api/send-message",function(){
         $luxe_email = "pinkhamjenna@gmail.com";
 
         // email to luxe
-        $to = $luxe_email;
-        $from = $_POST["email"];
-        $subject = "New Client Lead from luxemanagers.com";
+        $to = [ "name" => "LUXE Managers", "email" => $luxe_email ];
+        $from = [ "name" => $_POST["name"], "email" => $_POST["email"] ];
+        $subject = "New client message from luxemanagers.com";
         $template_luxe = render_template(__DIR__."/templates/email_contact_luxe.php", $_POST);
         
         var_dump(send_email($to, $from, $subject, $template_luxe));
         
         // email to client
-        $to = $_POST["email"];
-        $from = $luxe_email;
+        $to = [ "name" => $_POST["name"], "email" => $_POST["email"] ];
+        $from = [ "name" => "Luxe Managers", "email" => $luxe_email ];
         $subject = "Thank you for contacting LUXE Luxury Lifestyle Managers";
         $template_user = render_template(__DIR__."/templates/email_contact_user.php", $_POST);
         

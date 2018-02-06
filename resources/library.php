@@ -308,12 +308,18 @@ function unique_filename($filename) {
 }
 
 // Sends emails from forms
+// Here is how to send email in HTML: https://stackoverflow.com/questions/11238953/send-html-in-email-via-php
 function send_email($to, $from, $subject, $message)
 {
-    $headers = implode("\n", [
-        "From: <$from>",
-        "Reply-To: <$from>"
+    $from = "{$from["name"]} <{$from["email"]}>";
+    
+    $headers = implode("\r\n", [
+        "To: {$to["name"]} <{$to["email"]}>",
+        "From: $from",
+        "Reply-To: $from",
+        "MIME-Version: 1.0",
+        "Content-Type: text/html; charset=UTF-8",
     ]);
         
-    return mail($to, $subject, $message, $headers);
+    return mail($to["email"], $subject, $message, $headers);
 }
