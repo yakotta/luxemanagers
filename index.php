@@ -122,10 +122,9 @@ match_route("/admin/services/details",function($params,$url){
 
 // API Routes
 match_route("/api/send-message",function(){
-    var_dump_pre($_POST);
-    
     // Make sure the fields are filled out and file is uploaded
     include_once(__DIR__."/api/contact_form.php");
+    
     $status_sent = "fail";
     $status_fields = check_parameters($_POST, [
         "name" => ["required" => true, "type" => "string"],
@@ -148,7 +147,7 @@ match_route("/api/send-message",function(){
         $subject = "New client message from luxemanagers.com";
         $template_luxe = render_template(__DIR__."/templates/email_contact_luxe.php", $_POST);
         
-        var_dump(send_email($to, $from, $subject, $template_luxe));
+        send_email($to, $from, $subject, $template_luxe);
         
         // email to client
         $to = [ "name" => $_POST["name"], "email" => $_POST["email"] ];
@@ -156,20 +155,19 @@ match_route("/api/send-message",function(){
         $subject = "Thank you for contacting LUXE Luxury Lifestyle Managers";
         $template_user = render_template(__DIR__."/templates/email_contact_user.php", $_POST);
         
-        var_dump(send_email($to, $from, $subject, $template_user));
+        send_email($to, $from, $subject, $template_user);
         
         $status_sent = "success";
     }
     
-    die("HELLO: ".date("H:i:s"));
-    
-    // TODO: We need to redirect back to the home page or contact page accordingly
-    redirect("/contact?status=$status_sent");
+    list($url) = explode("?", $_POST["url_return"]);
+    redirect("$url?status=$status_sent#contact-form");
 });
 
 match_route("/api/send-resume",function(){
     // Make sure the fields are filled out and file is uploaded
     include_once(__DIR__."/api/resumes.php");
+    
     $status_upload = "fail";
     $status_fields = check_parameters($_POST, [
         "name" => ["required" => true, "type" => "string"], 
@@ -182,13 +180,37 @@ match_route("/api/send-resume",function(){
     
     if($status_fields === true && $status_files === true) {
         $filename = unique_filename(slugify($_POST["name"]) . "_" . $_FILES["resume"]["name"]);
+        
         move_uploaded_file($_FILES['resume']['tmp_name'], __DIR__."/uploads/resumes/$filename");
         insertResume($_POST["name"], $_POST["email"], $_POST["phone"], $filename, $_POST["message"]);
+        
+        $_POST["resume_url"] = $_SERVER["HTTP_HOST"]."/uploads/resume/$filename";
+        
         $status_upload = "success";
-    }
+        
+        $luxe_email = "pinkhamjenna@gmail.com";
 
-    // redirect back to employment page
-    redirect("/employment?status=$status_upload");
+        // email to luxe
+        $to = [ "name" => "LUXE Managers", "email" => $luxe_email ];
+        $from = [ "name" => $_POST["name"], "email" => $_POST["email"] ];
+        $subject = "New resume uploaded to luxemanagers.com";
+        $template_luxe = render_template(__DIR__."/templates/email_resume_luxe.php", $_POST);
+        
+        send_email($to, $from, $subject, $template_luxe);
+        
+        // email to client
+        $to = [ "name" => $_POST["name"], "email" => $_POST["email"] ];
+        $from = [ "name" => "Luxe Managers", "email" => $luxe_email ];
+        $subject = "Thank you for applying to LUXE Luxury Lifestyle Managers";
+        $template_user = render_template(__DIR__."/templates/email_resume_user.php", $_POST);
+        
+        send_email($to, $from, $subject, $template_user);
+        
+        $status_sent = "success";
+    }
+    
+    list($url) = explode("?", $_POST["url_return"]);
+    redirect("$url?status=$status_sent#employment-form");
 });
 
 match_route("/api/services/add",function(){
@@ -197,7 +219,6 @@ match_route("/api/services/add",function(){
     if($status === true) {
         insertService($_POST);
         redirect("/services/list");
-        // WHY HALLO THAR!
     } else {
         error_log("Failed to create service.");
         redirect("/services/add?error=$status");
@@ -265,4 +286,5 @@ match_route("/admin/migrations",function(){
     render_page(ob_get_clean());
 });
 
+// Default Route (404)
 render_page("error_404.php");

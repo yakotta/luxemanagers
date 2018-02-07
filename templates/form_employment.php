@@ -8,7 +8,23 @@
     </div>
 
     <div class="col-md-8 contact-form">
+        <?php if(isset($_GET["status"]) && $_GET["status"] == "success"): ?>
+            <div class="alert alert-success" role="alert">
+              Thank you for applying to Luxe Managers! We will review your resume and
+              get back to you shortly. 
+            </div>
+        <?php endif ?>
+        
+        <?php if(isset($_GET["status"]) && $_GET["status"] == "fail"): ?>
+            <div class="alert alert-danger" role="alert">
+              Sorry, something went wrong. Please ensure all fields are filled out correctly,
+              or refresh the page and try submitting your resume again.
+            </div>
+        <?php endif ?>
+    
         <form method="post" action="<?=rewrite_url('/api/send-resume')?>" class="contact-form" enctype="multipart/form-data">
+            <a name="employment-form"></a>
+            <input type="hidden" name="url_return" value="<?=$_SERVER['REQUEST_URI']?>" />
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="contact-name">Name: </label>
