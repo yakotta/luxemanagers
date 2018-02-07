@@ -184,7 +184,7 @@ match_route("/api/send-resume",function(){
         move_uploaded_file($_FILES['resume']['tmp_name'], __DIR__."/uploads/resumes/$filename");
         insertResume($_POST["name"], $_POST["email"], $_POST["phone"], $filename, $_POST["message"]);
         
-        $_POST["resume_url"] = $_SERVER["HTTP_HOST"]."/uploads/resume/$filename";
+        $_POST["resume_url"] = "http://".$_SERVER["HTTP_HOST"]."/uploads/resume/$filename";
         
         $status_upload = "success";
         

@@ -4,7 +4,7 @@
     <li>Name: <?=$name?></li>
     <li>Email: <?=$email?></li>
     <li>Phone: <?=$phone?></li>
-    <li>Resume: <a href="<?=$reume_url?>">click to view</a></li>
+    <li>Resume: <a href="<?=$resume_url?>">click to view</a></li>
 </ul>
 
 <p><i>How would <?=$name?> be an asset to Luxe Managers?</i></p>
