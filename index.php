@@ -4,287 +4,44 @@ error_reporting(-1);
 ini_set("display_errors", true);
 
 include(__DIR__."/resources/library.php");
-include(__DIR__."/api/site_config.php");
 
 session_start();
 // Just authenticate everybody for now until we create a proper login
 $_SESSION["authenticated"] = true;
 
-function render_page($template,$params=[]){
-    $file = __DIR__."/templates/$template";
-
-    if(is_file($file)){
-        $template = render_template($file,$params);
-    }
-
-    die(render_template(__DIR__."/templates/page_skeleton.php", [
-        "content" => $template
-    ]));
-}
+spl_autoload_register(function($className){
+    $filename = str_replace("//","/","objects/$className.php");
+    
+    require_once($filename);
+});
 
 // Home Page
-match_route("/",function(){
-    include(__DIR__."/api/services.php");
-    include(__DIR__."/api/testimonials.php");
-    include(__DIR__."/api/press.php");
+match_route("/", "GeneralRoutes::webHomePage");
 
-    $serviceList = getServiceList();
-    $testimonialList = getTestimonialList();
-    $featuredPressList = getFeaturedPressList();
+// General Pages
+match_route("/about", "GeneralRoutes::webAboutPage");
+match_route("/press", "PressRoutes::webPressPage");
 
-    render_page("content_home.php",[
-        "testimonialList" => $testimonialList,
-        "serviceList" => $serviceList,
-        "featuredPressList" => $featuredPressList
-    ]);
-});
+// Contact Pages
+match_route("/contact", "ContactRoutes::webContactPage");
+match_route("/api/send-message", "ContactRoutes::apiSendMessage");
 
-// Content Pages
-match_route("/about",function(){
-    render_page("content_about.php");
-});
+// Employment Page
+match_route("/employment", "EmploymentRoutes::webEmploymentPage");
+match_route("/api/send-resume", "EmploymentRoutes::apiSendResume");
 
-match_route("/contact",function(){
-    render_page("content_contact.php");
-});
+// Services Pages
+match_route("/services", "ServiceRoutes::webServiceList");
+match_route("/services/:service", "ServiceRoutes::webServiceDetails");
+match_route("/admin/services/add", "ServiceRoutes::adminServiceAdd");
+match_route("/admin/services/list", "ServiceRoutes::adminServiceList");
+match_route("/admin/services/details", "ServiceRoutes::adminServiceDetails");
+match_route("/api/services/add", "ServiceRoutes::apiServiceAdd");
+match_route("/api/services/edit", "ServiceRoutes::apiServiceEdit");
+match_route("/api/services/delete", "ServiceRoutes::apiServiceDelete");
 
-match_route("/press", function(){
-    include(__DIR__."/api/press.php");
-    
-    $pressList = getPressList();
-
-    render_page("content_press.php", [
-        "pressList" => $pressList,
-    ]);
-});
-
-match_route("/employment", function() {
-    render_page("content_employment.php");
-});
-
-// Service Details Pages
-match_route("/services",function(){
-    include(__DIR__."/api/services.php");
-    $serviceList = getServiceList();
-
-    render_page("content_service_list.php", [
-        "serviceList" => $serviceList
-    ]);
-});
-
-match_route("/services/:service",function($params){
-    include(__DIR__."/api/services.php");
-    $service = getServiceByLink($params["service"]);
-
-    render_page("content_service_item.php", [
-        "service" => $service
-    ]);
-
-    // TODO: this code will break and not display correct page if you do not put a service that exists
-});
-
-// Service Management Pages
-match_route("/admin/services/add",function(){
-    render_page("form_add_service.php");
-});
-
-match_route("/admin/services/list",function(){
-    // contains edit and delete
-    include_once(__DIR__."/api/services.php");
-    $serviceList = getServiceList();
-    $serviceCount = $serviceList->num_rows;
-
-    render_page("content_service_list.php", [
-        "serviceList" => $serviceList,
-        "serviceCount" => $serviceCount
-    ]);
-});
-
-match_route("/admin/services/details",function($params,$url){
-    die($url);
-    include_once(__DIR__."/api/services.php");
-    $id = $_GET["id"];
-
-    if(empty($id)) {
-        redirect("/404");
-    }
-
-    $service = getServiceByID($id);
-
-    if ($service === NULL) {
-        redirect("/404");
-    }
-
-    render_page("content_service_item.php", [
-        "service" => $service
-    ]);
-});
-
-// API Routes
-match_route("/api/send-message",function(){
-    // Make sure the fields are filled out and file is uploaded
-    include_once(__DIR__."/api/contact_form.php");
-    
-    $status_sent = "fail";
-    $status_fields = check_parameters($_POST, [
-        "name" => ["required" => true, "type" => "string"],
-        "email" => ["required" => true, "type" => "email"],
-        "phone" => ["required" => false, "type" => "phone"],
-        "preference" => ["required" => true, "type" => "string"],
-        "message" =>["required" => true, "type" => "string"]
-    ]);
-    
-    if($status_fields === true) {
-        $insertContacts = insertContact($_POST["name"], $_POST["email"], $_POST["phone"], $_POST["preference"], $_POST["message"]);
-        
-        if(empty($_POST["phone"])) $_POST["phone"] = "not provided";
-        
-        $luxe_email = "pinkhamjenna@gmail.com";
-
-        // email to luxe
-        $to = [ "name" => "LUXE Managers", "email" => $luxe_email ];
-        $from = [ "name" => $_POST["name"], "email" => $_POST["email"] ];
-        $subject = "New client message from luxemanagers.com";
-        $template_luxe = render_template(__DIR__."/templates/email_contact_luxe.php", $_POST);
-        
-        send_email($to, $from, $subject, $template_luxe);
-        
-        // email to client
-        $to = [ "name" => $_POST["name"], "email" => $_POST["email"] ];
-        $from = [ "name" => "Luxe Managers", "email" => $luxe_email ];
-        $subject = "Thank you for contacting LUXE Luxury Lifestyle Managers";
-        $template_user = render_template(__DIR__."/templates/email_contact_user.php", $_POST);
-        
-        send_email($to, $from, $subject, $template_user);
-        
-        $status_sent = "success";
-    }
-    
-    list($url) = explode("?", $_POST["url_return"]);
-    redirect("$url?status=$status_sent#contact-form");
-});
-
-match_route("/api/send-resume",function(){
-    // Make sure the fields are filled out and file is uploaded
-    include_once(__DIR__."/api/resumes.php");
-    
-    $status_upload = "fail";
-    $status_fields = check_parameters($_POST, [
-        "name" => ["required" => true, "type" => "string"], 
-        "email" => ["required" => true, "type" => "email"], 
-        "phone" => ["required" => false, "type" => "phone"]
-    ]);
-    $status_files = check_parameters($_FILES, [
-        "resume" => ["required" => true, "type" => "doc, docx,pdf"]
-    ]);
-    
-    if($status_fields === true && $status_files === true) {
-        $filename = unique_filename(slugify($_POST["name"]) . "_" . $_FILES["resume"]["name"]);
-        
-        move_uploaded_file($_FILES['resume']['tmp_name'], __DIR__."/uploads/resumes/$filename");
-        insertResume($_POST["name"], $_POST["email"], $_POST["phone"], $filename, $_POST["message"]);
-        
-        $_POST["resume_url"] = "http://".$_SERVER["HTTP_HOST"]."/uploads/resume/$filename";
-        
-        $status_upload = "success";
-        
-        $luxe_email = "pinkhamjenna@gmail.com";
-
-        // email to luxe
-        $to = [ "name" => "LUXE Managers", "email" => $luxe_email ];
-        $from = [ "name" => $_POST["name"], "email" => $_POST["email"] ];
-        $subject = "New resume uploaded to luxemanagers.com";
-        $template_luxe = render_template(__DIR__."/templates/email_resume_luxe.php", $_POST);
-        
-        send_email($to, $from, $subject, $template_luxe);
-        
-        // email to client
-        $to = [ "name" => $_POST["name"], "email" => $_POST["email"] ];
-        $from = [ "name" => "Luxe Managers", "email" => $luxe_email ];
-        $subject = "Thank you for applying to LUXE Luxury Lifestyle Managers";
-        $template_user = render_template(__DIR__."/templates/email_resume_user.php", $_POST);
-        
-        send_email($to, $from, $subject, $template_user);
-        
-        $status_sent = "success";
-    }
-    
-    list($url) = explode("?", $_POST["url_return"]);
-    redirect("$url?status=$status_sent#employment-form");
-});
-
-match_route("/api/services/add",function(){
-    include_once(__DIR__."/api/services.php");
-    
-    if($status === true) {
-        insertService($_POST);
-        redirect("/services/list");
-    } else {
-        error_log("Failed to create service.");
-        redirect("/services/add?error=$status");
-    }
-});
-
-match_route("/api/services/edit",function(){
-    include_once(__DIR__."/api/services.php");
-    $status = check_parameters($_POST, [
-        "id" => ["required" => true, "type" => "integer"],
-        "name" => ["required" => true, "type" => "string"],
-        "short_description" => ["required" => false, "type" => "string"],
-        "full_description" => ["required" => true, "type" => "string"],
-        "image" => ["required" => false, "type" => "string"],
-        "link" => ["required" => false, "type" => "string"]
-    ]);
-    if($status === true) {
-        editService($_POST);
-        redirect("/services/details?id={$_POST['id']}");
-    } else {
-        error_log("Failed to edit service details.");
-        redirect("/services/details?error=$status");
-    }
-});
-
-match_route("/api/services/delete",function(){
-    include_once(__DIR__."/api/services.php");
-    $status = check_parameters($_GET, [
-        "id" => ["required" => true, "type" => "integer"]
-    ]);
-
-    if($status === true) {
-        deleteService($_GET);
-        redirect("/services/list");
-    } else {
-        error_log("Failed to delete service.");
-        redirect("/services/details?error=$status");
-    }
-});
-
-// Migrations
-match_route("/admin/migrations",function(){
-    ob_start();
-    $migrations = glob(__DIR__."/migrations/m*.php");
-
-    print("<style type='text/css'>.green {color: green}</style>");
-    
-    foreach($migrations as $m){
-        if(check_migration($m) === false){
-            print("<b>Running Migration: $m</b><br/>");
-
-            $output = include($m);
-            if($output === true) {
-                print("<b class='green'>Adding Migration: $m</b><br/>");
-                add_migration($m);
-            }
-        } else {
-            print("Skipping Migration $m<br/>");
-        }
-    }
-
-    print("<b>Finished migrating everything</b><br/>");
-    print("<a href='/'>Go back to the home page</a>");
-
-    render_page(ob_get_clean());
-});
+// Migrations Pages
+match_route("/admin/migrations", "AdminRoutes::adminRunMigrations");
 
 // Default Route (404)
 render_page("error_404.php");

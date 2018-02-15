@@ -112,6 +112,19 @@ function render_template($template_name, $template_parameters=[])
     return $template;
 }
 
+// Renders pages
+function render_page($template,$params=[]){
+    $file = __DIR__."/../templates/$template";
+
+    if(is_file($file)){
+        $template = render_template($file,$params);
+    }
+
+    die(render_template(__DIR__."/../templates/page_skeleton.php", [
+        "content" => $template
+    ]));
+}
+
 // Verifies if an input is a string
 function validate_string($input) {
     if (!is_string($input) || empty($input)) return false;
@@ -147,7 +160,20 @@ function validate_phone($input) {
     return false;
 }
 
-// Checks to see if all input parameters exist and are not empty.
+/**
+ * Checks to see if all input parameters exist and are not empty.
+ * 
+ * $source - An array of information that you would like to search through
+ * $parameters - An array of parameter information, relating to what you are looking for and under what conditions
+ * 
+ * Notes:
+ *  - The source parameter might be altered during this function call, because if it failed validation, 
+ *    but was not required to succeed, the field will be set to an empty string
+ * 
+ * returns:
+ *  - Boolean true, if the parameters all exist within their constraints
+ *  - String containing the name of the field which has failed "validation"
+ */
 function check_parameters (&$source, $parameters=[])
 {
     foreach($parameters as $field => $rules)
@@ -186,6 +212,30 @@ function check_parameters (&$source, $parameters=[])
                 
                 $source[$field] = "";
             };
+        }
+        
+        if($rules["type"] === "file") {
+            if(array_key_exists("options", $rules) && is_array($rules["options"]) && !empty($rules["options"]))
+            {
+                $filetype = $source[$field]["type"];
+                $found = false;
+                
+                foreach ($parameters[$field]["options"] as $option) {
+                    if ($filetype === $option) {
+                        $found = true;
+                    }
+                }
+                
+                if($found === false){
+                    if($rules["required"] === true){
+                        return $field;
+                    }
+                    
+                    $source[$field] = "";
+                }
+            } else {
+                die("You didn't specify a desired file type so I killed you.");
+            }
         }
     }
 
@@ -260,7 +310,7 @@ function match_route($pattern, $callback)
             array_flip(array_filter(array_keys($matches), 'is_string'))
         );
 
-        $continue = $callback($params,$url);
+        $continue = call_user_func_array($callback,[$params,$url]);
 
         if(!$continue) die();
     }

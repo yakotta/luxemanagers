@@ -12,11 +12,11 @@
         <div class="contact-icons">
             <p>
                 <span class="glyphicon glyphicon-phone-alt"></span> 
-                <?=getSiteConfig("phone")?>
+                <?=SiteConfig::getSiteConfig("phone")?>
             </p>
             <p>
                 <span class="glyphicon glyphicon-envelope"></span>
-                <?=getSiteConfig("email")?>
+                <?=SiteConfig::getSiteConfig("email")?>
             </p>
         </div> 
     </div>
