@@ -13,7 +13,7 @@ $query=<<<QUERY
         message = "$message"
 QUERY;
     
-        $db = connect();
+        $db = Database::connect();
         $result = $db->query($query);
         $last_id = $db->insert_id;
     

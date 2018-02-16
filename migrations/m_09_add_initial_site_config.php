@@ -7,7 +7,7 @@ if( !is_array($_SESSION) ||
     return false;
 }
 
-$db = connect();
+$db = Database::connect();
 
 $db->query("truncate site_config");
 $db->query("insert into site_config set field='phone', value='1-650-385-8989'");

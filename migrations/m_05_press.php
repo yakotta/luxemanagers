@@ -7,7 +7,7 @@ if( !is_array($_SESSION) ||
     return false;
 }
 
-$db = connect();
+$db = Database::connect();
 
 $press=<<<QUERY
     create table if not exists press (

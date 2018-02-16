@@ -3,45 +3,49 @@
 error_reporting(-1);
 ini_set("display_errors", true);
 
-include(__DIR__."/resources/library.php");
-
 session_start();
 // Just authenticate everybody for now until we create a proper login
 $_SESSION["authenticated"] = true;
 
 spl_autoload_register(function($className){
-    $filename = str_replace("//","/","objects/$className.php");
+    // First attempt to find the file inside the library
+    $filename = str_replace("//","/","library/$className.php");
+    // Test if the file exists, if so, go ahead and include it
+    if(is_file($filename)) require_once($filename);
     
-    require_once($filename);
+    // If you didnt find the file in the library, then try looking in the objects
+    $filename = str_replace("//","/","objects/$className.php");
+    // Test if the file exists, if so, go ahead and include it
+    if(is_file($filename)) require_once($filename);
 });
 
 // Home Page
-match_route("/", "GeneralRoutes::webHomePage");
+Route::match("/", "GeneralRoutes::webHomePage");
 
 // General Pages
-match_route("/about", "GeneralRoutes::webAboutPage");
-match_route("/press", "PressRoutes::webPressPage");
+Route::match("/about", "GeneralRoutes::webAboutPage");
+Route::match("/press", "PressRoutes::webPressPage");
 
 // Contact Pages
-match_route("/contact", "ContactRoutes::webContactPage");
-match_route("/api/send-message", "ContactRoutes::apiSendMessage");
+Route::match("/contact", "ContactRoutes::webContactPage");
+Route::match("/api/send-message", "ContactRoutes::apiSendMessage");
 
 // Employment Page
-match_route("/employment", "EmploymentRoutes::webEmploymentPage");
-match_route("/api/send-resume", "EmploymentRoutes::apiSendResume");
+Route::match("/employment", "EmploymentRoutes::webEmploymentPage");
+Route::match("/api/send-resume", "EmploymentRoutes::apiSendResume");
 
 // Services Pages
-match_route("/services", "ServiceRoutes::webServiceList");
-match_route("/services/:service", "ServiceRoutes::webServiceDetails");
-match_route("/admin/services/add", "ServiceRoutes::adminServiceAdd");
-match_route("/admin/services/list", "ServiceRoutes::adminServiceList");
-match_route("/admin/services/details", "ServiceRoutes::adminServiceDetails");
-match_route("/api/services/add", "ServiceRoutes::apiServiceAdd");
-match_route("/api/services/edit", "ServiceRoutes::apiServiceEdit");
-match_route("/api/services/delete", "ServiceRoutes::apiServiceDelete");
+Route::match("/services", "ServiceRoutes::webServiceList");
+Route::match("/services/:service", "ServiceRoutes::webServiceDetails");
+Route::match("/admin/services/add", "ServiceRoutes::adminServiceAdd");
+Route::match("/admin/services/list", "ServiceRoutes::adminServiceList");
+Route::match("/admin/services/details", "ServiceRoutes::adminServiceDetails");
+Route::match("/api/services/add", "ServiceRoutes::apiServiceAdd");
+Route::match("/api/services/edit", "ServiceRoutes::apiServiceEdit");
+Route::match("/api/services/delete", "ServiceRoutes::apiServiceDelete");
 
 // Migrations Pages
-match_route("/admin/migrations", "AdminRoutes::adminRunMigrations");
+Route::match("/admin/migrations", "AdminRoutes::adminRunMigrations");
 
 // Default Route (404)
-render_page("error_404.php");
+Render::page("error_404.php");

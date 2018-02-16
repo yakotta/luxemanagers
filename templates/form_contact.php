@@ -6,7 +6,7 @@
             Interested in getting started with Luxe? Want to learn more about our 
             services? Call, email, or use the contact form to the right to see how 
             Luxe Luxury Lifestyle Managers can be of service to you today. Interested
-            in working for Luxe? <a href="<?=rewrite_url('/employment')?>">Click here 
+            in working for Luxe? <a href="<?=Route::rewrite_url('/employment')?>">Click here 
             to send us your resume.</a>
         </p>
         <div class="contact-icons">
@@ -36,7 +36,7 @@
             </div>
         <?php endif ?>
     
-        <form method="post" action="<?=rewrite_url('/api/send-message')?>" class="contact-form">
+        <form method="post" action="<?=Route::rewrite_url('/api/send-message')?>" class="contact-form">
             <a name="contact-form"></a>
             <input type="hidden" name="url_return" value="<?=$_SERVER['REQUEST_URI']?>" />
             <div class="row">

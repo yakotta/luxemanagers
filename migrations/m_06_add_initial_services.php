@@ -7,7 +7,7 @@ if( !is_array($_SESSION) ||
     return false;
 }
 
-$db = connect();
+$db = Database::connect();
 
 // truncate will delete all the data in the table and reset the "auto_increment" back to zero
 $db->query("truncate services");

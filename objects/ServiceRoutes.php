@@ -3,8 +3,8 @@ class ServiceRoutes {
     // Service Page (public)
     static public function webServiceList(){
         $serviceList = ServiceAPI::getServiceList();
-    
-        render_page("content_service_list.php", [
+
+        Render::page("content_service_list.php", [
             "serviceList" => $serviceList
         ]);
     }
@@ -13,7 +13,7 @@ class ServiceRoutes {
     static public function webServiceDetails($params){
         $service = ServiceAPI::getServiceByLink($params["service"]);
     
-        render_page("content_service_item.php", [
+        Render::page("content_service_item.php", [
             "service" => $service
         ]);
     
@@ -22,7 +22,7 @@ class ServiceRoutes {
     
     // Add Service Page (admin)
     static public function adminServiceAdd(){
-        render_page("form_add_service.php");
+        Render::page("form_add_service.php");
     }
     
     // Service List Page (admin)
@@ -31,7 +31,7 @@ class ServiceRoutes {
         $serviceList = ServiceAPI::getServiceList();
         $serviceCount = $serviceList->num_rows;
     
-        render_page("content_service_list.php", [
+        Render::page("content_service_list.php", [
             "serviceList" => $serviceList,
             "serviceCount" => $serviceCount
         ]);
@@ -43,16 +43,16 @@ class ServiceRoutes {
         $id = $_GET["id"];
     
         if(empty($id)) {
-            redirect("/404");
+            Route::redirect("/404");
         }
     
         $service = ServiceAPI::getServiceByID($id);
     
         if ($service === NULL) {
-            redirect("/404");
+            Route::redirect("/404");
         }
     
-        render_page("content_service_item.php", [
+        Render::page("content_service_item.php", [
             "service" => $service
         ]);
     }
@@ -62,16 +62,16 @@ class ServiceRoutes {
 
         if($status === true) {
             ServiceAPI::insertService($_POST);
-            redirect("/services/list");
+            Route::redirect("/services/list");
         } else {
             error_log("Failed to create service.");
-            redirect("/services/add?error=$status");
+            Route::redirect("/services/add?error=$status");
         }
     }
     
     // Edit Service API (functional)
     static public function apiServiceEdit(){
-        $status = check_parameters($_POST, [
+        $status = Validate::parameters($_POST, [
             "id" => ["required" => true, "type" => "integer"],
             "name" => ["required" => true, "type" => "string"],
             "short_description" => ["required" => false, "type" => "string"],
@@ -82,25 +82,25 @@ class ServiceRoutes {
         
         if($status === true) {
             ServiceAPI::editService($_POST);
-            redirect("/services/details?id={$_POST['id']}");
+            Route::redirect("/services/details?id={$_POST['id']}");
         } else {
             error_log("Failed to edit service details.");
-            redirect("/services/details?error=$status");
+            Route::redirect("/services/details?error=$status");
         }
     }
     
     // Delete Service API (functional)
     static public function apiServiceDelete(){
-        $status = check_parameters($_GET, [
+        $status = Validate::parameters($_GET, [
             "id" => ["required" => true, "type" => "integer"]
         ]);
     
         if($status === true) {
             ServiceAPI::deleteService($_GET);
-            redirect("/services/list");
+            Route::redirect("/services/list");
         } else {
             error_log("Failed to delete service.");
-            redirect("/services/details?error=$status");
+            Route::redirect("/services/details?error=$status");
         }
     }
 }

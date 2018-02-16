@@ -7,7 +7,7 @@ if( !is_array($_SESSION) ||
     return false;
 }
 
-$db = connect();
+$db = Database::connect();
 
 // here is the query which creates the migrations table
 $migrations=<<<QUERY

@@ -7,7 +7,7 @@ if( !is_array($_SESSION) ||
     return false;
 }
 
-$db = connect();
+$db = Database::connect();
 
 $contact_form=<<<QUERY
     alter table contact_form

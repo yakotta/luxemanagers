@@ -7,7 +7,7 @@ if(empty($testimonial["link"])){
 ?>
 <div class="media col-sm-4">
     <div class="media-left">
-        <img class="media-object" src="<?=rewrite_url($testimonial["image"])?>" alt="<?=$testimonial["name"]?>">
+        <img class="media-object" src="<?=Route::rewrite_url($testimonial["image"])?>" alt="<?=$testimonial["name"]?>">
     </div>
     <div class="media-body">
         <h4 class="media-heading"><?=$testimonial["name"]?></h4>

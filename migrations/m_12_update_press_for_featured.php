@@ -7,7 +7,8 @@ if( !is_array($_SESSION) ||
     return false;
 }
 
-$db = connect();
+$db = Database::connect();
+
 $db->query("alter table press add featured tinyint(1) default 0");
 
 return true;

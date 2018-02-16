@@ -22,7 +22,7 @@
             </div>
         <?php endif ?>
     
-        <form method="post" action="<?=rewrite_url('/api/send-resume')?>" class="contact-form" enctype="multipart/form-data">
+        <form method="post" action="<?=Route::rewrite_url('/api/send-resume')?>" class="contact-form" enctype="multipart/form-data">
             <a name="employment-form"></a>
             <input type="hidden" name="url_return" value="<?=$_SERVER['REQUEST_URI']?>" />
             <div class="row">

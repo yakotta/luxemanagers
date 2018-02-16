@@ -4,7 +4,7 @@ class PressRoutes {
     static public function webPressPage(){
         $pressList = PressAPI::getPressList();
     
-        render_page("content_press.php", [
+        Render::page("content_press.php", [
             "pressList" => $pressList,
         ]);
     }

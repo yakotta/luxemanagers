@@ -13,7 +13,7 @@ $query=<<<QUERY
 QUERY;
 
         // return a database connection
-        $db = connect();
+        $db = Database::connect();
         
         // $result will say whether the query executed ok or not
         $result = $db->query($query);

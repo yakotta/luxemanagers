@@ -11,7 +11,7 @@ $query=<<<QUERY
         link = "{$datasource["link"]}"
 QUERY;
 
-        $db = connect();
+        $db = Database::connect();
         $result = $db->query($query);
         $last_id = $db->insert_id;
         
@@ -35,19 +35,19 @@ $query=<<<QUERY
     where id = "{$datasource["id"]}"
 QUERY;
 
-        $db = connect();
+        $db = Database::connect();
         return $db->query($query);
     }
     
     static public function deleteService($datasource) 
     {
-        $db = connect();
+        $db = Database::connect();
         return $db->query("delete from services where id='{$datasource["id"]}'");
     }
     
     static public function getServiceByID($datasource)
     {
-        $db = connect();
+        $db = Database::connect();
         $result = $db->query("select * from services where id='{$datasource["id"]}'");
         $service = $result->fetch_assoc();
         return $service;
@@ -55,7 +55,7 @@ QUERY;
     
     static public function getServiceByLink($link)
     {
-        $db = connect();
+        $db = Database::connect();
         $result = $db->query("select * from services where link='$link'");
         $service = $result->fetch_assoc();
         return $service;
@@ -63,7 +63,7 @@ QUERY;
     
     static public function getServiceList()
     {
-        $db = connect();
+        $db = Database::connect();
         $result = $db->query("select * from services");
         return $result;
     }

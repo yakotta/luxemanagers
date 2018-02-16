@@ -64,7 +64,7 @@ $sliderList = [
     <div class="carousel-inner" role="listbox">
         <?php foreach($sliderList as $key => $slide): ?>
             <div class="item <?=$key == 0 ? "active" : ""?>">
-                <img class="background" src="<?=rewrite_url($slide["image"])?>" alt="slide">
+                <img class="background" src="<?=Route::rewrite_url($slide["image"])?>" alt="slide">
                 <div class="carousel-caption">
                     <h1><?=$slide["h1"]?></h1>
                     <h2><?=$slide["h2"]?></h2>

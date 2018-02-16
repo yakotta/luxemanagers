@@ -2,7 +2,7 @@
     <h2>Press</h2>
     <div class="press-block">
         <?php foreach($pressList as $press){
-            print(render_template("templates/block_press.php", [
+            print(Render::template("templates/block_press.php", [
                 "press" => $press
             ]));
         }?>

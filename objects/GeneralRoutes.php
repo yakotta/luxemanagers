@@ -6,7 +6,7 @@ class GeneralRoutes {
         $testimonialList = TestimonialAPI::getTestimonialList();
         $featuredPressList = PressAPI::getFeaturedPressList();
     
-        render_page("content_home.php",[
+        Render::page("content_home.php",[
             "testimonialList" => $testimonialList,
             "serviceList" => $serviceList,
             "featuredPressList" => $featuredPressList
@@ -15,6 +15,6 @@ class GeneralRoutes {
     
     //About Page
     static public function webAboutPage(){
-        render_page("content_about.php");
+        Render::page("content_about.php");
     }
 }

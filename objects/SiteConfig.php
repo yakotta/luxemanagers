@@ -2,7 +2,7 @@
 class SiteConfig {
     static public function getSiteConfig($field)
     {
-        $db = connect();
+        $db = Database::connect();
         $result = $db->query("select value from site_config where field='$field'");
     
         if($result && $result->num_rows){
