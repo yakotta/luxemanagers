@@ -3,11 +3,17 @@
         <h2>Apply to Luxe</h2>
         <h4>Interested in working for Luxe Managers?</h4>
         <p class="align-justify">
-            blah blah blah 
+            We're looking for hardworking, dedicated people who can make magic happen
+            on a daily basis. Our team delivers the highest caliber of service to meet
+            our clients' needs and expectations. Quick thinkers, proactive 
+            problem-solvers, and organizational heroes are encourgaed to apply.
         </p>
+        
+        <?=Render::template("templates/block_section_seperator.php")?>
     </div>
 
     <div class="col-md-8 contact-form">
+        <!-- Status Success/Error Messages -->
         <?php if(isset($_GET["status"]) && $_GET["status"] == "success"): ?>
             <div class="alert alert-success" role="alert">
               Thank you for applying to Luxe Managers! We will review your resume and
@@ -22,6 +28,7 @@
             </div>
         <?php endif ?>
     
+        <!-- Form -->
         <form method="post" action="<?=Route::rewrite_url('/api/send-resume')?>" class="contact-form" enctype="multipart/form-data">
             <a name="employment-form"></a>
             <input type="hidden" name="url_return" value="<?=$_SERVER['REQUEST_URI']?>" />

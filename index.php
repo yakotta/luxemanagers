@@ -22,9 +22,11 @@ spl_autoload_register(function($className){
 // Home Page
 Route::match("/", "GeneralRoutes::webHomePage");
 
+// Admin Pages
+Route::match("/admin", "AdminRoutes::adminHomePage");
+
 // General Pages
 Route::match("/about", "GeneralRoutes::webAboutPage");
-Route::match("/press", "PressRoutes::webPressPage");
 
 // Contact Pages
 Route::match("/contact", "ContactRoutes::webContactPage");
@@ -44,7 +46,18 @@ Route::match("/api/services/add", "ServiceRoutes::apiServiceAdd");
 Route::match("/api/services/edit", "ServiceRoutes::apiServiceEdit");
 Route::match("/api/services/delete", "ServiceRoutes::apiServiceDelete");
 
-// Migrations Pages
+// Press Pages
+Route::match("/press", "PressRoutes::webPressPage");
+
+// Testimonial Pages
+Route::match("/admin/testimonials", "TestimonialRoutes::adminTestimonialList");
+Route::match("/admin/testimonials/add", "TestimonialRoutes::adminTestimonialAdd");
+Route::match("/admin/testimonials/edit", "TestimonialRoutes::adminTestimonialEdit");
+Route::match("/api/testimonials/add", "TestimonialRoutes::apiTestimonialAdd");
+Route::match("/api/testimonials/edit", "TestimonialRoutes::apiTestimonialEdit");
+Route::match("/api/testimonials/delete/:id", "TestimonialRoutes::apiTestimonialDelete");
+
+// Migrations Page
 Route::match("/admin/migrations", "AdminRoutes::adminRunMigrations");
 
 // Default Route (404)

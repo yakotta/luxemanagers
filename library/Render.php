@@ -43,4 +43,19 @@ class Render {
             "content" => $template
         ]));
     }
+    
+    // Renders admin pages
+    static public function admin_page($template,$params=[]){
+        $file = __DIR__."/../templates/$template";
+    
+        if(is_file($file)){
+            $template = Render::template($file,$params);
+        } else {
+            $template = "Error: Cannot locate the template '$template'.";
+        }
+    
+        die(Render::template(__DIR__."/../templates/admin_skeleton.php", [
+            "content" => $template
+        ]));
+    }
 }

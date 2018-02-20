@@ -25,8 +25,8 @@
         <link href="<?=Route::rewrite_url('/resources/luxe-desktop.css')?>" rel="stylesheet" type="text/css" media="screen and (min-width: 768px)" />
     </head>
     
-    <body id="web-page">
-        <?=Render::template("templates/block_header.php")?>
+    <body id="admin-page">
+        <?=Render::template("templates/admin_header.php")?>
         
         <div class="content">
             <?=$content?>

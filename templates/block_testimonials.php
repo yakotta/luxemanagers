@@ -4,7 +4,10 @@ if(empty($testimonial["link"])){
 } else {
     $name = "<a href='{$testimonial["link"]}'>{$testimonial["name"]}</a>";
 }
+
+$testimonial["image"] = "/uploads/testimonials/" . $testimonial["image"];
 ?>
+
 <div class="media col-sm-4">
     <div class="media-left">
         <img class="media-object" src="<?=Route::rewrite_url($testimonial["image"])?>" alt="<?=$testimonial["name"]?>">

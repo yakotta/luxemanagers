@@ -59,7 +59,6 @@ class ServiceRoutes {
     
     //  Add Service API (functional)
     static public function apiServiceAdd(){
-
         if($status === true) {
             ServiceAPI::insertService($_POST);
             Route::redirect("/services/list");

@@ -144,6 +144,10 @@ footer {
     color: #C59B50;
 }
 
+.small-seperator {
+    top: -50px 0;
+}
+
 .contact-form {
     margin-top: 10px;
 }
@@ -291,4 +295,14 @@ p.align-right {
 
 p.italic-link a {
     font-style: italic;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 2.25em;
+}
+
+.testimonials img.media-object {
+    width: 60px;
+    height: 60px;
 }
