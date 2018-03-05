@@ -5,7 +5,7 @@ class GeneralRoutes {
         $serviceList = ServiceAPI::getServiceList();
         $testimonialList = TestimonialAPI::getTestimonialList();
         $featuredPressList = PressAPI::getFeaturedPressList();
-    
+
         Render::page("content_home.php",[
             "testimonialList" => $testimonialList,
             "serviceList" => $serviceList,

@@ -5,7 +5,8 @@
         <a href="<?=$service["link"]?>">
             <img class="background"
                  src="<?=Route::rewrite_url($service["image"])?>"
-                 alt="<?=$service["name"]?>" />
+                 alt="<?=$service["name"]?>" 
+            />
         </a>
 
         <div class="caption">

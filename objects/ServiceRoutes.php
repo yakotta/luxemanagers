@@ -58,9 +58,24 @@ class ServiceRoutes {
     }
     
     //  Add Service API (functional)
-    static public function apiServiceAdd(){
+    static public function apiServiceAdd()
+    {
+        $status = Validate::parameters($_POST, [
+            "name" => ["required" => true, "type" => "string"],
+            "short_description" => ["required" => false, "type" => "string"],
+            "full_description" => ["required" => true, "type" => "string"],
+            "image" => ["required" => false, "type" => "string"],
+            "link" => ["required" => false, "type" => "string"]
+        ]);
+        
         if($status === true) {
-            ServiceAPI::insertService($_POST);
+            ServiceAPI::insertService(
+                $_POST["name"], 
+                $_POST["short_description"], 
+                $_POST["full_description"],
+                $_POST["image"],
+                $_POST["link"]
+            );
             Route::redirect("/services/list");
         } else {
             error_log("Failed to create service.");
@@ -69,7 +84,8 @@ class ServiceRoutes {
     }
     
     // Edit Service API (functional)
-    static public function apiServiceEdit(){
+    static public function apiServiceEdit()
+    {
         $status = Validate::parameters($_POST, [
             "id" => ["required" => true, "type" => "integer"],
             "name" => ["required" => true, "type" => "string"],
@@ -95,7 +111,7 @@ class ServiceRoutes {
         ]);
     
         if($status === true) {
-            ServiceAPI::deleteService($_GET);
+            ServiceAPI::deleteService($_GET["id"]);
             Route::redirect("/services/list");
         } else {
             error_log("Failed to delete service.");

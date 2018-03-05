@@ -3,8 +3,7 @@ class TestimonialAPI {
     static public function getTestimonialList()
     {
         $db = Database::connect();
-        $result = $db->query("select * from testimonials");
-        return $result;
+        return $db->query("select * from testimonials");
     }
     
     static public function insertTestimonial($name, $title, $quote, $link, $filename="") 
@@ -17,7 +16,6 @@ $query=<<<QUERY
         link = "$link",
         image = "$filename"
 QUERY;
-
         $db = Database::connect();
         $result = $db->query($query);
         $last_id = $db->insert_id;
