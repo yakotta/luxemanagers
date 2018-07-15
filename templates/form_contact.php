@@ -22,7 +22,7 @@
             <div class="wingding col-md-10 col-md-offset-1"></div>
         </div>
         
-        <p class="align-justify italic-link">
+        <p class="align-justify italics-link">
             Interested in working for Luxe? 
             <a href="<?=Route::rewrite_url('/employment')?>">Send us your resume.</a>
         </p>
@@ -77,7 +77,7 @@
                 <textarea class="form-control autoresize" name="message" id="contact-message" value="" rows=4></textarea>
             </div>
 
-            <div class="button-wrapper">
+            <div class="btn-wrapper">
                 <div class="submitbutton">
                     <button type="submit" class="btn btn-default">Send Message</button>
                 </div>

@@ -59,7 +59,7 @@
                 </label>
                 <textarea class="form-control autoresize" name="message" id="contact-message" value="" rows=4></textarea>
             </div>
-            <div class="button-wrapper">
+            <div class="btn-wrapper">
                 <div class="submitbutton">
                     <button type="submit" class="btn btn-default">Submit Resume</button>
                 </div>

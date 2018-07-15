@@ -13,7 +13,7 @@ $testimonial["image"] = "/uploads/testimonials/" . $testimonial["image"];
         <img class="media-object" src="<?=Route::rewrite_url($testimonial["image"])?>" alt="<?=$testimonial["name"]?>">
     </div>
     <div class="media-body">
-        <h4 class="media-heading"><?=$testimonial["name"]?></h4>
+        <h4 class="media-heading align-justify"><?=$testimonial["name"]?></h4>
         <p class="align-justify">"<?=$testimonial["quote"]?>"</p> 
         <p class="align-right">&mdash; <?=$name?>, <?=$testimonial["title"]?></p>
     </div>

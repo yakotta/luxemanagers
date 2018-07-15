@@ -1,3 +1,4 @@
+/* Header Styles on desktop */
 header .logo,
 header .logo img {
     width: 120px;
@@ -24,16 +25,13 @@ header nav ul li .menuitem {
     font-size: 28px;
 }
 
-header .contact_number{
-    float: right;
-    padding: 0 10px;
-}
-
+/* Services styles on desktop */
 .services .thumbnail {
     height: 0;
     padding-bottom: 90%;
 }
 
+/* Footer Styles on desktop */
 footer {
     text-align: right;
 }
