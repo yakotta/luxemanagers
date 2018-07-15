@@ -1,3 +1,0 @@
-FROM mariadb:latest
-
-RUN sed -i '/bind-address/s/^# *//' /etc/mysql/my.cnf
