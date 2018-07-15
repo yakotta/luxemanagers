@@ -6,9 +6,9 @@
 }
 
 ul.quadruple-column {
-    -webkit-column-count: 5;
-    -moz-column-count: 5;
-    column-count: 5;
+    -webkit-column-count: 4;
+    -moz-column-count: 4;
+    column-count: 4;
     max-width: 100%
 }
 

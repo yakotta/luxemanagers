@@ -8,58 +8,49 @@
             <li>Update</li>
         </ul>
     </div>
+
     <div class="panel panel-default">
         <div class="panel-heading">
             Services
         </div>
         <ul class="container quadruple-column">
-            <li>List</li>
-            <li>Detail</li>
-            <li><a href="<?=Route::rewrite_url('/services/add')?>">Add</a></li>
+            <li><a href="<?=Route::rewrite_url('/admin/services')?>">List</a></li>
+            <li><a href="<?=Route::rewrite_url('/admin/services/add')?>">Add</a></li>
             <li>Edit</li>
             <li>Delete</li>
         </ul>
     </div>
+
     <div class="panel panel-default">
         <div class="panel-heading">
             Press
         </div>
         <ul class="container quadruple-column">
             <li>List</li>
-            <li>Detail</li>
             <li>Add</li>
             <li>Edit</li>
             <li>Delete</li>
         </ul>
     </div>
+
     <div class="panel panel-default">
         <div class="panel-heading">
             Testimonials
         </div>
         <ul class="container quadruple-column">
             <li><a href="<?=Route::rewrite_url('/admin/testimonials')?>">List</a></li>
-            <li><span class="strike">Detail</span></li>
             <li><a href="<?=Route::rewrite_url('/admin/testimonials/add')?>">Add</a></li>
             <li>Edit</li>
             <li>Delete</li>
         </ul>
     </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            Messages
-        </div>
-        <ul class="container quadruple-column">
-            <li>List</li>
-            <li>Detail</li>
-        </ul>
-    </div>
+    
     <div class="panel panel-default">
         <div class="panel-heading">
             Resumes
         </div>
         <ul class="container quadruple-column">
-            <li>List</li>
-            <li>Detail</li>
+            <li><a href="<?=Route::rewrite_url('/admin/resumes')?>">List</a></li>
         </ul>
     </div>
 </main>

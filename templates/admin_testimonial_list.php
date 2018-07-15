@@ -15,6 +15,8 @@
             </div>
         <?php endif ?>
 
+        <p>You have <?=$testimonialCount?> testimonials</p>
+
         <?php foreach($testimonialList as $testimonial): ?>
             <div class="panel panel-default">
                 <div class="panel-heading">

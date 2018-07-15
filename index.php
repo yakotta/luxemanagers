@@ -32,9 +32,10 @@ Route::match("/about", "GeneralRoutes::webAboutPage");
 Route::match("/contact", "ContactRoutes::webContactPage");
 Route::match("/api/send-message", "ContactRoutes::apiSendMessage");
 
-// Employment Page
+// Employment Pages
 Route::match("/employment", "EmploymentRoutes::webEmploymentPage");
 Route::match("/api/send-resume", "EmploymentRoutes::apiSendResume");
+Route::match("/admin/resumes", "EmploymentRoutes::adminResumeList");
 
 // Services Pages
 Route::match("/services", "ServiceRoutes::webServiceList");
