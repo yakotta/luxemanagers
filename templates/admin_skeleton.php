@@ -23,6 +23,7 @@
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css" />
         <link href="<?=Route::rewrite_url('/resources/luxe.css')?>" rel="stylesheet" type="text/css" />
         <link href="<?=Route::rewrite_url('/resources/luxe-desktop.css')?>" rel="stylesheet" type="text/css" media="screen and (min-width: 768px)" />
+        <link href="<?=Route::rewrite_url('/resources/luxe-admin.css')?>" rel="stylesheet" type="text/css" />
     </head>
     
     <body id="admin-page">

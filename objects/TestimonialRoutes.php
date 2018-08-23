@@ -3,9 +3,12 @@ class TestimonialRoutes {
     // Testimonial List (admin)
     static public function adminTestimonialList(){
         $testimonialList = TestimonialAPI::getTestimonialList();
+        $rows = TestimonialAPI::getTestimonialList()->fetchAll();
+        $testimonialCount = count($rows);
     
         Render::admin_page("admin_testimonial_list.php", [
             "testimonialList" => $testimonialList,
+            "testimonialCount" => $testimonialCount
         ]);
     }
     
@@ -25,7 +28,6 @@ class TestimonialRoutes {
         
     }
 
-    
     // Add Testimonial API (functional)
     static public function apiTestimonialAdd(){
         // Make sure the fields are filled out and file is uploaded

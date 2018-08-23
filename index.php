@@ -32,29 +32,36 @@ Route::match("/about", "GeneralRoutes::webAboutPage");
 Route::match("/contact", "ContactRoutes::webContactPage");
 Route::match("/api/send-message", "ContactRoutes::apiSendMessage");
 
-// Employment Page
+// Employment Pages
 Route::match("/employment", "EmploymentRoutes::webEmploymentPage");
 Route::match("/api/send-resume", "EmploymentRoutes::apiSendResume");
+Route::match("/admin/resumes", "EmploymentRoutes::adminResumeList");
 
 // Services Pages
 Route::match("/services", "ServiceRoutes::webServiceList");
 Route::match("/services/:service", "ServiceRoutes::webServiceDetails");
+Route::match("/admin/services", "ServiceRoutes::adminServiceList");
 Route::match("/admin/services/add", "ServiceRoutes::adminServiceAdd");
-Route::match("/admin/services/list", "ServiceRoutes::adminServiceList");
-Route::match("/admin/services/details", "ServiceRoutes::adminServiceDetails");
+//Route::match("/admin/services/details", "ServiceRoutes::adminServiceDetails");
 Route::match("/api/services/add", "ServiceRoutes::apiServiceAdd");
-Route::match("/api/services/edit", "ServiceRoutes::apiServiceEdit");
+//Route::match("/api/services/edit", "ServiceRoutes::apiServiceEdit");
 Route::match("/api/services/delete", "ServiceRoutes::apiServiceDelete");
 
 // Press Pages
 Route::match("/press", "PressRoutes::webPressPage");
+Route::match("/admin/press/add", "ServiceRoutes::adminServiceAdd");
+Route::match("/admin/press/list", "ServiceRoutes::adminServiceList");
+//Route::match("/admin/press/details", "ServiceRoutes::adminServiceDetails");
+Route::match("/api/press/add", "ServiceRoutes::apiServiceAdd");
+//Route::match("/api/press/edit", "ServiceRoutes::apiServiceEdit");
+Route::match("/api/press/delete", "ServiceRoutes::apiServiceDelete");
 
 // Testimonial Pages
 Route::match("/admin/testimonials", "TestimonialRoutes::adminTestimonialList");
 Route::match("/admin/testimonials/add", "TestimonialRoutes::adminTestimonialAdd");
-Route::match("/admin/testimonials/edit", "TestimonialRoutes::adminTestimonialEdit");
+//Route::match("/admin/testimonials/edit", "TestimonialRoutes::adminTestimonialEdit");
 Route::match("/api/testimonials/add", "TestimonialRoutes::apiTestimonialAdd");
-Route::match("/api/testimonials/edit", "TestimonialRoutes::apiTestimonialEdit");
+//Route::match("/api/testimonials/edit", "TestimonialRoutes::apiTestimonialEdit");
 Route::match("/api/testimonials/delete/:id", "TestimonialRoutes::apiTestimonialDelete");
 
 // Migrations Page

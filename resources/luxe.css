@@ -269,14 +269,17 @@ footer {
     height: 60px;
 }
 
-.testimonials {
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-}
-
 /* Press Styles */
 .press h4.see-more,
 main p.go-back {
+    float: right;
+}
+
+.press-item  {
+    min-height: 425px;
+}
+
+.press-item a {
+    font-style: italic;
     float: right;
 }

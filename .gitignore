@@ -1,4 +1,7 @@
-# Created by .ignore support plugin (hsz.mobi)
 .idea/
 .DS_Store
 uploads/resumes
+docker-compose.yml
+docker-nginx.conf
+Docerfile.mysql
+Dockerfile.phpfpm

@@ -27,7 +27,7 @@ $full_description=<<<FULL_DESCRIPTION
         <br/>
         Some of the standard household placements Luxe specializes in incude:
     </p>
-    <ul>
+    <ul class="double-column">
         <li>Accountants</li>
         <li>Administrators</li>
         <li>Baby Nurses</li>

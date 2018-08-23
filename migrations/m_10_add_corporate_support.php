@@ -17,7 +17,7 @@ $full_description=<<<FULL_DESCRIPTION
         functions enables us to clearly assess the strengths and weaknesses of corporate support staff, 
         and to build and train teams that  	help great companies perform even better.<br/>
         <br/>
-        Luxe\'s corporate services include, but aren\'t limited to:
+        Luxe’s corporate services include, but aren’t limited to:
     </p>
     <ul>
         <li>Complete office management.</li>

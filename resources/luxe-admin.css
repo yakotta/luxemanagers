@@ -1,0 +1,42 @@
+.admin .panel,
+.admin .form-group {
+    max-width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+ul.quadruple-column {
+    -webkit-column-count: 4;
+    -moz-column-count: 4;
+    column-count: 4;
+    max-width: 100%
+}
+
+main ul li:before,
+main ul li:before {
+    content: '';
+    padding-right: 8px;
+    position: absolute;
+    left: 0px;
+}
+
+main ul a {
+    text-decoration: underline;
+}
+
+.admin h2, 
+.admin p {
+    margin-left: 20%;
+}
+
+.list-group p {
+    margin-left: 0;
+}
+
+.strike {
+    text-decoration: line-through;
+}
+
+.admin img {
+    max-width: 500px;
+}

@@ -22,16 +22,17 @@ class ServiceRoutes {
     
     // Add Service Page (admin)
     static public function adminServiceAdd(){
-        Render::page("form_add_service.php");
+        Render::admin_page("admin_service_add.php");
     }
     
     // Service List Page (admin)
     static public function adminServiceList(){
         // contains edit and delete
         $serviceList = ServiceAPI::getServiceList();
-        $serviceCount = $serviceList->num_rows;
+        $rows = ServiceAPI::getServiceList()->fetchAll();
+        $serviceCount = count($rows);
     
-        Render::page("content_service_list.php", [
+        Render::admin_page("admin_service_list.php", [
             "serviceList" => $serviceList,
             "serviceCount" => $serviceCount
         ]);

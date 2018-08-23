@@ -1,23 +1,21 @@
-<section class="testimonials container-fluid">
-    <div class="col-md-10 col-md-offset-1">
+<main class="admin col-md-10 col-md-offset-1">  
+   <section class="container-fluid">
         <h2>Testimonials</h2>
-        
+            
         <!-- Status Success/Error Messages -->
         <?php if(isset($_GET["status"]) && $_GET["status"] == "success"): ?>
             <div class="alert alert-success" role="alert">
-              Testimonial successfully deleted.
+            Testimonial successfully deleted.
             </div>
         <?php endif ?>
         
         <?php if(isset($_GET["status"]) && $_GET["status"] == "fail"): ?>
             <div class="alert alert-danger" role="alert">
-              Sorry, something went wrong. Please try deleting the testimonial again.
+            Sorry, something went wrong. Please try deleting the testimonial again.
             </div>
         <?php endif ?>
-        
-        <a href="<?=Route::rewrite_url('/admin/testimonials/add')?>" type="button" class="btn btn-default">
-            Add new testimonial
-        </a>
+
+        <p>You have <?=$testimonialCount?> testimonials</p>
 
         <?php foreach($testimonialList as $testimonial): ?>
             <div class="panel panel-default">
@@ -47,14 +45,22 @@
                             }
                         ?>
                     </li>
+
                     <li class="list-group-item">
                         Quote: "<?=$testimonial["quote"]?>"
                     </li>
+                    
                     <li class="list-group-item">
                         Image: <img class="media-object" src="<?=Route::rewrite_url("/uploads/testimonials/" . $testimonial["image"])?>" alt="<?=$testimonial["name"]?>">
                     </li>
                 </ul>
             </div>
         <?php endforeach ?>
-    </div>
-</section>
+
+        <div class="btn-wrapper">
+            <a href="<?=Route::rewrite_url('/admin/testimonials/add')?>" type="button" class="btn btn-default">
+                Add new testimonial
+            </a>
+        </div>
+    </section>
+</main>

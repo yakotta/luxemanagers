@@ -5,6 +5,18 @@ class EmploymentRoutes {
     static public function webEmploymentPage() {
         Render::page("content_employment.php");
     }
+
+    // Resume page (admin)
+    static public function adminResumeList(){
+        $resumeList = EmploymentAPI::getResumeList();
+        $rows = EmploymentAPI::getResumeList()->fetchAll();
+        $resumeCount = count($rows);
+    
+        Render::admin_page("admin_resume_list.php", [
+            "resumeList" => $resumeList,
+            "resumeCount" => $resumeCount
+        ]);
+    }
     
     // Send Resume API (functional)
     static public function apiSendResume(){

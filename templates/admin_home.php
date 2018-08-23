@@ -1,49 +1,56 @@
-<main class="col-md-10 col-md-offset-1">
-    <p>this is the home page for admin tasks</p>
-    
-    <p>
-        Update Website
-        <ul>
-            <li>Site Config: Update</li>
-            <li> 
-                Services: 
-                List, 
-                Detail, 
-                <a href="https://luxe-managers-yakotta.c9users.io/admin/services/add">Add</a>, 
-                Edit, 
-                Delete
-            </li>
-            <li>
-                Press: 
-                List, 
-                Detail, 
-                Add, Edit, 
-                Delete
-            </li>
-            <li>
-                Testimonials: 
-                <a href="https://luxe-managers-yakotta.c9users.io/admin/testimonials">List</a>, 
-                Detail, 
-                <a href="https://luxe-managers-yakotta.c9users.io/admin/testimonials/add">Add</a>, 
-                Edit, 
-                Delete
-            </li>
+<main class="admin col-md-10 col-md-offset-1">
+    <h2>Welcome, [[user]]</h2>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Site Config
+        </div>
+        <ul class="container quadruple-column">
+            <li>Update</li>
         </ul>
-    </p>
-    
-    <p>
-        View Data
-        <ul>
-            <li>
-                Contact: 
-                List, 
-                Detials
-            </li>
-            <li>
-                Resumes: 
-                List, 
-                Details
-            </li>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Services
+        </div>
+        <ul class="container quadruple-column">
+            <li><a href="<?=Route::rewrite_url('/admin/services')?>">List</a></li>
+            <li><a href="<?=Route::rewrite_url('/admin/services/add')?>">Add</a></li>
+            <li>Edit</li>
+            <li>Delete</li>
         </ul>
-    </p>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Press
+        </div>
+        <ul class="container quadruple-column">
+            <li>List</li>
+            <li>Add</li>
+            <li>Edit</li>
+            <li>Delete</li>
+        </ul>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Testimonials
+        </div>
+        <ul class="container quadruple-column">
+            <li><a href="<?=Route::rewrite_url('/admin/testimonials')?>">List</a></li>
+            <li><a href="<?=Route::rewrite_url('/admin/testimonials/add')?>">Add</a></li>
+            <li>Edit</li>
+            <li>Delete</li>
+        </ul>
+    </div>
+    
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Resumes
+        </div>
+        <ul class="container quadruple-column">
+            <li><a href="<?=Route::rewrite_url('/admin/resumes')?>">List</a></li>
+        </ul>
+    </div>
 </main>
