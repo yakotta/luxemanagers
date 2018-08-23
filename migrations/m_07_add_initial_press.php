@@ -13,12 +13,10 @@ $db = Database::connect();
 $db->query("truncate press");
 
 $content=<<<CONTENT
-    UHNW Private Service Management is a truly unique. LUXE Lifestyle Experts know that happiness 
-    is a direction, not a destination. The best service requires a solid executable system for 
-    service delivery that is specialized for each unique environment and individuals within.<br/>
-    <br/>
-    We make magic happen, so you don’t have to. Your wish is truly our command. 
-    Need more than three? Expect Magic. Live Life LUXE.
+   Luxry Home Magazine Silicon Valley has featured LUXE Luxury Lifestyle Managers! Luxury Home
+   Magazine is North America’s premiere network of market-specific magazines featuring luxury 
+   homes and services. They’ve acknowledged our genie-like ability to make all our clients’ 
+   wishes come true&mdash;even when there’s more than three wishes. 
 CONTENT;
 
 $query=<<<QUERY
@@ -26,9 +24,9 @@ $query=<<<QUERY
       publication = "Luxury Home Magazine",
       content = "$content",
       urlname = "luxury-home-magazine",
-      marketing_image = "/resources/press/luxe_luxury_home_magazing.png",
-      publication_image = "/resources/press/luxury_home_magazine.jpg",
-      link = "http://www.luxuryhomemagazine.com/siliconvalley/online/#?page=58"
+      marketing_image = "luxury_home_magazine_cover.png",
+      publication_image = "luxury_home_magazine_feature.png",
+      link = "https://issuu.com/luxuryhomemagazine/docs/lhmsvp7.5online/58"
 QUERY;
 
 $db->query($query);

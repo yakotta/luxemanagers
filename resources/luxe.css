@@ -274,3 +274,12 @@ footer {
 main p.go-back {
     float: right;
 }
+
+.press-item  {
+    min-height: 425px;
+}
+
+.press-item a {
+    font-style: italic;
+    float: right;
+}
