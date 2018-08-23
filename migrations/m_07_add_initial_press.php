@@ -17,7 +17,7 @@ $content=<<<CONTENT
     is a direction, not a destination. The best service requires a solid executable system for 
     service delivery that is specialized for each unique environment and individuals within.<br/>
     <br/>
-    We make magic happen, so you don't have to. Your wish is truly our command. 
+    We make magic happen, so you don’t have to. Your wish is truly our command. 
     Need more than three? Expect Magic. Live Life LUXE.
 CONTENT;
 
