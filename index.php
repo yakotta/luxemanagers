@@ -49,12 +49,13 @@ Route::match("/api/services/delete", "ServiceRoutes::apiServiceDelete");
 
 // Press Pages
 Route::match("/press", "PressRoutes::webPressPage");
-Route::match("/admin/press/add", "ServiceRoutes::adminServiceAdd");
-Route::match("/admin/press/list", "ServiceRoutes::adminServiceList");
+Route::match("/press/:press", "PressRoutes::webPressDetails");
+Route::match("/admin/press/add", "PressRoutes::adminServiceAdd");
+Route::match("/admin/press/list", "PressRoutes::adminServiceList");
 //Route::match("/admin/press/details", "ServiceRoutes::adminServiceDetails");
-Route::match("/api/press/add", "ServiceRoutes::apiServiceAdd");
+Route::match("/api/press/add", "PressRoutes::apiServiceAdd");
 //Route::match("/api/press/edit", "ServiceRoutes::apiServiceEdit");
-Route::match("/api/press/delete", "ServiceRoutes::apiServiceDelete");
+Route::match("/api/press/delete", "PressRoutes::apiServiceDelete");
 
 // Testimonial Pages
 Route::match("/admin/testimonials", "TestimonialRoutes::adminTestimonialList");

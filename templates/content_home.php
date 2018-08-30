@@ -19,11 +19,13 @@
     <section class="testimonials container-fluid">
         <div class="col-md-10 col-md-offset-1">
             <h2>Testimonials</h2>
+            <div class="row">
             <?php foreach($testimonialList as $testimonial){
                 print(Render::template("templates/block_testimonials.php", [
                     "testimonial" => $testimonial
                 ]));
             }?>
+            </div>
         </div>
     </section>
 
@@ -32,7 +34,7 @@
     <section class="press container-fluid">
         <div class="col-md-10 col-md-offset-1">
             <h2>Press</h2>
-            <div class="press-block">
+            <div class="row">
                 <?php foreach($featuredPressList as $press){
                     print(Render::template("templates/block_press.php", [
                         "press" => $press
@@ -40,7 +42,7 @@
                 }?>
             </div>
             <h4 class="see-more"><a href="<?=Route::rewrite_url('/press')?>">
-                See more <span class="glyphicon glyphicon-menu-right small"></span>
+                See all press <span class="glyphicon glyphicon-menu-right small"></span>
             </a></h4>
         </div>
     </section>

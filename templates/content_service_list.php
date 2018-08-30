@@ -1,6 +1,6 @@
 <main class="container-fluid col-md-10 col-md-offset-1">
-	<section id="intro">
-		<h2>What We Do</h2>
+	<section id="intro" class="container-fluid">
+		<h1>What We Do</h1>
 		<p>The difference between ordinary and extraordinary is that little 
 			extra, and we at Luxe provide out clients with that little extra 
 			in everything we do.
