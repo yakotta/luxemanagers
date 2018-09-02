@@ -1,9 +1,8 @@
 <?php
 class PressRoutes {
     // Press Page (public)
-    static public function webPressPage() {
+    static public function webPressList() {
         $pressList = PressAPI::getPressList();
-    
         Render::page("content_press.php", [
             "pressList" => $pressList,
         ]);
@@ -56,5 +55,67 @@ class PressRoutes {
         Render::page("content_press_item.php", [
             "press" => $press
         ]);
+    }
+
+    // Add Press API (functional)
+    static public function apiPressAdd() {
+        $status = Validate::parameters($_POST, [
+            "publication" => ["required" => true, "type" => "string"],
+            "content" => ["required" => true, "type" => "string"],
+            "urlname" => ["required" => true, "type" => "string"],
+            "primary_image" => ["required" => true, "type" => "string"],
+            "secondary_image" => ["required" => false, "type" => "string"],
+            "link" => ["required" => false, "type" => "string"]
+        ]);
+
+        if($status === true) {
+            PressAPI::insertPress(
+                $_POST["publication"],
+                $_POST["content"],
+                $_POST["urlname"],
+                $_POST["primary_image"],
+                $_POST["secondary_image"],
+                $_POST["link"]
+            );
+            Route::redirect("/press/list");
+        } else {
+            error_log("Failed to create press");
+            Route::redirect("/press/add?error=$status");
+        }
+    }
+
+    // Edit Press API (functional)
+    static public function apiPressEdit() {
+        $status = Validate::parameters($_POST, [
+            "publication" => ["required" => true, "type" => "string"],
+            "content" => ["required" => true, "type" => "string"],
+            "urlname" => ["required" => true, "type" => "string"],
+            "primary_image" => ["required" => true, "type" => "string"],
+            "secondary_image" => ["required" => false, "type" => "string"],
+            "link" => ["required" => false, "type" => "string"]
+        ]);
+
+        if($status === true) {
+            PressAPI::editPress($_POST);
+            Route::redirect("/press/details?id={$_POST['id']}");
+        } else {
+            error_log("Failed to edit press details.");
+            Route::redirect("/press/details?error=$status");
+        }
+    }
+
+    // Delte Press API (functional)
+    static public function apiPressDelete() {
+        $status = Validate::parameters($_GET, [
+            "id" => ["required" => true, "type" => "integer"]
+        ]);
+
+        if($status === true) {
+            PressAPI::deletePress($_GET["id"]);
+            Route::redirect("/press/list");
+        } else {
+            error_log("Failed to delete press.");
+            Route::redirect("/press/details?error=$status");
+        }
     }
 }

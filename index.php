@@ -48,14 +48,15 @@ Route::match("/api/services/add", "ServiceRoutes::apiServiceAdd");
 Route::match("/api/services/delete", "ServiceRoutes::apiServiceDelete");
 
 // Press Pages
-Route::match("/press", "PressRoutes::webPressPage");
+Route::match("/press", "PressRoutes::webPressList");
 Route::match("/press/:press", "PressRoutes::webPressDetails");
-Route::match("/admin/press/add", "PressRoutes::adminServiceAdd");
-Route::match("/admin/press/list", "PressRoutes::adminServiceList");
-//Route::match("/admin/press/details", "ServiceRoutes::adminServiceDetails");
-Route::match("/api/press/add", "PressRoutes::apiServiceAdd");
-//Route::match("/api/press/edit", "ServiceRoutes::apiServiceEdit");
-Route::match("/api/press/delete", "PressRoutes::apiServiceDelete");
+Route::match("/admin/press", "PressRoutes::adminPressList");
+Route::match("/admin/press/add", "PressRoutes::adminPressAdd");
+Route::match("/admin/press/list", "PressRoutes::adminPressList");
+//Route::match("/admin/press/details", "ServiceRoutes::adminPresseDetails");
+Route::match("/api/press/add", "PressRoutes::apiPressAdd");
+//Route::match("/api/press/edit", "ServiceRoutes::apiPressEdit");
+Route::match("/api/press/delete", "PressRoutes::apiPressDelete");
 
 // Testimonial Pages
 Route::match("/admin/testimonials", "TestimonialRoutes::adminTestimonialList");

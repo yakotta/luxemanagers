@@ -26,8 +26,8 @@
             Press
         </div>
         <ul class="container quadruple-column">
-            <li>List</li>
-            <li>Add</li>
+            <li><a href="<?=Route::rewrite_url('/admin/press')?>">List</a></li>
+            <li><a href="<?=Route::rewrite_url('/admin/press/add')?>">Add</a></li>
             <li>Edit</li>
             <li>Delete</li>
         </ul>
