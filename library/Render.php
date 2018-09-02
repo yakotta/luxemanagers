@@ -2,8 +2,7 @@
 
 class Render {
     // Renders templates
-    static public function template($template_name, $template_parameters=[])
-    {
+    static public function template($template_name, $template_parameters=[]) {
         if(!is_array($template_parameters)) {
             $template_parameters = [];
             error_log("Template parameters for template '$template_name' were invalid, but I fixed it :* ");
@@ -32,7 +31,7 @@ class Render {
     }
     
     // Renders pages
-    static public function page($template,$params=[]){
+    static public function page($template,$params=[]) {
         $file = __DIR__."/../templates/$template";
     
         if(is_file($file)){
@@ -45,7 +44,7 @@ class Render {
     }
     
     // Renders admin pages
-    static public function admin_page($template,$params=[]){
+    static public function admin_page($template,$params=[]) {
         $file = __DIR__."/../templates/$template";
     
         if(is_file($file)){

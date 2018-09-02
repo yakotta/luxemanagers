@@ -3,8 +3,7 @@
 class Email {
     // Sends emails from forms
     // Here is how to send email in HTML: https://stackoverflow.com/questions/11238953/send-html-in-email-via-php
-    static public function send($to, $from, $subject, $message)
-    {
+    static public function send($to, $from, $subject, $message) {
         $from = "{$from["name"]} <{$from["email"]}>";
         
         $headers = implode("\r\n", [

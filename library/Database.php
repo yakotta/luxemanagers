@@ -6,37 +6,31 @@
  *
  * help: https://phpdelusions.net/pdo
  */
-class Database
-{
+class Database {
     // Introduces the $connection member variable
     public $connection;
     // The name of the database we use for the website
     private $name = "luxemanagers";
     
     // 4 functions which establish which connection parameters to use, depending on environment
-    private function connectDocker()
-    {
+    private function connectDocker() {
         return [getenv("MYSQL_HOST"),"root","root",$this->getDatabaseName(),3306];
     }
 
-    private function connectAntimatterServer()
-    {
+    private function connectAntimatterServer() {
         return ["localhost","luxemanagers","j4z132gs63c0y8hr",$this->getDatabaseName(),3306];
     }
 
-    private function connectC9()
-    {
+    private function connectC9() {
         return [getenv('IP'),getenv('C9_USER'),"",$this->getDatabaseName(),3306];
     }
 
-    private function connectMAMP()
-    {
+    private function connectMAMP() {
         return ["localhost","root","root",$this->getDatabaseName(),3306];
     }
 
     // Object constructor. Here
-    public function __construct()
-    {
+    public function __construct() {
         // Determines what environment we're in
         if(getenv("IS_DOCKER")){
             $params = $this->connectDocker();
@@ -61,28 +55,24 @@ class Database
         ]);
     }
 
-    public function getDatabaseName()
-    {
+    public function getDatabaseName() {
         return $this->name;
     }
 
-    public function getPDO()
-    {
+    public function getPDO() {
         return $this->connection;
     }
 
     // This papers over the fact that we changed how the db connection is formed, and preserves old functionality
     // This is not really the correct thing to do, but I wanted to go step by step towards the right solution eventually
     // But this is kinda ugly :/
-    static public function connect()
-    {
+    static public function connect() {
         $database = new Database();
 
         return $database->getPDO();
     }
 
-    public function findTable($name)
-    {
+    public function findTable($name) {
         $database = $this->getDatabaseName();
 
         $result = $this->connection->query("select table_name from information_schema.tables where table_schema = '$database' and table_name = '$name'");

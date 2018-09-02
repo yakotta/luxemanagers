@@ -1,12 +1,12 @@
 <?php
 class AdminRoutes {
     // Admin Home Page
-    static public function adminHomePage(){
+    static public function adminHomePage() {
         Render::admin_page("admin_home.php");
     }
     
     // Run Migrations
-    static public function adminRunMigrations(){
+    static public function adminRunMigrations() {
         ob_start();
         $migrations = glob(__DIR__."/../migrations/m*.php");
     

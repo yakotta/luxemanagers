@@ -7,7 +7,7 @@ class EmploymentRoutes {
     }
 
     // Resume page (admin)
-    static public function adminResumeList(){
+    static public function adminResumeList() {
         $resumeList = EmploymentAPI::getResumeList();
         $rows = EmploymentAPI::getResumeList()->fetchAll();
         $resumeCount = count($rows);
@@ -19,7 +19,7 @@ class EmploymentRoutes {
     }
     
     // Send Resume API (functional)
-    static public function apiSendResume(){
+    static public function apiSendResume() {
         // Make sure the fields are filled out and file is uploaded
         $status_sent = "fail";
         $status_fields = Validate::parameters($_POST, [

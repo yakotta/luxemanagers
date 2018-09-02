@@ -50,8 +50,7 @@ class Validate {
      *  - Boolean true, if the parameters all exist within their constraints
      *  - String containing the name of the field which has failed "validation"
      */
-    static public function parameters (&$source, $parameters=[])
-    {
+    static public function parameters (&$source, $parameters=[]) {
         foreach($parameters as $field => $rules)
         {
             if(!array_key_exists($field, $source) || empty($source[$field])){

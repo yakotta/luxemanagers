@@ -1,7 +1,7 @@
 <?php
 class ServiceRoutes {
     // Service Page (public)
-    static public function webServiceList(){
+    static public function webServiceList() {
         $serviceList = ServiceAPI::getServiceList();
 
         Render::page("content_service_list.php", [
@@ -10,7 +10,7 @@ class ServiceRoutes {
     }
     
     // Service Detail Pages (public)
-    static public function webServiceDetails($params){
+    static public function webServiceDetails($params) {
         $service = ServiceAPI::getServiceByLink($params["service"]);
     
         Render::page("content_service_item.php", [
@@ -21,12 +21,12 @@ class ServiceRoutes {
     }
     
     // Add Service Page (admin)
-    static public function adminServiceAdd(){
+    static public function adminServiceAdd() {
         Render::admin_page("admin_service_add.php");
     }
     
     // Service List Page (admin)
-    static public function adminServiceList(){
+    static public function adminServiceList() {
         // contains edit and delete
         $serviceList = ServiceAPI::getServiceList();
         $rows = ServiceAPI::getServiceList()->fetchAll();
@@ -39,7 +39,7 @@ class ServiceRoutes {
     }
     
     // Service Detail Page (admin)
-    static public function adminServiceDetails($params,$url){
+    static public function adminServiceDetails($params,$url) {
         die($url);
         $id = $_GET["id"];
     
@@ -59,8 +59,7 @@ class ServiceRoutes {
     }
     
     //  Add Service API (functional)
-    static public function apiServiceAdd()
-    {
+    static public function apiServiceAdd() {
         $status = Validate::parameters($_POST, [
             "name" => ["required" => true, "type" => "string"],
             "short_description" => ["required" => false, "type" => "string"],
@@ -85,8 +84,7 @@ class ServiceRoutes {
     }
     
     // Edit Service API (functional)
-    static public function apiServiceEdit()
-    {
+    static public function apiServiceEdit() {
         $status = Validate::parameters($_POST, [
             "id" => ["required" => true, "type" => "integer"],
             "name" => ["required" => true, "type" => "string"],
@@ -106,7 +104,7 @@ class ServiceRoutes {
     }
     
     // Delete Service API (functional)
-    static public function apiServiceDelete(){
+    static public function apiServiceDelete() {
         $status = Validate::parameters($_GET, [
             "id" => ["required" => true, "type" => "integer"]
         ]);

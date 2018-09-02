@@ -1,22 +1,19 @@
 <?php
 class ServiceAPI
 {
-    static public function getServiceByID($id)
-    {
+    static public function getServiceByID($id) {
         $db = Database::connect();
         $statement = $db->query("select * from services where id = '$id'");
         return $statement->fetch();
     }
     
-    static public function getServiceByLink($link)
-    {
+    static public function getServiceByLink($link) {
         $db = Database::connect();
         $statement = $db->query("select * from services where link = '$link'");
         return $statement->fetch();
     }
     
-    static public function getServiceList()
-    {
+    static public function getServiceList() {
         $db = Database::connect();
         return $db->query("select * from services");
     }
@@ -68,8 +65,7 @@ QUERY;
         ]);
     }
     
-    static public function deleteService($id) 
-    {
+    static public function deleteService($id) {
         $db = Database::connect();
         $statement = $db->prepare("delete from services where id = :id");
         $statement->execute([":id" => $id]);

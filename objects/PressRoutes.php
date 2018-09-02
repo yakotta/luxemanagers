@@ -1,7 +1,7 @@
 <?php
 class PressRoutes {
     // Press Page (public)
-    static public function webPressPage(){
+    static public function webPressPage() {
         $pressList = PressAPI::getPressList();
     
         Render::page("content_press.php", [
@@ -10,7 +10,7 @@ class PressRoutes {
     }
 
     // Press Detail Pages (public)
-    static public function webPressDetails($params){
+    static public function webPressDetails($params) {
         $press = PressAPI::getPressByURLname($params["press"]);
     
         Render::page("content_press_item.php", [
@@ -21,12 +21,12 @@ class PressRoutes {
     }
 
     // Add Press Item (admin)
-    static public function adminPressAdd(){
+    static public function adminPressAdd() {
         Render::admin_page("admin_press_add.php");
     }
     
     // Press List Page (admin)
-    static public function adminPressList(){
+    static public function adminPressList() {
         // contains edit and delete
         $pressList = PressAPI::getPressList();
         $rows = PressAPI::getPressList()->fetchAll();
@@ -39,7 +39,7 @@ class PressRoutes {
     }
     
     // Press Detail Page (admin)
-    static public function adminPressDetails($params,$url){
+    static public function adminPressDetails($params,$url) {
         die($url);
         $id = $_GET["id"];
     

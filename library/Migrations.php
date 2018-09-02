@@ -2,8 +2,7 @@
 
 class Migrations {
     // Checks migrations in the database
-    static public function check($m)
-    {
+    static public function check($m) {
         $database = new Database();
         $db = $database->getPDO();
 
@@ -21,8 +20,7 @@ class Migrations {
     }
     
     // Adds migrations to the database table 
-    static public function add($m)
-    {
+    static public function add($m) {
         $db = Database::connect();
     
         $m = basename($m);
