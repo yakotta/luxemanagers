@@ -32,7 +32,7 @@ $db->query("
       name = 'Corporate Support', 
       short_description = NULL, 
       full_description = '$full_description',
-      image = '/resources/services/corporate-support.jpg',
+      image = '/uploads/services/corporate-support.jpg',
       link = '/services/corporate-support'
 ");
 

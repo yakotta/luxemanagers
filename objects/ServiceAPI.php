@@ -1,6 +1,5 @@
 <?php
-class ServiceAPI
-{
+class ServiceAPI {
     static public function getServiceByID($id) {
         $db = Database::connect();
         $statement = $db->query("select * from services where id = '$id'");
