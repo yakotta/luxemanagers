@@ -2,6 +2,8 @@
 class AdminRoutes {
     // Admin Home Page
     static public function adminHomePage() {
+        $status = AuthenticationAPI::isLoggedIn();
+        if($status === false)Route::redirect("/login");
         Render::admin_page("admin_home.php");
     }
     

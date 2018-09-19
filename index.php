@@ -22,8 +22,13 @@ spl_autoload_register(function($className){
 // Home Page
 Route::match("/", "GeneralRoutes::webHomePage");
 
-// Admin Pages
+// Admin Home Page
 Route::match("/admin", "AdminRoutes::adminHomePage");
+
+// Log In Page
+Route::match("/login", "UserRoutes::userLogInPage");
+Route::match("/api/login", "UserRoutes::apiLogIn");
+Route::match("/api/logout", "UserRoutes::apiLogOut");
 
 // General Pages
 Route::match("/about", "GeneralRoutes::webAboutPage");

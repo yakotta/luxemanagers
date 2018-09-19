@@ -13,7 +13,7 @@ class GeneralRoutes {
         ]);
     }
     
-    //About Page
+    // About Page
     static public function webAboutPage() {
         Render::page("content_about.php");
     }
