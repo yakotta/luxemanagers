@@ -5,10 +5,14 @@ class UserAPI {
         $statement = $db->query("select password from users where username = '$username'");
         $user = $statement->fetch();
 
-        if($user['password'] === $password) {
+        if(password_verify($password, $user['password'])){
             return true;
         }
-
+        
         return false;
+    }
+
+    static public function computePassword($password) {
+        return password_hash($password, PASSWORD_BCRYPT, ['cost' => 4]);
     }
 }
