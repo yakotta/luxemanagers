@@ -1,12 +1,17 @@
 <?php
 class AdminRoutes {
     // Admin Home Page
-    static public function adminHomePage(){
-        Render::admin_page("admin_home.php");
+    static public function adminHomePage() {
+        $userid = AuthenticationAPI::isLoggedIn();
+        if($userid === false) Route::redirect("/login");
+        $user = UserAPI::getUserById($userid);
+        Render::admin_page("admin_home.php", [
+            "user" => $user,
+        ]);
     }
     
     // Run Migrations
-    static public function adminRunMigrations(){
+    static public function adminRunMigrations() {
         ob_start();
         $migrations = glob(__DIR__."/../migrations/m*.php");
     

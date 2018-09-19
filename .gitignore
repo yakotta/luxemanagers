@@ -5,3 +5,4 @@ docker-compose.yml
 docker-nginx.conf
 Docerfile.mysql
 Dockerfile.phpfpm
+notes.php

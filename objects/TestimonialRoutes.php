@@ -1,7 +1,7 @@
 <?php
 class TestimonialRoutes {
     // Testimonial List (admin)
-    static public function adminTestimonialList(){
+    static public function adminTestimonialList() {
         $testimonialList = TestimonialAPI::getTestimonialList();
         $rows = TestimonialAPI::getTestimonialList()->fetchAll();
         $testimonialCount = count($rows);
@@ -13,7 +13,7 @@ class TestimonialRoutes {
     }
     
     // Add Testimonal (admin)
-    static public function adminTestimonialAdd(){
+    static public function adminTestimonialAdd() {
         $validFields = [];
         $failedFields = [];
         
@@ -24,12 +24,12 @@ class TestimonialRoutes {
     }
     
     // Edit Testimonial (admin)
-    static public function adminTestimonialEdit(){
-        
+    static public function adminTestimonialEdit() {
+        // TODO
     }
 
     // Add Testimonial API (functional)
-    static public function apiTestimonialAdd(){
+    static public function apiTestimonialAdd() {
         // Make sure the fields are filled out and file is uploaded
         $status_sent = "fail";
         $status_fields = Validate::parameters($_POST, [
@@ -52,7 +52,7 @@ class TestimonialRoutes {
             
             $id = intval($id);
             if($id > 0) {
-                $filename = $id . "_" . String::slugify($_POST["name"], '-', '.');
+                $filename = $id . "_" . Text::slugify($_POST["name"], '-', '.');
                 $upload = move_uploaded_file($_FILES['image']['tmp_name'], __DIR__."/../uploads/testimonials/$filename");
                 
                 if($upload === true) {
@@ -72,12 +72,12 @@ class TestimonialRoutes {
     }
     
     // Edit Testimonial API (functional)
-    static public function apiTestimonialEdit(){
-        
+    static public function apiTestimonialEdit() {
+        // TODO
     }
     
     // Delete Testimonial API (functional)
-    static public function apiTestimonialDelete($params){
+    static public function apiTestimonialDelete($params) {
         $status_delete = "fail";
         
         if(intval($params["id"]) > 0){

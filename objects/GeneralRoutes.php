@@ -1,7 +1,7 @@
 <?php
 class GeneralRoutes {
     // Home Page
-    static public function webHomePage(){
+    static public function webHomePage() {
         $serviceList = ServiceAPI::getServiceList();
         $testimonialList = TestimonialAPI::getTestimonialList();
         $featuredPressList = PressAPI::getFeaturedPressList();
@@ -13,8 +13,8 @@ class GeneralRoutes {
         ]);
     }
     
-    //About Page
-    static public function webAboutPage(){
+    // About Page
+    static public function webAboutPage() {
         Render::page("content_about.php");
     }
 }

@@ -22,8 +22,13 @@ spl_autoload_register(function($className){
 // Home Page
 Route::match("/", "GeneralRoutes::webHomePage");
 
-// Admin Pages
+// Admin Home Page
 Route::match("/admin", "AdminRoutes::adminHomePage");
+
+// Log In Page
+Route::match("/login", "UserRoutes::userLogInPage");
+Route::match("/api/login", "UserRoutes::apiLogIn");
+Route::match("/api/logout", "UserRoutes::apiLogOut");
 
 // General Pages
 Route::match("/about", "GeneralRoutes::webAboutPage");
@@ -48,13 +53,15 @@ Route::match("/api/services/add", "ServiceRoutes::apiServiceAdd");
 Route::match("/api/services/delete", "ServiceRoutes::apiServiceDelete");
 
 // Press Pages
-Route::match("/press", "PressRoutes::webPressPage");
-Route::match("/admin/press/add", "ServiceRoutes::adminServiceAdd");
-Route::match("/admin/press/list", "ServiceRoutes::adminServiceList");
-//Route::match("/admin/press/details", "ServiceRoutes::adminServiceDetails");
-Route::match("/api/press/add", "ServiceRoutes::apiServiceAdd");
-//Route::match("/api/press/edit", "ServiceRoutes::apiServiceEdit");
-Route::match("/api/press/delete", "ServiceRoutes::apiServiceDelete");
+Route::match("/press", "PressRoutes::webPressList");
+Route::match("/press/:press", "PressRoutes::webPressDetails");
+Route::match("/admin/press", "PressRoutes::adminPressList");
+Route::match("/admin/press/add", "PressRoutes::adminPressAdd");
+Route::match("/admin/press/list", "PressRoutes::adminPressList");
+//Route::match("/admin/press/details", "ServiceRoutes::adminPresseDetails");
+Route::match("/api/press/add", "PressRoutes::apiPressAdd");
+//Route::match("/api/press/edit", "ServiceRoutes::apiPressEdit");
+Route::match("/api/press/delete", "PressRoutes::apiPressDelete");
 
 // Testimonial Pages
 Route::match("/admin/testimonials", "TestimonialRoutes::adminTestimonialList");

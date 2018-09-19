@@ -1,12 +1,12 @@
 <?php
 class ContactRoutes {
     // Contact Page (public)
-    static public function webContactPage(){
+    static public function webContactPage() {
         Render::page("content_contact.php");
     }
     
     // Send Message API (functional)
-    static public function apiSendMessage(){
+    static public function apiSendMessage() {
         // Make sure the fields are filled out and file is uploaded
         $status_sent = "fail";
         $status_fields = Validate::parameters($_POST, [

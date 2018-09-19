@@ -2,8 +2,7 @@
 
 class Debug {
     // Preformats the var dump function
-    static public function dump()
-    {
+    static public function dump() {
         $args = func_get_args();
         
         print("<pre>");

@@ -1,7 +1,7 @@
 <?php
 
 class ContactAPI {
-    static public function insertContact($name, $email, $phone, $preference, $message) 
+    static public function insertContact($name, $email, $phone, $preference, $message)
     {
         // insert contact form query
 $query=<<<QUERY

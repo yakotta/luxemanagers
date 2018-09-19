@@ -1,7 +1,6 @@
 <?php
 class TestimonialAPI {
-    static public function getTestimonialList()
-    {
+    static public function getTestimonialList() {
         $db = Database::connect();
         return $db->query("select * from testimonials");
     }
@@ -44,14 +43,12 @@ QUERY;
         return $db->query($query);
     }
     
-    static public function deleteTestimonial($id) 
-    {
+    static public function deleteTestimonial($id) {
         $db = Database::connect();
         return $db->query("delete from testimonials where id='$id'");
     }
     
-    static public function setTestimonialImage($id, $filename)
-    {
+    static public function setTestimonialImage($id, $filename) {
         $db = Database::connect();
         return $db->query("update testimonials set image='$filename' where id='$id'");
     }

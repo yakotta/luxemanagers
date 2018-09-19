@@ -69,7 +69,7 @@ $db->query("
       name = 'Domestic Staffing and Placement', 
       short_description = NULL, 
       full_description = '$full_description',
-      image = '/resources/services/domestic.jpg',
+      image = '/uploads/services/domestic.jpg',
       link = '/services/domestic-staffing-and-placement'
 ");
 
@@ -108,7 +108,7 @@ $db->query("
       name = 'Domestic, Estate, and Household Managment', 
       short_description = NULL, 
       full_description = '$full_description',
-      image = '/resources/services/household-management.jpg',
+      image = '/uploads/services/household-management.jpg',
       link = '/services/estate-household-management'
 ");
 
@@ -136,7 +136,7 @@ $db->query("
       name = 'Travel, Private Air, and Vessel Management', 
       short_description = NULL, 
       full_description = '$full_description',
-      image = '/resources/services/private-air-vessel-management.jpg',
+      image = '/uploads/services/private-air-vessel-management.jpg',
       link = '/services/travel-private-air-and-vessel-management'
 ");
 
@@ -171,7 +171,7 @@ $db->query("
       name = 'Domestic and International Relocations', 
       short_description = NULL, 
       full_description = '$full_description',
-      image = '/resources/services/relocation.jpg',
+      image = '/uploads/services/relocation.jpg',
       link = '/services/relocations'
 ");
 
@@ -203,7 +203,7 @@ $db->query("
       name = 'Residential and Commercial Construction Project Management - Owners Representative', 
       short_description = NULL, 
       full_description = '$full_description',
-      image = '/resources/services/construction-management.jpg',
+      image = '/uploads/services/construction-management.jpg',
       link = '/services/construction-project-management'
 ");
 
@@ -234,7 +234,7 @@ $db->query("
       name = 'Private Concierge Services', 
       short_description = NULL, 
       full_description = '$full_description',
-      image = '/resources/services/private-concierge.jpg',
+      image = '/uploads/services/private-concierge.jpg',
       link = '/services/private-concierge'
 ");
 

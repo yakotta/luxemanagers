@@ -7,7 +7,7 @@ class EmploymentRoutes {
     }
 
     // Resume page (admin)
-    static public function adminResumeList(){
+    static public function adminResumeList() {
         $resumeList = EmploymentAPI::getResumeList();
         $rows = EmploymentAPI::getResumeList()->fetchAll();
         $resumeCount = count($rows);
@@ -19,7 +19,7 @@ class EmploymentRoutes {
     }
     
     // Send Resume API (functional)
-    static public function apiSendResume(){
+    static public function apiSendResume() {
         // Make sure the fields are filled out and file is uploaded
         $status_sent = "fail";
         $status_fields = Validate::parameters($_POST, [
@@ -41,7 +41,7 @@ class EmploymentRoutes {
         ]);
         
         if($status_fields === true && $status_files === true) {
-            $filename = String::unique_filename(String::slugify($_POST["name"]) . "_" . $_FILES["resume"]["name"]);
+            $filename = Text::unique_filename(Text::slugify($_POST["name"]) . "_" . $_FILES["resume"]["name"]);
             
             move_uploaded_file($_FILES['resume']['tmp_name'], __DIR__."/../uploads/resumes/$filename");
             EmploymentAPI::insertResume($_POST["name"], $_POST["email"], $_POST["phone"], $filename, $_POST["message"]);

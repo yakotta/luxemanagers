@@ -48,6 +48,10 @@ textarea {
     min-height: 2.25em;
 }
 
+.go-back {
+    font-style: italic;
+}
+
 /* Form Styles */
 .btn {
     border-radius: 0px;
@@ -275,11 +279,24 @@ main p.go-back {
     float: right;
 }
 
-.press-item  {
+.press-item {
     min-height: 425px;
 }
 
 .press-item a {
     font-style: italic;
     float: right;
+}
+
+.press-item div {
+    padding-bottom: 20px;
+    margin-right: -15px;
+}
+
+.press-item img {
+    margin-left: -15px;
+}
+
+.press-small-img img {
+    max-width: 33%;
 }

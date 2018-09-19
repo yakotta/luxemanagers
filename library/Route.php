@@ -3,6 +3,7 @@
 class Route {
     // Redirect function
     static public function redirect($url) {
+        $url = Route::rewrite_url($url);
         header("Location: $url");
         die("Waiting to redirect to '$url'");
     }
@@ -11,6 +12,7 @@ class Route {
     static public function rewrite_url($url) {
         $base = str_replace($_SERVER["DOCUMENT_ROOT"], "", dirname(__DIR__));
         $base = str_replace("/resources", "", $base);
+        $url = str_replace($base, "", $url);
         // Make sure the url begins with /
         $rewritten_url = "/".$base.$url;
         // Make sure any double slashes // are replaced with single slash /
@@ -20,8 +22,7 @@ class Route {
     }
     
     // I stole this code from: https://stackoverflow.com/a/30359808/279147
-    static public function match($pattern, $callback)
-    {
+    static public function match($pattern, $callback) {
         /*
         // Jenna: this function is pretty dammed complicated, please don't attempt to read
         // and understand it alone :) I don't want to confuse you even more with a bunch of

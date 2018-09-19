@@ -1,5 +1,5 @@
 <main class="admin col-md-10 col-md-offset-1">
-    <h2>Welcome, [[user]]</h2>
+    <h2>Welcome, <?=ucwords($user["username"])?></h2>
     <div class="panel panel-default">
         <div class="panel-heading">
             Site Config
@@ -26,8 +26,8 @@
             Press
         </div>
         <ul class="container quadruple-column">
-            <li>List</li>
-            <li>Add</li>
+            <li><a href="<?=Route::rewrite_url('/admin/press')?>">List</a></li>
+            <li><a href="<?=Route::rewrite_url('/admin/press/add')?>">Add</a></li>
             <li>Edit</li>
             <li>Delete</li>
         </ul>

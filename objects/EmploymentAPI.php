@@ -25,7 +25,7 @@ QUERY;
         return $db->lastInsertId();
     }
 
-    static public function getResumeList(){
+    static public function getResumeList() {
         $db = Database::connect();
         return $db->query("select * from resumes");
     }
