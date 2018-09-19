@@ -52,7 +52,7 @@ class TestimonialRoutes {
             
             $id = intval($id);
             if($id > 0) {
-                $filename = $id . "_" . String::slugify($_POST["name"], '-', '.');
+                $filename = $id . "_" . Text::slugify($_POST["name"], '-', '.');
                 $upload = move_uploaded_file($_FILES['image']['tmp_name'], __DIR__."/../uploads/testimonials/$filename");
                 
                 if($upload === true) {

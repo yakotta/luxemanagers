@@ -41,7 +41,7 @@ class EmploymentRoutes {
         ]);
         
         if($status_fields === true && $status_files === true) {
-            $filename = String::unique_filename(String::slugify($_POST["name"]) . "_" . $_FILES["resume"]["name"]);
+            $filename = Text::unique_filename(Text::slugify($_POST["name"]) . "_" . $_FILES["resume"]["name"]);
             
             move_uploaded_file($_FILES['resume']['tmp_name'], __DIR__."/../uploads/resumes/$filename");
             EmploymentAPI::insertResume($_POST["name"], $_POST["email"], $_POST["phone"], $filename, $_POST["message"]);
