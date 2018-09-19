@@ -3,6 +3,7 @@
 class Route {
     // Redirect function
     static public function redirect($url) {
+        $url = Route::rewrite_url($url);
         header("Location: $url");
         die("Waiting to redirect to '$url'");
     }
@@ -11,6 +12,7 @@ class Route {
     static public function rewrite_url($url) {
         $base = str_replace($_SERVER["DOCUMENT_ROOT"], "", dirname(__DIR__));
         $base = str_replace("/resources", "", $base);
+        $url = str_replace($base, "", $url);
         // Make sure the url begins with /
         $rewritten_url = "/".$base.$url;
         // Make sure any double slashes // are replaced with single slash /
