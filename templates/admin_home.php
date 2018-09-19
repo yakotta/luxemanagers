@@ -1,5 +1,5 @@
 <main class="admin col-md-10 col-md-offset-1">
-    <h2>Welcome, [[user]]</h2>
+    <h2>Welcome, <?=ucwords($user["username"])?></h2>
     <div class="panel panel-default">
         <div class="panel-heading">
             Site Config

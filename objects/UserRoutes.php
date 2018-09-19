@@ -2,8 +2,8 @@
 class UserRoutes {
     // Log In Page
     static public function userLogInPage() {
-        $status = AuthenticationAPI::isLoggedIn();
-        if($status === true)Route::redirect("/admin");
+        $userid = AuthenticationAPI::isLoggedIn();
+        if($userid !== false) Route::redirect("/admin");
         Render::page("content_login.php");
     }
 
@@ -15,12 +15,12 @@ class UserRoutes {
         ]);
 
         if($status === true) {
-            $user = UserAPI::verifyLogIn(
+            $userid = UserAPI::verifyLogIn(
                 $_POST["username"], 
                 $_POST["password"]
             );
 
-            AuthenticationAPI::setLogInState($user);
+            AuthenticationAPI::setLogInState($userid);
         } else {
             error_log("Incomplete login fields.");
             Route::redirect("/login?validation=failed");

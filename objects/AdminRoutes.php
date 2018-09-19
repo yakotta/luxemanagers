@@ -2,9 +2,12 @@
 class AdminRoutes {
     // Admin Home Page
     static public function adminHomePage() {
-        $status = AuthenticationAPI::isLoggedIn();
-        if($status === false)Route::redirect("/login");
-        Render::admin_page("admin_home.php");
+        $userid = AuthenticationAPI::isLoggedIn();
+        if($userid === false) Route::redirect("/login");
+        $user = UserAPI::getUserById($userid);
+        Render::admin_page("admin_home.php", [
+            "user" => $user,
+        ]);
     }
     
     // Run Migrations
