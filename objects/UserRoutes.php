@@ -4,7 +4,7 @@ class UserRoutes {
     static public function userLogInPage() {
         $userid = AuthenticationAPI::isLoggedIn();
         if($userid !== false) Route::redirect("/admin");
-        Render::page("content_login.php");
+        Render::admin_page("block_login.php");
     }
 
     // Log In API

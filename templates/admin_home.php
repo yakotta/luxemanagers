@@ -53,4 +53,10 @@
             <li><a href="<?=Route::rewrite_url('/admin/resumes')?>">List</a></li>
         </ul>
     </div>
+
+    <div class="btn-wrapper">
+        <a href="<?=Route::rewrite_url('/api/logout')?>" type="button" class="btn btn-default">
+            Log out
+        </a>
+    </div>
 </main>

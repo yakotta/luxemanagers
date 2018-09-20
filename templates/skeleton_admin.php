@@ -27,7 +27,7 @@
     </head>
     
     <body id="admin-page">
-        <?=Render::template("templates/admin_header.php")?>
+        <?=Render::template("templates/block_admin_header.php")?>
         
         <div class="content">
             <?=$content?>

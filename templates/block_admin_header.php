@@ -4,8 +4,7 @@
     </a>
     <nav id="menu">
         <ul class="clearfix">
-            <li><a class="menuitem" href="<?=Route::rewrite_url('/admin')?>">Admin Home</a></li>
-            <li><a class="menuitem" href="<?=Route::rewrite_url('/api/logout')?>">Logout</a></li>
+            <li><a class="menuitem" href="<?=Route::rewrite_url('/admin')?>">Admin Panel</a></li>
         </ul>
     </nav>
 </header>

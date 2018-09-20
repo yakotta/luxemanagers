@@ -38,7 +38,7 @@ class Render {
             $template = Render::template($file,$params);
         }
     
-        die(Render::template(__DIR__."/../templates/page_skeleton.php", [
+        die(Render::template(__DIR__."/../templates/skeleton_web.php", [
             "content" => $template
         ]));
     }
@@ -53,7 +53,7 @@ class Render {
             $template = "Error: Cannot locate the template '$template'.";
         }
     
-        die(Render::template(__DIR__."/../templates/admin_skeleton.php", [
+        die(Render::template(__DIR__."/../templates/skeleton_admin.php", [
             "content" => $template
         ]));
     }
