@@ -13,7 +13,7 @@ $db = Database::connect();
 $db->query("truncate press");
 
 $content=<<<CONTENT
-   Luxry Home Magazine Silicon Valley has featured LUXE Luxury Lifestyle Managers! Luxury Home
+   Luxury Home Magazine Silicon Valley has featured LUXE Luxury Lifestyle Managers! Luxury Home
    Magazine is North America’s premiere network of market-specific magazines featuring luxury 
    homes and services. They’ve acknowledged our genie-like ability to make all our clients’ 
    wishes come true&mdash;even when there’s more than three wishes. 
