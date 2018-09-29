@@ -36,6 +36,7 @@ Route::match("/about", "GeneralRoutes::webAboutPage");
 // Contact Pages
 Route::match("/contact", "ContactRoutes::webContactPage");
 Route::match("/api/send-message", "ContactRoutes::apiSendMessage");
+Route::match("/admin/messages", "ContactRoutes::adminContactPage");
 
 // Employment Pages
 Route::match("/employment", "EmploymentRoutes::webEmploymentPage");
@@ -47,9 +48,7 @@ Route::match("/services", "ServiceRoutes::webServiceList");
 Route::match("/services/:service", "ServiceRoutes::webServiceDetails");
 Route::match("/admin/services", "ServiceRoutes::adminServiceList");
 Route::match("/admin/services/add", "ServiceRoutes::adminServiceAdd");
-//Route::match("/admin/services/details", "ServiceRoutes::adminServiceDetails");
 Route::match("/api/services/add", "ServiceRoutes::apiServiceAdd");
-//Route::match("/api/services/edit", "ServiceRoutes::apiServiceEdit");
 Route::match("/api/services/delete", "ServiceRoutes::apiServiceDelete");
 
 // Press Pages
@@ -58,17 +57,13 @@ Route::match("/press/:press", "PressRoutes::webPressDetails");
 Route::match("/admin/press", "PressRoutes::adminPressList");
 Route::match("/admin/press/add", "PressRoutes::adminPressAdd");
 Route::match("/admin/press/list", "PressRoutes::adminPressList");
-//Route::match("/admin/press/details", "ServiceRoutes::adminPresseDetails");
 Route::match("/api/press/add", "PressRoutes::apiPressAdd");
-//Route::match("/api/press/edit", "ServiceRoutes::apiPressEdit");
 Route::match("/api/press/delete", "PressRoutes::apiPressDelete");
 
 // Testimonial Pages
 Route::match("/admin/testimonials", "TestimonialRoutes::adminTestimonialList");
 Route::match("/admin/testimonials/add", "TestimonialRoutes::adminTestimonialAdd");
-//Route::match("/admin/testimonials/edit", "TestimonialRoutes::adminTestimonialEdit");
 Route::match("/api/testimonials/add", "TestimonialRoutes::apiTestimonialAdd");
-//Route::match("/api/testimonials/edit", "TestimonialRoutes::apiTestimonialEdit");
 Route::match("/api/testimonials/delete/:id", "TestimonialRoutes::apiTestimonialDelete");
 
 // Migrations Page

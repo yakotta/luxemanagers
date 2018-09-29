@@ -4,6 +4,18 @@ class ContactRoutes {
     static public function webContactPage() {
         Render::page("content_contact.php");
     }
+
+    // Message page (admin)
+    static public function adminContactPage() {
+        $messageList = ContactAPI::getMessageList();
+        $rows = ContactAPI::getMessageList()->fetchAll();
+        $messageCount = count($rows);
+    
+        Render::admin_page("admin_message_list.php", [
+            "messageList" => $messageList,
+            "messageCount" => $messageCount
+        ]);
+    }
     
     // Send Message API (functional)
     static public function apiSendMessage() {
