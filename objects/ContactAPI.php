@@ -27,4 +27,14 @@ QUERY;
         
         return $db->lastInsertId();
     }
+
+    static public function getMessageList() {
+        $db = Database::connect();
+        return $db->query("select * from contact_form");
+    }
+
+    static public function getRecentMessagesList() {
+        $db = Database::connect();
+        return $db->query("select * from contact_form order by id desc limit 3");
+    }
 }

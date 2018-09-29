@@ -5,8 +5,14 @@ class AdminRoutes {
         $userid = AuthenticationAPI::isLoggedIn();
         if($userid === false) Route::redirect("/login");
         $user = UserAPI::getUserById($userid);
+        $userList = UserAPI::getUserList();
+        $messageList = ContactAPI::getRecentMessagesList();
+        $resumeList = EmploymentAPI::getRecentResumeList();
         Render::admin_page("admin_home.php", [
             "user" => $user,
+            "userList" => $userList,
+            "messageList" => $messageList,
+            "resumeList" => $resumeList,
         ]);
     }
     

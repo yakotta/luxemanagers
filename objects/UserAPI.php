@@ -33,4 +33,9 @@ class UserAPI {
     static public function computePassword($password) {
         return password_hash($password, PASSWORD_BCRYPT, ['cost' => 4]);
     }
+
+    static public function getUserList() {
+        $db = Database::connect();
+        return $db->query("select id, username, email, is_enabled from users");
+    }
 }

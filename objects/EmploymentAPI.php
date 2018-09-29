@@ -24,9 +24,14 @@ QUERY;
         
         return $db->lastInsertId();
     }
-
+    
     static public function getResumeList() {
         $db = Database::connect();
-        return $db->query("select * from resumes");
+        return $db->query("select * from resumes order by id desc");
+    }
+
+    static public function getRecentResumeList() {
+        $db = Database::connect();
+        return $db->query("select * from resumes order by id desc limit 3");
     }
 }
