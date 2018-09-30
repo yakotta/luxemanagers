@@ -61,6 +61,7 @@ class ContactRoutes {
             Email::send($to, $from, $subject, $template_user);
             
             $status_sent = "success";
+            Validate::reset();
         }
         
         list($url) = explode("?", $_POST["url_return"]);

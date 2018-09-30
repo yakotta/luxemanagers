@@ -18,9 +18,9 @@ class Validate {
     }
     
     // Verifies if an input is a valid phone number
-    static public function phone($input) {
-        // Possible formats: (408) 375-2798, 408-375-2798, 408 375 2798, 4083752798, 408.375.2798
-    
+    static public function phone($input) {    
+        // Possible formats: (123) 555-5555, 123-555-5555, 123 555 5555, 1235555555, 123.555.5555
+
         // A QUICK PRIMER ON REGEX
         // the / and / at the start and end signal that this is a "regex pattern"
         // the ^ at the beginning of the pattern means "it must start here" (there is nothing before this point, this is the start of the string)
@@ -51,40 +51,52 @@ class Validate {
      *  - String containing the name of the field which has failed "validation"
      */
     static public function parameters (&$source, $parameters=[]) {
+        Validate::reset();
+
+        $status = true;
+
         foreach($parameters as $field => $rules)
         {
-            if(!array_key_exists($field, $source) || empty($source[$field])){
-                if($rules["required"] === true) {
-                    return $field;
+            if(!array_key_exists($field, $source) || empty($source[$field]))
+            {
+                Validate::failure($field, null);
+                if($rules["required"] === true) {    
+                    $status = false;
                 }
             }
             
             if($rules["type"] === "string") {
-                if (Validate::string($source[$field]) === false) {
+                if (Validate::string($source[$field]) === false) 
+                {
+                    Validate::failure($field, $source[$field]);
                     if($rules["required"] === true) {
-                        return $field;
+                        $status = false;
                     }
-                    
+
                     $source[$field] = "";
                 }
             }
             
             if($rules["type"] === "email") {
-                if (Validate::email($source[$field]) === false) {
+                if (Validate::email($source[$field]) === false) 
+                {   
+                    Validate::failure($field, $source[$field]);
                     if($rules["required"] === true) {
-                        return $field;
+                        $status = false;
                     }
-                    
+
                     $source[$field] = "";
                 };
             }
             
             if($rules["type"] === "phone") {
-                if (Validate::phone($source[$field]) === false) {
+                if (Validate::phone($source[$field]) === false) 
+                {   
+                    Validate::failure($field, $source[$field]);
                     if($rules["required"] === true) {
-                        return $field;
+                        $status = false;
                     }
-                    
+
                     $source[$field] = "";
                 };
             }
@@ -102,8 +114,9 @@ class Validate {
                     }
                     
                     if($found === false){
+                        Validate::failure($field, $source[$field]);
                         if($rules["required"] === true){
-                            return $field;
+                            $status = false;
                         }
                         
                         $source[$field] = "";
@@ -112,8 +125,58 @@ class Validate {
                     die("You didn't specify a desired file type so I killed you.");
                 }
             }
+
+            if(Validate::didItFailLikeChrisThomasFails($field) === false){
+                Validate::success($field, $source[$field]);
+            }
         }
+        
+        return $status;
+    }
     
+    // Adds data to the session about whether fields are not valid
+    static public function failure($field, $value) {
+        $_SESSION["validation"][$field]["value"] = $value;
+        $_SESSION["validation"][$field]["status"] = "failure";
+
+        /**
+         * loop over the array
+        foreach($_SESSION["validation"] as $field => $value){
+            $value = $item["value"];
+            $status = $item["status"];
+        }
+        */
+    }
+
+    // Adds data to the session about whether fields are valid
+    static public function success($field, $value) {
+        $_SESSION["validation"][$field]["value"] = $value;
+        $_SESSION["validation"][$field]["status"] = "success";
+    }
+
+    // Resets session validation array to an empty array
+    static public function reset() {
+        $_SESSION["validation"] = [];
+    }
+
+    // Checks to see if a given field is not valid, and only returns true if the given field fails validation checks
+    static public function didItFailLikeChrisThomasFails($field) {
+        // it's not a validation failure if it doesn't have a $_session[validation]
+        if(!array_key_exists("validation", $_SESSION)) return false;
+
+        // it's not a validation failure if it doesn't have the field in $_session[validation]
+        if(!array_key_exists($field, $_SESSION["validation"])) return false;
+
+        // it's not a validation failure if all statuses pass validation checks
+        if($_SESSION["validation"][$field]["status"] !== "failure") return false;
         return true;
-    }   
+    }
+
+    // Retrieves field value from the session's validation data
+    static public function getFieldValue($field) {
+        if(!array_key_exists("validation", $_SESSION)) return "";
+        if(!array_key_exists($field, $_SESSION["validation"])) return "";
+        if($_SESSION["validation"][$field]["status"] === "failure") return "";
+        return $_SESSION["validation"][$field]["value"];
+    }
 }

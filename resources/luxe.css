@@ -61,6 +61,27 @@ textarea {
     text-align: center;
 }
 
+.alert-danger, .alert-success {
+    background-image: none;
+}
+
+.has-error label {
+    color: #a94442;
+}
+
+.has-error input {
+    border-color: #dca7a7 !important;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    font-style: italic;
+    opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    font-style: italic;
+}
+
 /* Visual Seperators */
 .section-seperator {
     padding: 10px 0;

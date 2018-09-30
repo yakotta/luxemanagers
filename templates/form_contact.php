@@ -1,3 +1,13 @@
+<?php
+function isSelected($field, $value) {
+    return Validate::getFieldValue($field) === $value ? 'selected':'';
+}
+
+function hasFailure($field) {
+    return Validate::didItFailLikeChrisThomasFails($field) ? 'has-error':'';
+}
+?>
+
 <div class="row">
     <div class="col-md-4">
         <h2>Contact Luxe</h2>
@@ -47,34 +57,58 @@
             <a name="contact-form"></a>
             <input type="hidden" name="url_return" value="<?=$_SERVER['REQUEST_URI']?>" />
             <div class="row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-6 <?=hasFailure('name')?>">
                     <label for="contact-name">Name: </label>
-                    <input type="text" class="form-control" name="name" id="contact-name" required />
+                    <input  type="text" 
+                            class="form-control"
+                            name="name"
+                            id="contact-name"
+                            placeholder="required"
+                            value="<?=Validate::getFieldValue('name')?>"
+                            required />
                 </div>
 
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-6 <?=hasFailure('phone')?>">
                     <label for="contact-phone">Phone Number: </label>
-                    <input type="text" class="form-control" name="phone" id="contact-phone" />
+                    <input  type="text"
+                            class="form-control"
+                            name="phone"
+                            id="contact-phone"
+                            value="<?=Validate::getFieldValue('phone')?>" />
                 </div>
             </div>
+
             <div class="row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-6 <?=hasFailure('email')?>">
                     <label for="contact-email">Email: </label>
-                    <input type="text" class="form-control" name="email" id="contact-email" required />
+                    <input  type="text"
+                            class="form-control"
+                            name="email"
+                            id="contact-email"
+                            placeholder="required"
+                            value="<?=Validate::getFieldValue('email')?>"
+                            required />
                 </div>
-                <div class="form-group col-md-6">
+
+                <div class="form-group col-md-6 <?=hasFailure('preference')?>">
                     <label for="contact-preference">Contact Preference: </label>
-                    <select class="form-control" name="preference" id="contact-preference" value="email">
-                        <option value="email">Email</option>
-                        <option value="phone">Phone</option>
+                    <select class="form-control"
+                            name="preference"
+                            id="contact-preference"
+                            value="<?=Validate::getFieldValue('preference')?>" />
+                        <option value="email" <?=isSelected('preference', 'email')?>>Email</option>
+                        <option value="phone" <?=isSelected('preference', 'phone')?>>Phone</option>
                     </select>
                 </div>
             </div>
-            <div class="form-group">
+
+            <div class="form-group <?=hasFailure('message')?>">
                 <label for="contact-message">
                     What services are you interested in learning more about?
                 </label>
-                <textarea class="form-control autoresize" name="message" id="contact-message" value="" rows=4></textarea>
+                <textarea   class="form-control autoresize"
+                            name="message" id="contact-message"
+                            rows=4><?=Validate::getFieldValue('message')?></textarea>
             </div>
 
             <div class="btn-wrapper">
@@ -85,3 +119,5 @@
         </form>
     </div>
 </div>
+
+<?php Validate::reset(); ?>
