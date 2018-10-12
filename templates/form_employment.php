@@ -1,3 +1,10 @@
+<?php
+var_dump($_SESSION["validation"]);
+function hasFailure($field) {
+    return Validate::didItFailLikeChrisThomasFails($field) ? 'has-error':'';
+}
+?>
+
 <div class="row">
     <div class="col-md-4">
         <h2>Apply to Luxe</h2>
@@ -35,32 +42,53 @@
             <a name="employment-form"></a>
             <input type="hidden" name="url_return" value="<?=$_SERVER['REQUEST_URI']?>" />
             <div class="row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-6 <?=hasFailure('name')?>">
                     <label for="contact-name">Name: </label>
-                    <input type="text" class="form-control" name="name" id="contact-name" required />
+                    <input  type="text"
+                            class="form-control"
+                            name="name"
+                            id="contact-name"
+                            required />
                 </div>
 
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-6 <?=hasFailure('phone')?>">
                     <label for="contact-phone">Phone Number: </label>
-                    <input type="text" class="form-control" name="phone" id="contact-phone" />
+                    <input  type="text"
+                            class="form-control"
+                            name="phone"
+                            id="contact-phone" />
                 </div>
             </div>
+
             <div class="row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-6 <?=hasFailure('email')?>">
                     <label for="contact-email">Email: </label>
-                    <input type="text" class="form-control" name="email" id="contact-email" required />
+                    <input  type="text"
+                            class="form-control"
+                            name="email"
+                            id="contact-email"
+                            required />
                 </div>
-                <div class="form-group col-md-6">
+
+                <div class="form-group col-md-6 <?=hasFailure('filename')?>">
                     <label for="contact-resume">Resume: </label>
-                    <input type="file" class="form-control" name="resume" id="contact-resume" required />
+                    <input  type="file"
+                            class="form-control"
+                            name="resume"
+                            id="contact-resume"
+                            required />
                 </div>
             </div>
-            <div class="form-group">
+
+            <div class="form-group <?=hasFailure('message')?>">
                 <label for="contact-message">
                     How would you be an asset to Luxe Managers?
                 </label>
-                <textarea class="form-control autoresize" name="message" id="contact-message" value="" rows=4></textarea>
+                <textarea   class="form-control autoresize"
+                            name="message" id="contact-message"
+                            rows=4><?=Validate::getFieldValue('message')?></textarea>
             </div>
+
             <div class="btn-wrapper">
                 <div class="submitbutton">
                     <button type="submit" class="btn btn-default">Submit Resume</button>
@@ -69,3 +97,5 @@
         </form>
     </div>
 </div>
+
+<?php Validate::reset(); ?>

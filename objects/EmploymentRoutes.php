@@ -25,7 +25,8 @@ class EmploymentRoutes {
         $status_fields = Validate::parameters($_POST, [
             "name" => ["required" => true, "type" => "string"], 
             "email" => ["required" => true, "type" => "email"], 
-            "phone" => ["required" => false, "type" => "phone"]
+            "phone" => ["required" => false, "type" => "phone"],
+            "message" =>["required" => true, "type" => "string"]
         ]);
 
         $status_files = Validate::parameters($_FILES, [
@@ -67,6 +68,7 @@ class EmploymentRoutes {
             Email::send($to, $from, $subject, $template_user);
             
             $status_sent = "success";
+            Validate::reset();
         }
         
         list($url) = explode("?", $_POST["url_return"]);
