@@ -66,7 +66,7 @@ class PressRoutes {
             "primary_image" => ["required" => true, "type" => "string"],
             "secondary_image" => ["required" => false, "type" => "string"],
             "link" => ["required" => false, "type" => "string"]
-        ]);
+        ], true);
 
         if($status === true) {
             PressAPI::insertPress(
@@ -93,7 +93,7 @@ class PressRoutes {
             "primary_image" => ["required" => true, "type" => "string"],
             "secondary_image" => ["required" => false, "type" => "string"],
             "link" => ["required" => false, "type" => "string"]
-        ]);
+        ], true);
 
         if($status === true) {
             PressAPI::editPress($_POST);
@@ -108,7 +108,7 @@ class PressRoutes {
     static public function apiPressDelete() {
         $status = Validate::parameters($_GET, [
             "id" => ["required" => true, "type" => "integer"]
-        ]);
+        ], true);
 
         if($status === true) {
             PressAPI::deletePress($_GET["id"]);

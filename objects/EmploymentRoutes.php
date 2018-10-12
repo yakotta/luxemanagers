@@ -27,7 +27,7 @@ class EmploymentRoutes {
             "email" => ["required" => true, "type" => "email"], 
             "phone" => ["required" => false, "type" => "phone"],
             "message" =>["required" => true, "type" => "string"]
-        ]);
+        ], true);
 
         $status_files = Validate::parameters($_FILES, [
             "resume" => [

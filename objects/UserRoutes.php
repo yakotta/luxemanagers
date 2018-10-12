@@ -12,7 +12,7 @@ class UserRoutes {
         $status = Validate::parameters($_POST, [
             "username" => ["required" => true, "type" => "string"],
             "password" => ["required" => true, "type" => "string"]
-        ]);
+        ], true);
 
         if($status === true) {
             $userid = UserAPI::verifyLogIn(

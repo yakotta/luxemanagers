@@ -37,7 +37,7 @@ class TestimonialRoutes {
             "title" => ["required" => true, "type" => "string"],
             "quote" => ["required" => true, "type" => "string"],
             "link" => ["required" => false, "type" => "string"],
-        ]);
+        ], true);
         
         $status_files = Validate::parameters($_FILES, [
             "image" => [
@@ -45,7 +45,7 @@ class TestimonialRoutes {
                 "type" => "file",
                 "options" => ["image/jpeg","image/png"]
             ]    
-        ]);
+            ]);
 
         if($status_fields === true && $status_files === true){
             $id = TestimonialAPI::insertTestimonial($_POST["name"], $_POST["title"], $_POST["quote"], $_POST["link"]);

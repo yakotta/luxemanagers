@@ -27,7 +27,7 @@ class ContactRoutes {
             "phone" => ["required" => false, "type" => "phone"],
             "preference" => ["required" => true, "type" => "string"],
             "message" =>["required" => true, "type" => "string"]
-        ]);
+        ], true);
         
         if($status_fields === true) {
             $insertContacts = ContactAPI::insertContact(

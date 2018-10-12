@@ -1,10 +1,10 @@
 <?php
-function isSelected($field, $value) {
-    return Validate::getFieldValue($field) === $value ? 'selected':'';
-}
-
 function hasFailure($field) {
     return Validate::didItFailLikeChrisThomasFails($field) ? 'has-error':'';
+}
+
+function isSelected($field, $value) {
+    return Validate::getFieldValue($field) === $value ? 'selected':'';
 }
 ?>
 
@@ -39,6 +39,7 @@ function hasFailure($field) {
     </div>
 
     <div class="col-md-8 contact-form">
+        <!-- Status Success/Error Messages -->
         <?php if(isset($_GET["status"]) && $_GET["status"] == "success"): ?>
         <div class="alert alert-success" role="alert">
               Thank you for contacting Luxe Managers! Our team will get back to you
@@ -53,6 +54,7 @@ function hasFailure($field) {
             </div>
         <?php endif ?>
     
+        <!-- Form -->
         <form method="post" action="<?=Route::rewrite_url('/api/send-message')?>" class="contact-form">
             <a name="contact-form"></a>
             <input type="hidden" name="url_return" value="<?=$_SERVER['REQUEST_URI']?>" />

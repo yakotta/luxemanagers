@@ -66,7 +66,7 @@ class ServiceRoutes {
             "full_description" => ["required" => true, "type" => "string"],
             "image" => ["required" => false, "type" => "string"],
             "link" => ["required" => false, "type" => "string"]
-        ]);
+        ], true);
         
         if($status === true) {
             ServiceAPI::insertService(
@@ -92,7 +92,7 @@ class ServiceRoutes {
             "full_description" => ["required" => true, "type" => "string"],
             "image" => ["required" => false, "type" => "string"],
             "link" => ["required" => false, "type" => "string"]
-        ]);
+        ], true);
         
         if($status === true) {
             ServiceAPI::editService($_POST);
@@ -107,7 +107,7 @@ class ServiceRoutes {
     static public function apiServiceDelete() {
         $status = Validate::parameters($_GET, [
             "id" => ["required" => true, "type" => "integer"]
-        ]);
+        ], true);
     
         if($status === true) {
             ServiceAPI::deleteService($_GET["id"]);

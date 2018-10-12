@@ -1,5 +1,4 @@
 <?php
-var_dump($_SESSION["validation"]);
 function hasFailure($field) {
     return Validate::didItFailLikeChrisThomasFails($field) ? 'has-error':'';
 }
@@ -48,6 +47,8 @@ function hasFailure($field) {
                             class="form-control"
                             name="name"
                             id="contact-name"
+                            placeholder="required"
+                            value="<?=Validate::getFieldValue('name')?>"
                             required />
                 </div>
 
@@ -56,7 +57,8 @@ function hasFailure($field) {
                     <input  type="text"
                             class="form-control"
                             name="phone"
-                            id="contact-phone" />
+                            id="contact-phone" 
+                            value="<?=Validate::getFieldValue('phone')?>" />
                 </div>
             </div>
 
@@ -67,6 +69,8 @@ function hasFailure($field) {
                             class="form-control"
                             name="email"
                             id="contact-email"
+                            placeholder="required"
+                            value="<?=Validate::getFieldValue('email')?>"
                             required />
                 </div>
 

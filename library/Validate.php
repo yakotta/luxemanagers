@@ -50,8 +50,8 @@ class Validate {
      *  - Boolean true, if the parameters all exist within their constraints
      *  - String containing the name of the field which has failed "validation"
      */
-    static public function parameters (&$source, $parameters=[]) {
-        Validate::reset();
+    static public function parameters (&$source, $parameters=[], $reset=false) {
+        if($reset) Validate::reset();
 
         $status = true;
 
