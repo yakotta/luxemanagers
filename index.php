@@ -4,8 +4,6 @@ error_reporting(-1);
 ini_set("display_errors", true);
 
 session_start();
-// Just authenticate everybody for now until we create a proper login
-$_SESSION["authenticated"] = true;
 
 spl_autoload_register(function($className){
     // First attempt to find the file inside the library

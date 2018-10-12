@@ -18,6 +18,9 @@ class AdminRoutes {
     
     // Run Migrations
     static public function adminRunMigrations() {
+        $userid = AuthenticationAPI::isLoggedIn();
+        if($userid === false) Route::redirect("/login");
+        
         ob_start();
         $migrations = glob(__DIR__."/../migrations/m*.php");
     
@@ -27,6 +30,7 @@ class AdminRoutes {
             if(Migrations::check($m) === false){
                 print("<b>Running Migration: $m</b><br/>");
     
+                $db = Database::connect();
                 $output = include($m);
                 if($output === true) {
                     print("<b class='green'>Adding Migration: $m</b><br/>");
